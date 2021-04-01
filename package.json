@@ -26,7 +26,7 @@
     "install-frontend": "cd client && npm install",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "heroku-postbuild": "npm run install-frontend && npm run build"
+    "heroku-postbuild": ""
   },
   "eslintConfig": {
     "extends": [

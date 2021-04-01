@@ -43,9 +43,9 @@ const port = process.env.PORT || 5000; // process.env.port is Heroku's port if y
 //   });
 // }
 
-app.get('/', function (req, res) {
-  res.render('index', {});
-});
+// app.get('/', function (req, res) {
+//   res.render('index', {});
+// });
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
 

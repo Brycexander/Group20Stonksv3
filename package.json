@@ -22,11 +22,11 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "build": "cd client && npm run build",
-    "install-frontend": "cd client && npm install",
+    "build": "cd frontend && npm run build",
+    "install-frontend": "cd frontend && npm install",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "heroku-postbuild": ""
+    "heroku-postbuild": "npm run install-frontend && npm run build"
   },
   "eslintConfig": {
     "extends": [

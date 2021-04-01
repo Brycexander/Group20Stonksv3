@@ -30,7 +30,7 @@ mongoose
 app.use(passport.initialize());
 require("./config/passport")(passport);
 
-app.use("/api/users", Users);
+app.use("/api/Users", Users);
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
 
 // Server static assets if in production

@@ -17,8 +17,18 @@ const PortfolioSchema = new Schema({
     },
     StocksOwned: [{
         Company: String,
-        Amount: Decimal128
-    }]
+        Amount: Decimal128,
+        Date: Date
+    }],
+    History: [{
+        Date: Date,
+        Company: String,
+        Side: String,
+        Price: Decimal128,
+        Amount: Decimal128,
+        Total: Decimal128
+    }],
+    BalanceHistory: [Decimal128]
 });
 
 module.exports = Portfolio = mongoose.model("Portfolio", PortfolioSchema);

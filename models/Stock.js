@@ -7,32 +7,32 @@ const StockSchema = new Schema({
         required: true
     },
     Quote: {
-        Open: Decimal128,
-        High: Decimal128,
-        Low: Decimal128,
-        Current: Decimal128,
-        PreviousClose: Decimal128
+        o: Decimal128,
+        h: Decimal128,
+        l: Decimal128,
+        c: Decimal128,
+        pc: Decimal128
     },
     Candlestick: {
-        ClosePrices: [{
+        o: [{
             type: Decimal128
         }],
-        HighPrices: [{
+        h: [{
             type: Decimal128
         }],
-        LowPrices: [{
+        l: [{
             type: Decimal128
         }],
-        OpenPrices: [{
+        c: [{
             type: Decimal128
         }],
-        Status: String,
-        Timestamps: [{
+        v: [{
             type: Number
         }],
-        Volume: [{
+        t: [{
             type: Number
-        }]
+        }],
+        s: String,
     }
     
 });

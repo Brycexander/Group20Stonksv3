@@ -6,7 +6,8 @@ import LoginPage from './pages/LoginPage';
 import Home from './components/Home';
 import CardPage from './pages/CardPage';
 import UserPage from './components/UserPage';
-import Landing from './components/Landing';
+import Deposit from './components/Deposits';
+import Chart from './components/Chart';
 
 function App() 
 {
@@ -32,7 +33,10 @@ function App()
         <UserPage />
       </Route>
       <Route path="/Landing" exact>
-        <Landing />
+        <Deposit />
+      </Route>
+      <Route path="/Chart" exact>
+        <Chart />
       </Route>
       <Redirect to="/" />
     </Switch>  

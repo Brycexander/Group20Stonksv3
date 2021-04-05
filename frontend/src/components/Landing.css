@@ -1,0 +1,19 @@
+body{
+    background-color: rgb(230, 224, 224) !important;
+    color: rgb(0, 0, 0) !important;
+}
+
+.color-nav { 
+    background-color: #4cc3cc; 
+    color: white;
+} 
+
+.font
+{
+    color: white;
+}
+
+.logout
+{
+    color: rgb(196, 55, 55);
+}

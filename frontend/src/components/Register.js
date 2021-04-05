@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react'; 
+import './PageTitle.css'
 import { Button,  ButtonGroup, DropdownButton, MenuItem,Navbar, Nav, NavItem, NavDropdown, Jumbotron, Container, Row, Col, InputGroup, Form } from 'react-bootstrap';
 import {
     BrowserRouter as Router,
@@ -62,7 +63,9 @@ return(
     <Container>
   <Row className="justify-content-md-center">
     <Col className = "col-5 align-self-center">
+            <center>
             <h1 class="display-3">Register</h1>
+            </center>
     <Form>
 
     <Form.Group controlID="formGridUser">
@@ -87,10 +90,11 @@ return(
     <Form.Control type="email" placeholder="john@email.com" ref={(c) => email = c}/>
   </Form.Group>
 
-
+  <center>
   <Button className="color-button" type="submit" onClick={doRegister}>
     Submit
   </Button>
+  </center>
 </Form>
 </Col>
 </Row>

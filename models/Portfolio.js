@@ -12,13 +12,12 @@ const PortfolioSchema = new Schema({
     },
     CashBalance: {
         type: Number,
+        default: 10000,
         required: true
     },
-    NameOfStocksOwned: [{
-        type: String
-    }],
-    AmountPerStock: [{
-        type: Number
+    StocksOwned: [{
+        Company: String,
+        Amount: Decimal128
     }]
 });
 

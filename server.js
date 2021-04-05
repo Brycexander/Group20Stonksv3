@@ -62,61 +62,63 @@ if (process.env.NODE_ENV === 'production') {
 
 // clearInterval(interval);
 
-var stocks = new Array("AAPL", "MSFT", "FB", "TSLA", "BABA", "TSM", "JPM",
-                        "BAC", "WMT", "INTC", "CMCSA", "VZ", "XOM", "KO",
-                        "CSCO", "ORCL", "T", "PFE", "WFC", "C", "QCOM", "BA",
-                        "AMAT", "JD", "GE", "UBER", "MU", "AMD", "VALE", "GM");
+
+// var stocks = new Array("AAPL", "MSFT", "FB", "TSLA", "BABA", "TSM", "JPM",
+//                         "BAC", "WMT", "INTC", "CMCSA", "VZ", "XOM", "KO",
+//                         "CSCO", "ORCL", "T", "PFE", "WFC", "C", "QCOM", "BA",
+//                         "AMAT", "JD", "GE", "UBER", "MU", "AMD", "VALE", "GM");
 
 
 
-/*
-Open: data.o,
-..
+// /*
+// Open: data.o,
+// ..
 
 
-*/
-// Update Quote Function
-finnhubClient.quote(stocks[i], (error, data, response) => {
-  Stock.findOne({ Company: stocks[i] }).then(stock => {
-    if (stock) {
-      let quote = stock.findOneAndUpdate(stock.Quote, data, {
-          new: true
-      });
-    }
-    else {
-      const newStock = new Stock({
-        Company: stocks[i],
-        Quote: data
-      })
-    }
-  });
-});
+// */
+// // Update Quote Function
+// finnhubClient.quote(stocks[i], (error, data, response) => {
+//   Stock.findOne({ Company: stocks[i] }).then(stock => {
+//     if (stock) {
+//       let quote = stock.findOneAndUpdate(stock.Quote, data, {
+//           new: true
+//       });
+//     }
+//     else {
+//       const newStock = new Stock({
+//         Company: stocks[i],
+//         Quote: data
+//       })
+//     }
+//   });
+// });
 
-// Update Candlestick Function
-// TODO: Fix Unix Timestamps for retrieval
-finnhubClient.stockCandles(stocks[i], "D", 1590988249, 1591852249, {}, (error, data, response) => {
-  const stock = Stock.findOne({ Company: stocks[i] });
-  let candle = Stock.findOneAndUpdate(stock.Candlestick, data, {
-    new: true
-  });
-});
+// // Update Candlestick Function
+// // TODO: Fix Unix Timestamps for retrieval
+// finnhubClient.stockCandles(stocks[i], "D", 1590988249, 1591852249, {}, (error, data, response) => {
+//   const stock = Stock.findOne({ Company: stocks[i] });
+//   let candle = Stock.findOneAndUpdate(stock.Candlestick, data, {
+//     new: true
+//   });
+// });
 
 
-// Calls recursively every 1 minute
-// Final should be (* 9-17 * * MON-FRI)
-cron.schedule('* * * * *', () => {
-  for (i = 0; i < stocks.length; i++) {
-    finnhubClient.quote(stocks[i], (error, data, response) => {
-      // UPDATE QUOTE IN DATABASE
-    });
-    finnhubClient.stockCandles(stocks[i], "D", 1590988249, 1591852249, {}, (error, data, response) => {
-      // UPDATE CHART IN DATBASE
-    });
-  }
-  // UPDATE USER BALANCES
-});
+// // Calls recursively every 1 minute
+// // Final should be (* 9-17 * * MON-FRI)
+// cron.schedule('* * * * *', () => {
+//   for (i = 0; i < stocks.length; i++) {
+//     finnhubClient.quote(stocks[i], (error, data, response) => {
+//       // UPDATE QUOTE IN DATABASE
+//     });
+//     finnhubClient.stockCandles(stocks[i], "D", 1590988249, 1591852249, {}, (error, data, response) => {
+//       // UPDATE CHART IN DATBASE
+//     });
+//   }
+//   // UPDATE USER BALANCES
+// });
 
-// UPDATE 30 DAY CHART AT MIDNIGHT
+// // UPDATE 30 DAY CHART AT MIDNIGHT
+
 
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));

@@ -12,6 +12,10 @@ const finnhubClient = new finnhub.DefaultApi()
 const Users = require("./routes/api/Users");
 const app = express();
 
+// Load portfolio and stock models
+// const Stock = require("/models/Stock");
+// const Portfolio = require("models/Portfolio");
+
 // Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
@@ -22,6 +26,11 @@ app.use(bodyParser.json());
 
 // DB Config
 const db = require("./config/keys").mongoURI;
+const User = require("./models/User");
+const Stock = require("./models/Stock");
+const Portfolio = require("./models/portfolio");
+
+
 // Connect to MongoDB
 mongoose
   .connect(
@@ -63,10 +72,10 @@ if (process.env.NODE_ENV === 'production') {
 // clearInterval(interval);
 
 
-// var stocks = new Array("AAPL", "MSFT", "FB", "TSLA", "BABA", "TSM", "JPM",
-//                         "BAC", "WMT", "INTC", "CMCSA", "VZ", "XOM", "KO",
-//                         "CSCO", "ORCL", "T", "PFE", "WFC", "C", "QCOM", "BA",
-//                         "AMAT", "JD", "GE", "UBER", "MU", "AMD", "VALE", "GM");
+var stocks = new Array("AAPL", "MSFT", "FB", "TSLA", "BABA", "TSM", "JPM",
+                        "BAC", "WMT", "INTC", "CMCSA", "VZ", "XOM", "KO",
+                        "CSCO", "ORCL", "T", "PFE", "WFC", "C", "QCOM", "BA",
+                        "AMAT", "JD", "GE", "UBER", "MU", "AMD", "VALE", "QQQ");
 
 
 
@@ -119,6 +128,40 @@ if (process.env.NODE_ENV === 'production') {
 
 // // UPDATE 30 DAY CHART AT MIDNIGHT
 
+//---------------------------------------------------------------------------------------------------------------------
+
+// TRYING TO INITIALIZE ALL STOCK VALUES
+
+// for (i = 0; i < stocks.length; i++)
+// {
+//   const newStock = new Stock();
+//   newStock.Company = stocks[i];
+//   finnhubClient.quote(stocks[i], (error, data, response) => {
+//     // for Quote
+//     newStock.Quote.o = data.o;
+//     newStock.Quote.h = data.h;
+//     newStock.Quote.l = data.l;
+//     newStock.Quote.c = data.c;
+//     newStock.Quote.pc = data.pc;
+//     console.log(newStock);
+//   });
+//   finnhubClient.stockCandles(stocks[i], "D", 1590988249, 1591852249, {}, (error, data, response) => {
+//     newStock.Candlestick.o = data.o;
+//     newStock.Candlestick.h = data.h;
+//     newStock.Candlestick.l = data.l;
+//     newStock.Candlestick.c = data.c;
+//     newStock.Candlestick.v = data.v;
+//     newStock.Candlestick.t = data.t;
+//     newStock.Candlestick.s = data.s;
+
+//     console.log(newStock);
+//     // newStock.save();
+//   });
+// }
+
+// cron.schedule("*/.1 * * * * *", function () {
+//   console.log("running a task every second");
+// });
 
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));

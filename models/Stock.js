@@ -7,24 +7,24 @@ const StockSchema = new Schema({
         required: true
     },
     Quote: {
-        o: Decimal128,
-        h: Decimal128,
-        l: Decimal128,
-        c: Decimal128,
-        pc: Decimal128
+        o: Number,
+        h: Number,
+        l: Number,
+        c: Number,
+        pc: Number
     },
     Candlestick: {
         o: [{
-            type: Decimal128
+            type: Number
         }],
         h: [{
-            type: Decimal128
+            type: Number
         }],
         l: [{
-            type: Decimal128
+            type: Number
         }],
         c: [{
-            type: Decimal128
+            type: Number
         }],
         v: [{
             type: Number
@@ -36,3 +36,5 @@ const StockSchema = new Schema({
     }
     
 });
+
+module.exports = Stock = mongoose.model("Stock", StockSchema);

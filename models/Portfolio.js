@@ -6,29 +6,34 @@ const PortfolioSchema = new Schema({
         type: String,
         required: true
     },
-    CashInvested: {
+    Cash: {
         type: Number,
         required: true
     },
-    CashBalance: {
+    Holdings: {
+        type: Number,
+        default: 10000,
+        required: true
+    },
+    AccountBalance: {
         type: Number,
         default: 10000,
         required: true
     },
     StocksOwned: [{
         Company: String,
-        Amount: Decimal128,
+        Amount: Number,
         Date: Date
     }],
     History: [{
         Date: Date,
         Company: String,
         Side: String,
-        Price: Decimal128,
-        Amount: Decimal128,
-        Total: Decimal128
+        Price: Number,
+        Amount: Number,
+        Total: Number
     }],
-    BalanceHistory: [Decimal128]
+    BalanceHistory: [Number]
 });
 
 module.exports = Portfolio = mongoose.model("Portfolio", PortfolioSchema);

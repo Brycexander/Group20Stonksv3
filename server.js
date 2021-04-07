@@ -34,7 +34,7 @@ const db = require("./config/keys").mongoURI;
 const User = require("./models/User");
 const Stock = require("./models/Stock");
 const Portfolio = require("./models/portfolio");
-const { where } = require("./models/User");
+// const { where } = require("./models/User");
 
 
 // Connect to MongoDB

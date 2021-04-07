@@ -8,12 +8,12 @@ const PortfolioSchema = new Schema({
     },
     Cash: {
         type: Number,
-        default: 0,
+        default: 10000,
         required: true
     },
     Holdings: {
         type: Number,
-        default: 10000,
+        default: 0,
         required: true
     },
     AccountBalance: {

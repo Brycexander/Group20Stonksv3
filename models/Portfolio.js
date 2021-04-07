@@ -26,7 +26,7 @@ const PortfolioSchema = new Schema({
         Amount: Number,
         Date: Date
     }],
-    History: [{
+    BuyingHistory: [{
         Date: Date,
         Company: String,
         Side: String,
@@ -34,7 +34,12 @@ const PortfolioSchema = new Schema({
         Amount: Number,
         Total: Number
     }],
-    BalanceHistory: [Number]
+    BalanceHistory: {
+        type: Array,
+        default: [10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000,
+                  10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000,
+                  10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000]
+    }
 });
 
 module.exports = Portfolio = mongoose.model("Portfolio", PortfolioSchema);

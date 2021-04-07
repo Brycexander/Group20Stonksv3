@@ -712,5 +712,18 @@ var stocks = new Array("AAPL", "MSFT", "FB", "TSLA", "BABA", "TSM", "JPM",
 // console.log(test);
 
 
+// PORTFOLIO OPERATIONS
+//===========================================================================================
+
+// Portfolio.findOne({ Login: "test"}).then(portfolio => {
+//    console.log(portfolio.BalanceHistory);
+//    portfolio.BalanceHistory.push(11111);
+//    portfolio.BalanceHistory.splice(0, 10);
+//    console.log(portfolio.BalanceHistory);
+// })
+
+// const newPortfolio = new Portfolio()
+// newPortfolio.Login = "test";
+// newPortfolio.save();
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));

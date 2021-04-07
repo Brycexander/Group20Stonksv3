@@ -633,14 +633,14 @@ cron.schedule('*/2 * * * *', () => {
    console.log("UPDATED"); // means the stocks were updated
 });
 
-Stock.findOne({ Company: "AAPL" }).then(stock => {
-   // console.log(data);
-   // stock.Quote = data;
-   // stock.Quote = data;
-   // stock.save();
-   stock.Quote.o = 0;
-   stock.save();
-});
+// Stock.findOne({ Company: "AAPL" }).then(stock => {
+//    // console.log(data);
+//    // stock.Quote = data;
+//    // stock.Quote = data;
+//    // stock.save();
+//    stock.Quote.o = 0;
+//    stock.save();
+// });
 
 
 // // UPDATE 30 DAY CHART AT MIDNIGHT

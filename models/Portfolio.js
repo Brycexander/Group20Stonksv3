@@ -8,6 +8,7 @@ const PortfolioSchema = new Schema({
     },
     Cash: {
         type: Number,
+        default: 0,
         required: true
     },
     Holdings: {

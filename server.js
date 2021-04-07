@@ -22,6 +22,10 @@ app.use(bodyParser.json());
 
 // DB Config
 const db = require("./config/keys").mongoURI;
+const User = require("./models/User");
+const Stock = require("./models/Stock");
+const Portfolio = require("./models/portfolio");
+
 // Connect to MongoDB
 mongoose
    .connect(

@@ -5,16 +5,21 @@ const passport = require("passport");
 const finnhub = require('finnhub');
 var cron = require('node-cron');
 
+// for first finnhub API
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 api_key.apiKey = require("./config/keys").finnhubURI // Replace this
 const finnhubClient = new finnhub.DefaultApi()
 
+// // for second finnhub API
+// // const FinnhubAPI = require('@stoqey/finnhub');
+// import FinnhubAPI, { FinnhubWS } from '@stoqey/finnhub';
+// // For API
+// const finnhubAPI = new FinnhubAPI(require("./config/keys").finnhubURI);
+// // For Websockets
+// const finnhubWs = new FinnhubWS(require("./config/keys").finnhubURI); // or leave finnHubKey blank if process.env.FINNHUB_KEY is set
+
 const Users = require("./routes/api/Users");
 const app = express();
-
-// Load portfolio and stock models
-// const Stock = require("/models/Stock");
-// const Portfolio = require("models/Portfolio");
 
 // Bodyparser middleware
 app.use(
@@ -29,6 +34,7 @@ const db = require("./config/keys").mongoURI;
 const User = require("./models/User");
 const Stock = require("./models/Stock");
 const Portfolio = require("./models/portfolio");
+const { where } = require("./models/User");
 
 
 // Connect to MongoDB
@@ -62,27 +68,10 @@ if (process.env.NODE_ENV === 'production') {
 //   res.render('index', {});
 // });
 
-// var interval;
-// var minutes = .1, the_interval = minutes * 60 * 1000;
-// interval = setInterval(function () {
-//   // console.log("I am doing my 5 minutes check");
-//   // do your stuff here
-// }, the_interval);
-
-// clearInterval(interval);
-
-
 var stocks = new Array("AAPL", "MSFT", "FB", "TSLA", "BABA", "TSM", "JPM",
                         "BAC", "WMT", "INTC", "CMCSA", "VZ", "XOM", "KO",
                         "CSCO", "ORCL", "T", "PFE", "WFC", "C", "QCOM", "BA",
-                        "AMAT", "JD", "GE", "UBER", "MU", "AMD", "VALE", "QQQ");
-
-
-
-// /*
-// Open: data.o,
-// ..
-
+                        "AMAT", "JD", "GE");
 
 // */
 // // Update Quote Function
@@ -112,19 +101,547 @@ var stocks = new Array("AAPL", "MSFT", "FB", "TSLA", "BABA", "TSM", "JPM",
 // });
 
 
-// // Calls recursively every 1 minute
-// // Final should be (* 9-17 * * MON-FRI)
+// Calls recursively every 1 minute
+// Final should be (* 9-17 * * MON-FRI)
 // cron.schedule('* * * * *', () => {
 //   for (i = 0; i < stocks.length; i++) {
 //     finnhubClient.quote(stocks[i], (error, data, response) => {
 //       // UPDATE QUOTE IN DATABASE
+// 		if (error) {console.error(error);}
+// 		else if (data != null) {
+// 			Stock.findOne({ Company: "AAPL" }).then(stock => {
+// 				console.log(stock);
+// 				// stock.Quote = data;
+// 				// stock.save();
+// 			});
+// 		}
+// 		console.log(data);
 //     });
-//     finnhubClient.stockCandles(stocks[i], "D", 1590988249, 1591852249, {}, (error, data, response) => {
-//       // UPDATE CHART IN DATBASE
-//     });
+//    //  finnhubClient.stockCandles(stocks[i], "D", 1590988249, 1591852249, {}, (error, data, response) => {
+//    //    // UPDATE CHART IN DATBASE
+//    //  });
 //   }
 //   // UPDATE USER BALANCES
 // });
+
+Stock.findOne({ Company: "AAPL" }).then(stock => {
+   stock.Quote.o = 0;
+   stock.save();
+});
+// finnhubClient.quote(stocks[i], (error, data, response) =>
+
+cron.schedule('* * * * *', () => {
+   // for AAPL
+   finnhubClient.quote("AAPL", (error, data, response) => {
+		if (error) {console.error(error);}
+		else if (data != null) {
+			Stock.findOne({ Company: "AAPL" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+			});
+		}
+	});
+   finnhubClient.stockCandles("AAPL", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "AAPL" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for MSFT
+   finnhubClient.quote("MSFT", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "MSFT" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("MSFT", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "MSFT" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for FB
+   finnhubClient.quote("FB", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "FB" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("FB", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "FB" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for TSLA
+   finnhubClient.quote("TSLA", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "TSLA" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("TSLA", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "TSLA" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for BABA
+   finnhubClient.quote("BABA", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "BABA" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("BABA", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "BABA" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for TSM
+   finnhubClient.quote("TSM", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "TSM" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("TSM", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "TSM" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for JPM
+   finnhubClient.quote("JPM", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "JPM" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("JPM", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "JPM" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for BAC
+   finnhubClient.quote("BAC", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "BAC" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("BAC", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "BAC" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for WMT
+   finnhubClient.quote("WMT", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "WMT" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("WMT", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "WMT" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for INTC
+   finnhubClient.quote("INTC", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "INTC" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("INTC", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "INTC" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for CMCSA
+   finnhubClient.quote("CMCSA", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "CMCSA" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("CMCSA", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "CMCSA" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for VZ
+   finnhubClient.quote("VZ", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "VZ" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("VZ", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "VZ" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for XOM
+   finnhubClient.quote("XOM", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "XOM" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("XOM", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "XOM" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for KO
+   finnhubClient.quote("KO", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "KO" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("KO", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "KO" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for CSCO
+   finnhubClient.quote("CSCO", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "CSCO" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("CSCO", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "CSCO" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for ORCL
+   finnhubClient.quote("ORCL", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "ORCL" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("ORCL", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "ORCL" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for T
+   finnhubClient.quote("T", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "T" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("T", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "T" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for PFE
+   finnhubClient.quote("PFE", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "PFE" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("PFE", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "PFE" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for WFC
+   finnhubClient.quote("WFC", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "WFC" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("WFC", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "WFC" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for C
+   finnhubClient.quote("C", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "C" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("C", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "C" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for QCOM
+   finnhubClient.quote("QCOM", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "QCOM" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("QCOM", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "QCOM" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for BA
+   finnhubClient.quote("BA", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "BA" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("BA", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "BA" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for AMAT
+   finnhubClient.quote("AMAT", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "AMAT" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("AMAT", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "AMAT" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for JD
+   finnhubClient.quote("JD", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "JD" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("JD", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "JD" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+
+   // for GE
+   finnhubClient.quote("GE", (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "GE" }).then(stock => {
+            stock.Quote = data;
+            stock.save();
+         });
+      }
+   });
+   finnhubClient.stockCandles("GE", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+      if (error) { console.error(error); }
+      else if (data != null) {
+         Stock.findOne({ Company: "GE" }).then(stock => {
+            stock.Candlestick = data;
+            stock.save();
+         });
+      }
+   });
+   console.log("UPDATED"); // means the stocks were updated
+});
+
+// Stock.findOne({ Company: "AAPL" }).then(stock => {
+//    // console.log(data);
+//    // stock.Quote = data;
+//    // stock.Quote = data;
+//    // stock.save();
+//    stock.Quote.o = 0;
+//    stock.save();
+// });
+
 
 // // UPDATE 30 DAY CHART AT MIDNIGHT
 
@@ -134,34 +651,65 @@ var stocks = new Array("AAPL", "MSFT", "FB", "TSLA", "BABA", "TSM", "JPM",
 
 // for (i = 0; i < stocks.length; i++)
 // {
-//   const newStock = new Stock();
-//   newStock.Company = stocks[i];
-//   finnhubClient.quote(stocks[i], (error, data, response) => {
-//     // for Quote
-//     newStock.Quote.o = data.o;
-//     newStock.Quote.h = data.h;
-//     newStock.Quote.l = data.l;
-//     newStock.Quote.c = data.c;
-//     newStock.Quote.pc = data.pc;
-//     console.log(newStock);
-//   });
-//   finnhubClient.stockCandles(stocks[i], "D", 1590988249, 1591852249, {}, (error, data, response) => {
-//     newStock.Candlestick.o = data.o;
-//     newStock.Candlestick.h = data.h;
-//     newStock.Candlestick.l = data.l;
-//     newStock.Candlestick.c = data.c;
-//     newStock.Candlestick.v = data.v;
-//     newStock.Candlestick.t = data.t;
-//     newStock.Candlestick.s = data.s;
+// 	var currStock = stocks[i];
+// 	// console.log(currStock)
+//    const newStock = new Stock();
+//    newStock.Company = stocks[i];
 
-//     console.log(newStock);
-//     // newStock.save();
-//   });
+//    finnhubClient.quote(stocks[i], (error, data, response) => {
+//       if (error) {console.error(error);}
+//       else {
+// 			newStock.Quote = data;
+//       }
+//    });
+
+//    finnhubClient.stockCandles(stocks[i], "D", 1590988249, 1591852249, {}, (error, data, response) => {
+//       if (error) {console.error(error);}
+//       else {
+//          newStock.Candlestick = data;
+//          // console.log(newStock);
+// 			// newStock.save();
+//       }
+//    });
+// 	// console.log(quote);
+//    console.log(newStock);
 // }
+//-----------------------------------------------------------------------------------------------------------
+// ADD SINGLE STOCK VALUE
 
-// cron.schedule("*/.1 * * * * *", function () {
-//   console.log("running a task every second");
+// stocks to add "BAC" and "C"
+
+// const newStock = new Stock();
+// newStock.Company = "C";
+// finnhubClient.quote("C", (error, data, response) => {
+//   // for Quote
+//   newStock.Quote.o = data.o;
+//   newStock.Quote.h = data.h;
+//   newStock.Quote.l = data.l;
+//   newStock.Quote.c = data.c;
+//   newStock.Quote.pc = data.pc;
+//   // console.log(newStock);
 // });
+
+// finnhubClient.stockCandles("C", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+//   newStock.Candlestick.o = data.o;
+//   newStock.Candlestick.h = data.h;
+//   newStock.Candlestick.l = data.l;
+//   newStock.Candlestick.c = data.c;
+//   newStock.Candlestick.v = data.v;
+//   newStock.Candlestick.t = data.t;
+//   newStock.Candlestick.s = data.s;
+
+//   console.log(newStock);
+//   newStock.save();
+// });
+
+// finnhubClient.quote("C", (error, data, response) => {
+// 	console.log(data);
+// });
+
+// console.log(test);
+
 
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));

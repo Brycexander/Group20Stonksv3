@@ -16,7 +16,7 @@ router.post("/search", (req, res) => {
             return res.status(404).json({ StockNotFound: "No Stocks Found" });
         }
         else {
-            var retVal;
+            var retVal = [];
             for (i = 0; i < stock.length; i++)
             {
                 retVal.push({Company: stock[i].Company, Quote: stock[i].Quote});

@@ -609,8 +609,22 @@ cron.schedule('* * * * *', () => {
             });
         }
     });
-   console.log("STOCKS UPDATED"); // means the stocks were updated
+   // console.log("STOCKS UPDATED"); // means the stocks were updated
+
    // console.log(StocksValues);
+   // Portfolio.find().then(portfolios => {
+   //    if (!portfolios.length)
+   //       console.log("No portfolios to update");
+   //    else {
+   //       for (i = 0; i < portfolios.length; i++) {
+   //          for (j = 0; j < portfolios[i].StocksOwned.length; j++) {
+   //             Stock.findOne({"Company": portfolios[i].StocksOwned[j].Company}).then(stock => {
+
+   //             })
+   //          }
+   //       }
+   //    }
+   // })
 
    // UPDATE PORTFOLIOS STOCKSOWNED: TOTALVALUE
    Portfolio.find().then(portfolios => {

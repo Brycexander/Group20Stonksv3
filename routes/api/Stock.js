@@ -38,8 +38,9 @@ const Stock = require("../../models/Stock");
 // req {
 //     Query: "string to be queried"
 // }
-router.post("/Search", (req, res) => {
-    Stock.find({ "Company": { "$regex": req.body.Query, "$options": "i" }}).then(stock => {
+router.post("/search", (req, res) => {
+    const UpperCaseQuery = req.body.Query.toUpperCase()
+    Stock.find({ "Company": { "$regex": UpperCaseQuery, "$options": "i" }}).then(stock => {
         if (!stock) {
             return res.status(404).json({ StockNotFound: "Stock not found" });
         }

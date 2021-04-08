@@ -20,6 +20,7 @@ const finnhubClient = new finnhub.DefaultApi()
 
 const Users = require("./routes/api/Users");
 const Stocks = require("./routes/api/Stock");
+const Portfolios = require("./routes/api/Portfolios");
 const app = express();
 
 // Bodyparser middleware
@@ -55,6 +56,7 @@ require("./config/passport")(passport);
 
 app.use("/api/Users", Users);
 app.use("/api/Stock", Stocks);
+app.use("/api/Portfolios", Portfolios);
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
 
 // Server static assets if in production

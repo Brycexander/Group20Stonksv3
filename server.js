@@ -112,7 +112,7 @@ var stocks = new Array("AAPL", "MSFT", "FB", "TSLA", "BABA", "TSM", "JPM",
 //       // UPDATE QUOTE IN DATABASE
 // 		if (error) {console.error(error);}
 // 		else if (data != null) {
-// 			Stock.findOne({ Company: "AAPL" }).then(stock => {
+// 			Stock.findOne({ Company: stock[i] }).then(stock => {
 // 				console.log(stock);
 // 				// stock.Quote = data;
 // 				// stock.save();

@@ -19,6 +19,7 @@ const finnhubClient = new finnhub.DefaultApi()
 // const finnhubWs = new FinnhubWS(require("./config/keys").finnhubURI); // or leave finnHubKey blank if process.env.FINNHUB_KEY is set
 
 const Users = require("./routes/api/Users");
+const Stocks = require("./routes/api/Stock");
 const app = express();
 
 // Bodyparser middleware
@@ -53,6 +54,7 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 
 app.use("/api/Users", Users);
+app.use("/api/Stock", Stocks);
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
 
 // Server static assets if in production
@@ -131,7 +133,7 @@ var stocks = new Array("AAPL", "MSFT", "FB", "TSLA", "BABA", "TSM", "JPM",
 // WORKING
 // NOTE: COMMENTED ON GITHUB TO NOT MESS SOMETHING UP
 //---------------------------------------------------------------------------------------------------------------
-// cron.schedule('*/2 * * * *', () => {
+// cron.schedule('* * * * *', () => {
 //    // for AAPL
 //    finnhubClient.quote("AAPL", (error, data, response) => {
 // 		if (error) {console.error(error);}
@@ -631,8 +633,13 @@ var stocks = new Array("AAPL", "MSFT", "FB", "TSLA", "BABA", "TSM", "JPM",
 //          });
 //       }
 //    });
-//    console.log("UPDATED"); // means the stocks were updated
+//    console.log("STOCKS UPDATED"); // means the stocks were updated
+
+      // UPDATE PORTFOLIOS STOCKSOWNED: TOTALVALUE
+      // UPDATE PORTFOLIO ACCOUNTBALANCE AND HOLDINGS
 // });
+
+
 
 // Stock.findOne({ Company: "AAPL" }).then(stock => {
 //    // console.log(data);
@@ -716,14 +723,40 @@ var stocks = new Array("AAPL", "MSFT", "FB", "TSLA", "BABA", "TSM", "JPM",
 //===========================================================================================
 
 // Portfolio.findOne({ Login: "test"}).then(portfolio => {
-//    console.log(portfolio.BalanceHistory);
-//    portfolio.BalanceHistory.push(11111);
-//    portfolio.BalanceHistory.splice(0, 10);
-//    console.log(portfolio.BalanceHistory);
+//    console.log(portfolio.StocksOwned);
+//    portfolio.StocksOwned.push({Company:"AAPL", Amount: 1, TotalValue: 0, Date: Date.now()});
+//    console.log(portfolio.StocksOwned);
+//    portfolio.save();
+//    // console.log(portfolio.Cash);
+//    // portfolio.BalanceHistory.push(11111);
+//    // portfolio.BalanceHistory.splice(0, 1);
+//    // console.log(portfolio.BalanceHistory);
 // })
 
 // const newPortfolio = new Portfolio()
 // newPortfolio.Login = "test";
 // newPortfolio.save();
+
+// var cash = 0;
+// var k = 0;
+// Portfolio.findOne({ Login: "test"}).then(portfolio => {
+
+// })
+
+// Portfolio.findOne({ Login: "test" }).then(portfolio => {
+//    total = 0;
+//    for each stock owned:
+//       total += portfolio.StocksOwnded.totalprice
+//    total += cash;
+//    save(total);
+// )};
+
+// Stock.find({ "Company": { "$regex": "A", "$options": "i" } }).then(stock => {
+//    if (!stock) {
+//       console.log("error");
+//    }
+//    console.log(stock);
+// });
+
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));

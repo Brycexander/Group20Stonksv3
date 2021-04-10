@@ -19,7 +19,7 @@ const finnhubClient = new finnhub.DefaultApi()
 // const finnhubWs = new FinnhubWS(require("./config/keys").finnhubURI); // or leave finnHubKey blank if process.env.FINNHUB_KEY is set
 
  //const Users = require("./routes/api/Users");
-const authenticate = require('../config/authenticate');
+const authenticate = require('./config/authenticate');
 const Stocks = require("./routes/api/Stock");
 const Portfolios = require("./routes/api/Portfolios");
 const auth = require('./routes/auth');

@@ -6,9 +6,6 @@ const validate = require('../validation/validate');
 
 const router = express.Router();
 
-//INDEX
-router.get('/', User.index);
-
 //STORE
 router.post('/', [
     check('Email').isEmail().withMessage('Enter a valid email address'),

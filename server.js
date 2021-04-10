@@ -57,8 +57,6 @@ mongoose
 app.use(passport.initialize());
 require("./config/passport")(passport);
 
-require("./routes/index")(app);
-
 app.use('/api/auth', auth);
 app.use('/api/user', authenticate, user);
 app.use("/api/Stock", Stocks);

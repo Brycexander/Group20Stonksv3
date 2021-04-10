@@ -30,7 +30,7 @@ function Login()
             var config =
             {
                 method: 'post',
-                url: bp.buildPath('api/users/login'),        // or api/addcard or api/searchcards
+                url: bp.buildPath('api/auth/login'),        // or api/addcard or api/searchcards
                 headers:
                 {
                     'Content-Type': 'application/json'

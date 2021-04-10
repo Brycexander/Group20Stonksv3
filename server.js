@@ -18,7 +18,7 @@ const finnhubClient = new finnhub.DefaultApi()
 // // For Websockets
 // const finnhubWs = new FinnhubWS(require("./config/keys").finnhubURI); // or leave finnHubKey blank if process.env.FINNHUB_KEY is set
 
-const Users = require("./routes/api/Users");
+ //const Users = require("./routes/api/Users");
 const Stocks = require("./routes/api/Stock");
 const Portfolios = require("./routes/api/Portfolios");
 const app = express();
@@ -54,7 +54,8 @@ mongoose
 app.use(passport.initialize());
 require("./config/passport")(passport);
 
-app.use("/api/Users", Users);
+require("./routes/index")(app);
+
 app.use("/api/Stock", Stocks);
 app.use("/api/Portfolios", Portfolios);
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
@@ -609,22 +610,6 @@ cron.schedule('* * * * *', () => {
             });
         }
     });
-   // console.log("STOCKS UPDATED"); // means the stocks were updated
-
-   // console.log(StocksValues);
-   // Portfolio.find().then(portfolios => {
-   //    if (!portfolios.length)
-   //       console.log("No portfolios to update");
-   //    else {
-   //       for (i = 0; i < portfolios.length; i++) {
-   //          for (j = 0; j < portfolios[i].StocksOwned.length; j++) {
-   //             Stock.findOne({"Company": portfolios[i].StocksOwned[j].Company}).then(stock => {
-
-   //             })
-   //          }
-   //       }
-   //    }
-   // })
 
    // UPDATE PORTFOLIOS STOCKSOWNED: TOTALVALUE
    Portfolio.find().then(portfolios => {

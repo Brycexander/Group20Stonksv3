@@ -18,5 +18,9 @@ router.post("/getPortfolio", (req, res) => {
     });
 });
 
+// API for Buy
+
+// API for Sell
+
 
 module.exports = router;

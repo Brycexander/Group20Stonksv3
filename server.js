@@ -19,8 +19,11 @@ const finnhubClient = new finnhub.DefaultApi()
 // const finnhubWs = new FinnhubWS(require("./config/keys").finnhubURI); // or leave finnHubKey blank if process.env.FINNHUB_KEY is set
 
  //const Users = require("./routes/api/Users");
+const authenticate = require('../config/authenticate');
 const Stocks = require("./routes/api/Stock");
 const Portfolios = require("./routes/api/Portfolios");
+const auth = require('./routes/auth');
+const user = require('./routes/user');
 const app = express();
 
 // Bodyparser middleware
@@ -56,6 +59,8 @@ require("./config/passport")(passport);
 
 require("./routes/index")(app);
 
+app.use('/api/auth', auth);
+app.use('/api/user', authenticate, user);
 app.use("/api/Stock", Stocks);
 app.use("/api/Portfolios", Portfolios);
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there

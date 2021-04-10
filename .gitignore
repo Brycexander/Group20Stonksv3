@@ -21,4 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
 sendgrid.env
+=======
+>>>>>>> 61f32649ec8390834fdfbb16c59ac93517e1ccda

@@ -24,6 +24,8 @@ const PortfolioSchema = new Schema({
     StocksOwned: [{
         Company: String,
         Amount: Number,
+        StockValue: Number,
+        TotalValue: Number,
         Date: Date
     }],
     BuyingHistory: [{

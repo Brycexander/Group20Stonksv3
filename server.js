@@ -20,6 +20,9 @@ const finnhubClient = new finnhub.DefaultApi()
 // // For Websockets
 // const finnhubWs = new FinnhubWS(require("./config/keys").finnhubURI); // or leave finnHubKey blank if process.env.FINNHUB_KEY is set
 
+const Users = require("./routes/api/Users");
+const Stocks = require("./routes/api/Stock");
+const Portfolios = require("./routes/api/Portfolios");
 const app = express();
 
 // Bodyparser middleware
@@ -35,7 +38,6 @@ const db = require("./config/keys").mongoURI;
 const User = require("./models/User");
 const Stock = require("./models/Stock");
 const Portfolio = require("./models/Portfolio");
-const sg = require("./config/keys").SENDGRID_API_KEY;
 // const { where } = require("./models/User");
 
 
@@ -68,10 +70,6 @@ if (process.env.NODE_ENV === 'production') {
       res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
    });
 }
-
-// app.get('/', function (req, res) {
-//   res.render('index', {});
-// });
 
 var stocks = new Array("AAPL", "MSFT", "FB", "TSLA", "BABA", "TSM", "JPM",
    "BAC", "WMT", "INTC", "CMCSA", "VZ", "XOM", "KO",
@@ -719,15 +717,55 @@ var stocks = new Array("AAPL", "MSFT", "FB", "TSLA", "BABA", "TSM", "JPM",
 // PORTFOLIO OPERATIONS
 //===========================================================================================
 
+// TO ADD A NEW STOCK TO A PORTFOLIO
 // Portfolio.findOne({ Login: "test"}).then(portfolio => {
-//    console.log(portfolio.BalanceHistory);
-//    portfolio.BalanceHistory.push(11111);
-//    portfolio.BalanceHistory.splice(0, 10);
-//    console.log(portfolio.BalanceHistory);
+//    // console.log(portfolio.StocksOwned);
+//    portfolio.StocksOwned.push({Company:"MSFT", Amount: 2, StocksValues: 1, TotalValue: 1, Date: Date.now()});
+//    // console.log(portfolio.StocksOwned);
+//    portfolio.save();
+//    // console.log(portfolio.Cash);
+//    // portfolio.BalanceHistory.push(11111);
+//    // portfolio.BalanceHistory.splice(0, 1);
+//    // console.log(portfolio.BalanceHistory);
 // })
 
+// TO ADD A NEW PORTFOLIO
 // const newPortfolio = new Portfolio()
-// newPortfolio.Login = "test";
+// newPortfolio.Login = "anothertest";
 // newPortfolio.save();
+// Portfolio.findOne({ Login: "anothertest" }).then(portfolio => {
+//    // console.log(portfolio.StocksOwned);
+//    portfolio.StocksOwned.push({ Company: "TSLA", Amount: 5, StocksValues: 1, TotalValue: 1, Date: Date.now() });
+//    // console.log(portfolio.StocksOwned);
+//    portfolio.save();
+//    // console.log(portfolio.Cash);
+//    // portfolio.BalanceHistory.push(11111);
+//    // portfolio.BalanceHistory.splice(0, 1);
+//    // console.log(portfolio.BalanceHistory);
+// })
+
+
+
+// var cash = 0;
+// var k = 0;
+// Portfolio.findOne({ Login: "test"}).then(portfolio => {
+
+// })
+
+// Portfolio.findOne({ Login: "test" }).then(portfolio => {
+//    total = 0;
+//    for each stock owned:
+//       total += portfolio.StocksOwnded.totalprice
+//    total += cash;
+//    save(total);
+// )};
+
+// Stock.find({ "Company": { "$regex": "A", "$options": "i" } }).then(stock => {
+//    if (!stock) {
+//       console.log("error");
+//    }
+//    console.log(stock);
+// });
+
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));

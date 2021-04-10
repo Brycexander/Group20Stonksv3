@@ -2,54 +2,68 @@ import React, { Component, useState } from 'react';
 import { Button,  ButtonGroup, DropdownButton, MenuItem,Navbar, Nav, NavItem, NavDropdown, Jumbotron, Container, Row, Col, InputGroup, Form} from 'react-bootstrap';
 import logo from './../vector-creator.png'; //import image
 import {LinkContainer} from 'react-router-bootstrap'
+import axios from 'axios'
 
 
 function Login()
 {
-    var loginName;
-    var loginPassword;
+  const storage = require('../tokenStorage.js');
+  const bp = require('./bp.js');
 
-    const [message,setMessage] = useState('');
+   var loginName;
+   var loginPassword;
 
-    const doLogin = async event => 
-    {
-        event.preventDefault();
+   const [message,setMessage] = useState('');
 
-        var obj = {login:loginName.value,password:loginPassword.value};
-        var js = JSON.stringify(obj);
+   const doLogin = async event =>
+   {
+       event.preventDefault();
 
-        try
-        {    
-            const response = await fetch('http://localhost:5000/api/login',
-                {method:'POST',body:js,headers:{'Content-Type': 'application/json'}});
+       var obj = {login:loginName.value,password:loginPassword.value};
+       var js = JSON.stringify(obj);
 
-            var res = JSON.parse(await response.text());
+       console.log(loginName.value + " " + loginPassword.value);
 
-            if( res.id <= 0 )
-            {
-                setMessage('User/Password combination incorrect');
-            }
-            else
-            {
-                var user = {firstName:res.firstName,lastName:res.lastName,id:res.id}
-                localStorage.setItem('user_data', JSON.stringify(user));
+       try
+       {
+            // Axios code follows
+            var config =
+            {
+                method: 'post',
+                url: bp.buildPath('api/users/login'),        // or api/addcard or api/searchcards
+                headers:
+                {
+                    'Content-Type': 'application/json'
+                },
+                data: js
+            };
 
-                setMessage('');
-                window.location.href = '/Search';
-            }
-        }
-        catch(e)
-        {
-            alert(e.toString());
-            return;
-        }    
-    };
+            axios(config)
+            .then(function (response)
+            {
+                var res = response.data;
+                if (res.error)
+                {
+                    setMessage('User/Password combination incorrect');
+                }
+                else
+                {
+                    storage.storeToken(res);
+                    window.location.href = '/Landing';
+                }
+            })
+            .catch(function (error)
+            {
+                setMessage(error);
+            });
 
-const app_name = ''
- /* function buildPath(route)
-  {
-    if(process.env.)
-  }*/
+       }
+       catch(e)
+       {
+           alert(e.toString());
+           return;
+       }
+   };
 
     return(
    <>

@@ -1,0 +1,117 @@
+/* Modify the background color */ 
+
+body{
+    background-color: rgb(255, 255, 255) !important;
+    color: black;
+}
+
+.color-nav { 
+    background-color: #4cc3cc; 
+} 
+
+.jumbotron{
+
+    background-color: #f7f7f7 !important;
+    margin-top: 35px !important;
+    border-radius: 30px !important;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgba(0, 115, 230, 0.3);
+}
+
+.jumbotron2{
+    margin-top: 95px !important;
+    border-radius: 30px !important;
+}
+
+#nav
+{
+    background-color: #45edf3; 
+}
+
+.title, #change, #collasible-nav-dropdown{
+    color: white;  
+}
+
+#navbarDropdownMenuLink
+{
+    color: darkgrey;
+}
+
+#login
+{
+   font-size: 50px;
+}
+
+.color-button
+{
+    background-color: #56c035 !important;
+}
+
+.button{
+    align-self: center;
+}
+
+/*:root{
+    filter: invert(100%);
+}*/
+
+
+
+.left-side
+{
+    background: white !important;
+    color: black;
+    height: 100vh;  
+    width: 100%;
+}
+
+.right-side{
+    background-color: #1a1a1c !important;
+    height: 100vh;  
+    width: 70%;
+}
+
+.LoginBox
+{
+    margin-top: 160px;
+    width: 22rem;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgba(0, 115, 230, 0.3);
+}
+
+.center
+{
+Display: flex;
+Align-Items: center;
+Justify-Content: center;
+margin-top: 100px;
+margin-left: 80px;
+}
+
+.quote
+{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif"Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-weight: lighter;
+    align-self: center;
+    color: white;
+}
+
+.size
+{
+    font-size: 10x;
+}
+
+.chart
+{
+    font-size: 40px !important;
+    margin-left: 20px !important;
+}
+
+.chart1
+{
+    font-size: 40px !important;
+    margin-bottom: 30px !important;
+}
+

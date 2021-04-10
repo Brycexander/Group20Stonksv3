@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+.stock-search {
+    margin-bottom: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .stock-input{
+    padding-left: 16px;
+    width: 300px;
+    height: 50px;
+    border-radius: 4px;
+    border: none;
+    background-image: linear-gradient(-225deg, #d9cddf 0%, #d9cddf,
+    #d9cddf 100%);
+    color: black;
+  }
+
+  .stock-text {
+    color: black;
+    margin-bottom: 32px;
+    align-items: center;
+  }

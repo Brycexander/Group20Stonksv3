@@ -11,6 +11,12 @@ import Recent from './Recent';
 import { Button,  ButtonGroup, DropdownButton, MenuItem,Navbar, Nav, NavItem, NavDropdown, Jumbotron, Container, Row, Col, InputGroup, Form, FormControl} from 'react-bootstrap';
 import Pie from './Portfolio';
 import Orders from './Orders';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function Deposits()
 {
@@ -32,7 +38,7 @@ function Deposits()
         <Navbar className="color-nav" expand="lg">
   <Navbar.Brand className="font">Welcome, User</Navbar.Brand>
   <Nav.Link className="font">Learderboard</Nav.Link>
-  <Nav.Link href="./Search" className="font">Stocks</Nav.Link>
+  <Nav.Link href="/Search" className="font">Stocks</Nav.Link>
   <Nav.Link className="font">Settings</Nav.Link>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">

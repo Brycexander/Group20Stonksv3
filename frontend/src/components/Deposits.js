@@ -41,7 +41,7 @@ function Deposits()
     </Nav>
 
     <Form inline>
-    <Nav.Link className="logout" href="./LoginPage">Logout</Nav.Link>
+    <Nav.Link className="logout" href="./">Logout</Nav.Link>
     </Form>
   </Navbar.Collapse>
 </Navbar>

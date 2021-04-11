@@ -60,7 +60,7 @@ const data = [
 
     return (
       <div> 
-          <h1 class="display-4 chart">Today</h1>
+          <h1 className="display-4 chart">Today</h1>
           <br></br>
         <LineChart className="move1"
           width={700}

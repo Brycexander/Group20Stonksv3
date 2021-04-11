@@ -5,7 +5,6 @@ import {LinkContainer} from 'react-router-bootstrap'
 import './PageTitle.css';
 import axios from 'axios'
 
-
 function Login()
 {
   const storage = require('../tokenStorage.js');
@@ -76,7 +75,7 @@ function Login()
     </head>
 
     <Row>
-    <Col className = "col-5 align-self-left" className = "left-side" noGutters={true}>
+    <Col className = {("col-5 align-self-left","left-side")} noGutters={true}>
       <Col lg={8} md={{ span: 6, offset: 3 }} sm={12} className="LoginBox">
     <Container className= "jumbotron2">    
       <h1 class="display-3" id = "login">Login</h1>
@@ -105,7 +104,7 @@ function Login()
 </Container>  
 </Col>
 </Col>
-  <Col className = "col-8 align-self-right" className = "right-side" noGutters={true}>
+  <Col className = {("col-5 align-self-right", "right-side")} noGutters={true}>
   <Container>
   <img src={logo} width="520" alt="space" fluid className="center"/>
   <Row className="justify-content-md-center">

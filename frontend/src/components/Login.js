@@ -2,6 +2,7 @@ import React, { Component, useState } from 'react';
 import { Button,  ButtonGroup, DropdownButton, MenuItem,Navbar, Nav, NavItem, NavDropdown, Jumbotron, Container, Row, Col, InputGroup, Form} from 'react-bootstrap';
 import logo from './../vector-creator.png'; //import image
 import {LinkContainer} from 'react-router-bootstrap'
+import './PageTitle.css';
 import axios from 'axios'
 
 

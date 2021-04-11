@@ -2,7 +2,6 @@ import React, { Component, useState, PureComponent } from 'react';
 import ReactDOM from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Landing.css';
-import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper'
@@ -26,14 +25,6 @@ function Deposits()
   };
 
     return(
-      <>
-          <head>
-    <link rel="stylesheet" href="../PageTitle.css"></link>
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
-    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
-    crossorigin="anonymous"></link>
-    </head>
-
       <div>
         <Navbar className="color-nav" expand="lg">
   <Navbar.Brand className="font">Welcome, User</Navbar.Brand>
@@ -47,7 +38,9 @@ function Deposits()
     </Nav>
 
     <Form inline>
-    <Nav.Link className="logout" href="/">Logout</Nav.Link>
+    <Link id="logout" className="nav-link" to="/">
+      Logout
+    </Link>
     </Form>
   </Navbar.Collapse>
 </Navbar>
@@ -72,7 +65,6 @@ function Deposits()
       </Col>
      </Row>
       </div>
-      </>
     );
 
 };

@@ -39,7 +39,7 @@ function PageTitle()
     </Nav>
     <Nav>
 
-      <Link id="change" className="nav-link" to="/Register">
+      <Link id="change" className="nav-link" to="/Landing">
       Register
       </Link>
     </Nav>

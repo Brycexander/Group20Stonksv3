@@ -27,12 +27,7 @@ function Register() {
 
 return(
     <>
-    <head>
-    <link rel="stylesheet" href="../PageTitle.css"></link>
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
-    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
-    crossorigin="anonymous"></link>
-    </head>
+
 
 <Navbar collapseOnSelect expand="lg" className="color-nav">
   <Navbar.Brand id="change" href="#home">StockHub</Navbar.Brand>
@@ -58,17 +53,17 @@ return(
   </Navbar.Collapse>
 </Navbar>
 
-    <Container class="d-flex align-content-bottom">
-  <Jumbotron class= "mx-auto" className="jumbotron">
+    <Container>
+  <Jumbotron className= {("mx-auto","jumbotron")}>
     <Container>
   <Row className="justify-content-md-center">
     <Col className = "col-5 align-self-center">
             <center>
-            <h1 class="display-3">Register</h1>
+            <h1 className="display-3">Register</h1>
             </center>
     <Form>
 
-    <Form.Group controlID="formGridUser">
+    <Form.Group controlid="formGridUser">
       <Form.Label>Username</Form.Label>
       <Form.Control type="username" placeholder="Enter username" ref={(c) => confirm = c}/>
     </Form.Group>

@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react'; 
-import { Button,  ButtonGroup, DropdownButton, MenuItem,Navbar, Nav, NavItem, NavDropdown, Jumbotron, Container, Row, Col, InputGroup, Form} from 'react-bootstrap';
+import { Button, Nav, Container, Row, Col, Form} from 'react-bootstrap';
 import logo from './../vector-creator.png'; //import image
 import {LinkContainer} from 'react-router-bootstrap'
 import './PageTitle.css';
@@ -66,19 +66,12 @@ function Login()
    };
 
     return(
-   <>
-    <head>
-    <link rel="stylesheet" href="../PageTitle.css"></link>
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
-    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
-    crossorigin="anonymous"></link>
-    </head>
-
+  
     <Row>
-    <Col className = {("col-5 align-self-left","left-side")} noGutters={true}>
+    <Col className = {("col-5 align-self-left","left-side")} nogutters="true">
       <Col lg={8} md={{ span: 6, offset: 3 }} sm={12} className="LoginBox">
     <Container className= "jumbotron2">    
-      <h1 class="display-3" id = "login">Login</h1>
+      <h1 className="display-3" id = "login">Login</h1>
       <Form onSubmit={doLogin}>
       <Form.Group controlId="formBasicText">
     <Form.Label>Username</Form.Label>
@@ -104,16 +97,15 @@ function Login()
 </Container>  
 </Col>
 </Col>
-  <Col className = {("col-5 align-self-right", "right-side")} noGutters={true}>
+  <Col className = {("col-5 align-self-right", "right-side")} nogutters="true">
   <Container>
-  <img src={logo} width="520" alt="space" fluid className="center"/>
+  <img src={logo} width="520" alt="space" fluid="true" className="center"/>
   <Row className="justify-content-md-center">
   <h2 className="quote">Take your investments to new heights</h2>
   </Row>
   </Container>
   </Col>
 </Row>
-</>
     );
     
 };

@@ -8,6 +8,7 @@ import CardPage from './pages/CardPage';
 import UserPage from './components/UserPage';
 import Deposit from './components/Deposits';
 import Chart from './components/Chart';
+import "react-bootstrap/dist/react-bootstrap.min.js"
 
 function App() 
 {

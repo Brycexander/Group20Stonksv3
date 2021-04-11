@@ -19,12 +19,12 @@ function Login()
    {
        event.preventDefault();
 
-       var obj = {login:loginName.value,password:loginPassword.value};
+       var obj = {Login:loginName.value,Password:loginPassword.value};
        var js = JSON.stringify(obj);
 
        console.log(loginName.value + " " + loginPassword.value);
 
-       try
+      /* try
        {
             // Axios code follows
             var config =
@@ -62,7 +62,7 @@ function Login()
        {
            alert(e.toString());
            return;
-       }
+       }*/
    };
 
     return(

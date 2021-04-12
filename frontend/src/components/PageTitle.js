@@ -31,7 +31,7 @@ function PageTitle()
     </Nav>
     <Nav>
 
-      <Link id="change" className="nav-link" to="/Landing">
+      <Link id="change" className="nav-link" to="/Register">
       Register
       </Link>
     </Nav>

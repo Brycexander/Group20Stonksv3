@@ -40,6 +40,7 @@ function Login()
             else 
             {
               setMessage("OOOOOOOOOOH! :)");
+              window.location.href = '/Landing';
             }
           })
           .catch(function (error) {

@@ -15,6 +15,11 @@ exports.register = async (req, res) => {
         if (user) return res.status(401).json({message: 'The email address/login you have entered is already associated with another account.'});
 
         const newUser = new User({ ...req.body, role: "basic" });
+
+        const portfolio = await Portfolio.findOne({ Login: req.body.Login });
+        
+        if (portfolio) return res.status(401).json({message: "Portfolio already created"});
+        
         const newPortfolio = new Portfolio({ Login: req.body.Login });
 
         const user_ = await newUser.save();

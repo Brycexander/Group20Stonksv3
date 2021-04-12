@@ -1,9 +1,9 @@
 import React, { Component, useState } from 'react'; 
-import { Button,  ButtonGroup, DropdownButton, MenuItem,Navbar, Nav, NavItem, NavDropdown, Jumbotron, Container, Row, Col, InputGroup, Form} from 'react-bootstrap';
+import { Button, Nav, Container, Row, Col, Form} from 'react-bootstrap';
 import logo from './../vector-creator.png'; //import image
 import {LinkContainer} from 'react-router-bootstrap'
+import './PageTitle.css';
 import axios from 'axios'
-
 
 function Login()
 {
@@ -19,66 +19,45 @@ function Login()
    {
        event.preventDefault();
 
-       var obj = {login:loginName.value,password:loginPassword.value};
+       var obj = {Login:loginName.value,Password:loginPassword.value};
        var js = JSON.stringify(obj);
 
        console.log(loginName.value + " " + loginPassword.value);
 
-       try
-       {
-            // Axios code follows
-            var config =
-            {
-                method: 'post',
-                url: bp.buildPath('api/auth/login'),        // or api/addcard or api/searchcards
-                headers:
-                {
-                    'Content-Type': 'application/json'
-                },
-                data: js
-            };
 
-            axios(config)
-            .then(function (response)
+       const postCall = () => {
+        axios
+          .post('https://group20-stocksimulatorv2.herokuapp.com/api/auth/login', {
+            "Login": loginName.value,
+            "Password": loginPassword.value
+          })
+          .then(function (response) {
+            var res = response.data;
+            if (res.error) 
             {
-                var res = response.data;
-                if (res.error)
-                {
-                    setMessage('User/Password combination incorrect');
-                }
-                else
-                {
-                    storage.storeToken(res);
-                    window.location.href = '/Landing';
-                }
-            })
-            .catch(function (error)
+              alert(res.error);
+            }
+            else 
             {
-                setMessage(error);
-            });
+              console.log("OOOOOOOOOOH! :)");
+            }
+          })
+          .catch(function (error) {
+            // handle error
+            alert('User/Password combination incorrect');
+          });
 
-       }
-       catch(e)
-       {
-           alert(e.toString());
-           return;
-       }
+      };
+      postCall();
    };
 
     return(
-   <>
-    <head>
-    <link rel="stylesheet" href="../PageTitle.css"></link>
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" 
-    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" 
-    crossorigin="anonymous"></link>
-    </head>
-
+  
     <Row>
-    <Col className = "col-5 align-self-left" className = "left-side" noGutters={true}>
+    <Col className = {("col-5 align-self-left","left-side")} nogutters="true">
       <Col lg={8} md={{ span: 6, offset: 3 }} sm={12} className="LoginBox">
     <Container className= "jumbotron2">    
-      <h1 class="display-3" id = "login">Login</h1>
+      <h1 className="display-3" id = "login">Login</h1>
       <Form onSubmit={doLogin}>
       <Form.Group controlId="formBasicText">
     <Form.Label>Username</Form.Label>
@@ -104,16 +83,15 @@ function Login()
 </Container>  
 </Col>
 </Col>
-  <Col className = "col-8 align-self-right" className = "right-side" noGutters={true}>
+  <Col className = {("col-5 align-self-right", "right-side")} nogutters="true">
   <Container>
-  <img src={logo} width="520" alt="space" fluid className="center"/>
+  <img src={logo} width="520" alt="space" fluid="true" className="center"/>
   <Row className="justify-content-md-center">
   <h2 className="quote">Take your investments to new heights</h2>
   </Row>
   </Container>
   </Col>
 </Row>
-</>
     );
     
 };

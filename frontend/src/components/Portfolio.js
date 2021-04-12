@@ -15,7 +15,7 @@ function Portfolio()
     return(
         <div>
           <center>
-        <h1 class="display-4 chart1">Portfolio</h1>
+        <h1 className="display-4 chart1">Portfolio</h1>
         <PieChart width={400} height={300}>
           <Pie data={data02} dataKey="value" cx="50%" cy="50%" innerRadius={70} outerRadius={90} fill="#A032B6" label />
         </PieChart>

@@ -8,6 +8,7 @@ import CardPage from './pages/CardPage';
 import UserPage from './components/UserPage';
 import Deposit from './components/Deposits';
 import Chart from './components/Chart';
+import "react-bootstrap/dist/react-bootstrap.min.js"
 
 function App() 
 {
@@ -22,9 +23,6 @@ function App()
       </Route>
       <Route path="/Home" exact>
         <Home />
-      </Route>
-      <Route path="/LoginPage" exact>
-          <LoginPage />
       </Route>
       <Route path="/cards" exact>
         <CardPage />

@@ -19,7 +19,11 @@ router.post("/getPortfolio", (req, res) => {
 });
 
 // API for Buy
-
+router.post("buyStock", (req, res) => {
+    Portfolio.findOne({ Login: req.body.login }).then(portfolio => {
+        
+    })
+})
 // API for Sell
 
 

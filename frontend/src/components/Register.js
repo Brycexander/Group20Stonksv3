@@ -10,7 +10,10 @@ import {
 
 
 function Register() {
-    var userName;
+    
+    var firstName;
+    var lastName;
+    var userName;
     var password;
     var confirm;
     var email;
@@ -19,9 +22,25 @@ function Register() {
 
     const doRegister = async event => 
     {
-        event.preventDefault();
+    const axios = require('axios');
 
-        alert('doIt()'+ 'Username: '+ userName.value + ' Password: ' + password.value + ' Email: ' +email.value);
+  async function makePostRequest() {
+  
+        const params = {
+          FirstName: firstName.value,
+          LastName: lastName.value,
+          Email: email.value,
+          Login: userName.value,
+          Password: password.value,
+          Password2: confirm.value
+        }
+  
+      let res = await axios.post('https://group20-stocksimulatorv2.herokuapp.com/api/auth/login', params);
+  
+      console.log(res.data);
+  }
+  
+    makePostRequest();
     };
 
 
@@ -63,27 +82,40 @@ return(
             </center>
     <Form>
 
+      <Form.Row>
+      <Form.Group as={Col} controlid="formGridUser">
+      <Form.Label>First Name</Form.Label>
+      <Form.Control type="firstname" placeholder="Enter First Name" ref={(c) => firstName = c}/>
+    </Form.Group>
+
+    <Form.Group as={Col} controlid="formGridUser">
+      <Form.Label>Last Name</Form.Label>
+      <Form.Control type="lastName" placeholder="Enter Last Name" ref={(c) => lastName = c}/>
+    </Form.Group>
+
+      </Form.Row>
+
     <Form.Group controlid="formGridUser">
       <Form.Label>Username</Form.Label>
-      <Form.Control type="username" placeholder="Enter username" ref={(c) => confirm = c}/>
+      <Form.Control type="username" placeholder="Enter username" ref={(c) => userName = c}/>
     </Form.Group>
+
+    <Form.Group controlId="formBasicEmail">
+    <Form.Label>Email</Form.Label>
+    <Form.Control type="email" placeholder="john@email.com" ref={(c) => email = c}/>
+  </Form.Group>
 
   <Form.Row>
     <Form.Group as={Col} controlId="formGridUser">
       <Form.Label>Password</Form.Label>
-      <Form.Control type="password" placeholder="Enter password" ref={(c) => confirm = c}/>
+      <Form.Control type="password" placeholder="Enter password" ref={(c) => password = c}/>
     </Form.Group>
 
     <Form.Group as={Col} controlId="formGridPassword">
       <Form.Label>Confirm Password</Form.Label>
-      <Form.Control type="password" placeholder="Confirm password" ref={(c) => password = c}/>
+      <Form.Control type="password" placeholder="Confirm password" ref={(c) => confirm = c}/>
     </Form.Group>
   </Form.Row>
-
-  <Form.Group controlId="formBasicEmail">
-    <Form.Label>Email</Form.Label>
-    <Form.Control type="email" placeholder="john@email.com" ref={(c) => email = c}/>
-  </Form.Group>
 
   <center>
   <Button className="color-button" type="submit" onClick={doRegister}>

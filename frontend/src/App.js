@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import './App.css';
 import Register from "./components/Register.js";
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch, HashRouter } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import Home from './components/Home';
 import CardPage from './pages/CardPage';
@@ -13,7 +13,7 @@ import "react-bootstrap/dist/react-bootstrap.min.js"
 function App() 
 {
   return (
-    <Router >
+    <HashRouter >
     <Switch>
       <Route path="/" exact>
         <LoginPage />
@@ -38,7 +38,7 @@ function App()
       </Route>
       <Redirect to="/" />
     </Switch>  
-  </Router>
+  </HashRouter>
   );
 }
 

@@ -24,9 +24,6 @@ function App()
       <Route path="/Home" exact>
         <Home />
       </Route>
-      <Route path="/LoginPage" exact>
-          <LoginPage />
-      </Route>
       <Route path="/cards" exact>
         <CardPage />
       </Route>

@@ -41,14 +41,7 @@ function createData(symbol, description, open, high, low, price, pcurrent, perce
   return {symbol, description, open, high, low, price, pcurrent, percent};
 }
 
-/*
-open: 1243.1, 
-high: 1213.2, 
-low: 123.4, 
-price: 5000, 
-pcurrent: 4000,
-percent: -30   
-*/
+
 
 var rows = []
 

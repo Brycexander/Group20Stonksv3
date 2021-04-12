@@ -7,6 +7,7 @@ import {
     Route,
     Link
   } from "react-router-dom";
+  import axios from 'axios'
 
 
 function Register() {
@@ -22,25 +23,25 @@ function Register() {
 
     const doRegister = async event => 
     {
-    const axios = require('axios');
+    const postCall = () => {
+    axios
+      .post('https://group20-stocksimulatorv2.herokuapp.com/api/auth/register', {
+        "FirstName": firstName.value,
+        "LastName": lastName.value,
+        "Email": email.value,
+        "Login": userName.value,
+        "Password": password.value,
+        "Password2": confirm.value
+      })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error =>{
+        console.log(error)
+      })
 
-  async function makePostRequest() {
-  
-        const params = {
-          FirstName: firstName.value,
-          LastName: lastName.value,
-          Email: email.value,
-          Login: userName.value,
-          Password: password.value,
-          Password2: confirm.value
-        }
-  
-      let res = await axios.post('https://group20-stocksimulatorv2.herokuapp.com/api/auth/login', params);
-  
-      console.log(res.data);
-  }
-  
-    makePostRequest();
+  };
+  postCall();
     };
 
 

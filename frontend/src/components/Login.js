@@ -39,13 +39,12 @@ function Login()
             }
             else 
             {
-              setMessage("OOOOOOOOOOH! :)");
               window.location.href = '#/Landing';
             }
           })
           .catch(function (error) {
             // handle error
-            setMessage('User/Password combination incorrect');
+            setMessage('User/Password is invalid');
           });
 
       };

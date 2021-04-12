@@ -35,16 +35,16 @@ function Login()
             var res = response.data;
             if (res.error) 
             {
-              alert(res.error);
+              setMessage(res.error);
             }
             else 
             {
-              console.log("OOOOOOOOOOH! :)");
+              setMessage("OOOOOOOOOOH! :)");
             }
           })
           .catch(function (error) {
             // handle error
-            alert('User/Password combination incorrect');
+            setMessage('User/Password combination incorrect');
           });
 
       };

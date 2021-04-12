@@ -23,6 +23,8 @@ function Register() {
 
     const doRegister = async event => 
     {
+      event.preventDefault();
+
     const postCall = () => {
     axios
       .post('https://group20-stocksimulatorv2.herokuapp.com/api/auth/register', {

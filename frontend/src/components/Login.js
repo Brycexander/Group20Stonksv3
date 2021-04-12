@@ -54,7 +54,7 @@ function Login()
             })
             .catch(function (error)
             {
-                setMessage(error);
+              console.log(loginName.value + " " + loginPassword.value);
             });
 
        }

@@ -231,7 +231,7 @@ EnhancedTableToolbar.propTypes = {
 
 const darkTheme = createMuiTheme({
   palette: {
-    type: "dark",
+    type: "light",
     primary: red,
     secondary: {
       main: '#b9f6ca',

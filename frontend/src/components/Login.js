@@ -24,45 +24,28 @@ function Login()
 
        console.log(loginName.value + " " + loginPassword.value);
 
-       try
-       {
-            // Axios code follows
-            var config =
+       const postCall = () => {
+        axios
+          .post('https://group20-stocksimulatorv2.herokuapp.com/api/users/login', {
+            "Login": loginName.value,
+            "Password": loginPassword.value
+          })
+          .then(function (response) {
+            var res = response.data;
+            if (res.error) 
             {
-                method: 'post',
-                url: bp.buildPath('api/auth/login'),        // or api/addcard or api/searchcards
-                headers:
-                {
-                    'Content-Type': 'application/json'
-                },
-                data: js
-            };
-
-            axios(config)
-            .then(function (response)
+              alert('User/Password combination incorrect');
+            }
+            else 
             {
-                var res = response.data;
-                if (res.error)
-                {
-                    setMessage('User/Password combination incorrect');
-                }
-                else
-                {
-                    storage.storeToken(res);
-                    window.location.href = '/Landing';
-                }
-            })
-            .catch(function (error)
-            {
-              console.log(loginName.value + " " + loginPassword.value);
-            });
-
-       }
-       catch(e)
-       {
-           alert(e.toString());
-           return;
-       }
+              window.location.href = '/Landing';
+            }
+          })
+          .catch(function (error) {
+            // handle error
+            alert('User/Password combination incorrect');
+          });
+      };
    };
 
     return(

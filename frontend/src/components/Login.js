@@ -35,11 +35,11 @@ function Login()
             var res = response.data;
             if (res.error) 
             {
-              alert('User/Password combination incorrect');
+              alert(res.error);
             }
             else 
             {
-              window.location.href = '/Landing';
+              console.log("OOOOOOOOOOH! :)");
             }
           })
           .catch(function (error) {

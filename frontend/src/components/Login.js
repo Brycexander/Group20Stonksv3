@@ -26,7 +26,7 @@ function Login()
 
        const postCall = () => {
         axios
-          .post('https://group20-stocksimulatorv2.herokuapp.com/api/users/login', {
+          .post('https://group20-stocksimulatorv2.herokuapp.com/api/auth/login', {
             "Login": loginName.value,
             "Password": loginPassword.value
           })

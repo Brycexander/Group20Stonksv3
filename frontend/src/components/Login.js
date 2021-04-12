@@ -24,7 +24,7 @@ function Login()
 
        console.log(loginName.value + " " + loginPassword.value);
 
-      /* try
+       try
        {
             // Axios code follows
             var config =
@@ -62,7 +62,7 @@ function Login()
        {
            alert(e.toString());
            return;
-       }*/
+       }
    };
 
     return(

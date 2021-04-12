@@ -33,12 +33,21 @@ function Register() {
         "Password": password.value,
         "Password2": confirm.value
       })
-      .then(response => {
-        console.log(response)
+      .then(function (response) {
+        var res = response.data;
+        if (res.error) 
+        {
+          console.log(res.error);
+        }
+        else 
+        {
+          console.log("OOOOOOOOOOH! :)");
+        }
       })
-      .catch(error =>{
-        console.log(error)
-      })
+      .catch(function (error) {
+        // handle error
+        alert('Not valid');
+      });
 
   };
   postCall();

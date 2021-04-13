@@ -10,24 +10,42 @@ import Recent from './Recent';
 import { Button,  ButtonGroup, DropdownButton, MenuItem,Navbar, Nav, NavItem, NavDropdown, Jumbotron, Container, Row, Col, InputGroup, Form, FormControl} from 'react-bootstrap';
 import Pie from './Portfolio';
 import Orders from './Orders';
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+import axios from 'axios'
 
 function Deposits()
 {
+    /*const storage = require('../tokenStorage.js');  
+    const jwt = require("jsonwebtoken");
+    var tok = storage.retrieveToken();
+    var ud = jwt.decode(tok,{complete:true});*/
 
-  function preventDefault(event) {
+    var first;
+    var last;
+
+  /*function preventDefault(event) {
     event.preventDefault();
-  };
+  };*/
+
+  const doLogout = event => 
+  {
+    event.preventDefault();
+
+      //localStorage.removeItem("user_data");
+      window.location.href = '/';
+
+  };  
 
     return(
       <div>
         <Navbar className="color-nav" expand="lg">
-  <Navbar.Brand className="font">Welcome, User</Navbar.Brand>
+  <Navbar.Brand className="font">Welcome, {first} {last}</Navbar.Brand>
   <Nav.Link className="font">Learderboard</Nav.Link>
   <Link className="nav-link" to="/Search">
       Stocks
@@ -40,9 +58,7 @@ function Deposits()
     </Nav>
 
     <Form inline>
-    <Link id="logout" className="nav-link" to="/">
-      Logout
-    </Link>
+    <Button variant="outline-danger" onClick={doLogout}>Logout</Button>
     </Form>
   </Navbar.Collapse>
 </Navbar>

@@ -39,13 +39,13 @@ function Login()
             }
             else 
             {
-              storage.storeToken(res);
+             // storage.storeToken(res);
               window.location.href = '#/Landing';
             }
           })
           .catch(function (error) {
             // handle error
-            setMessage(error);
+            setMessage("Incorrect user/password combination");
           });
 
       };

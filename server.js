@@ -9,7 +9,7 @@ var cron = require('node-cron');
 
 // for first finnhub API
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
-api_key.apiKey = require("./config/keys").finnhubURI // Replace this
+api_key.apiKey = process.env.finnhubURI // Replace this
 const finnhubClient = new finnhub.DefaultApi()
 
 // // for second finnhub API
@@ -37,7 +37,7 @@ app.use(
 app.use(bodyParser.json());
 
 // DB Config
-const db = require("./config/keys").mongoURI;
+const db = process.env.mongoURI;
 const User = require("./models/User");
 const Stock = require("./models/Stock");
 const Portfolio = require("./models/Portfolio");
@@ -90,7 +90,7 @@ for (i = 0; i < stocks.length; i++)
 // WORKING
 // NOTE: COMMENTED ON GITHUB TO NOT MESS SOMETHING UP
 //---------------------------------------------------------------------------------------------------------------
-cron.schedule('* * * * *', () => {
+cron.schedule('*/2 * * * *', () => {
    // for AAPL
    finnhubClient.quote("AAPL", (error, data, response) => {
 		if (error) {console.error(error);}

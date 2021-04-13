@@ -4,9 +4,6 @@ const {check} = require('express-validator');
 const Auth = require('../controllers/auth');
 const Password = require('../controllers/password');
 const validate = require('../validation/validate');
-const validateRegister = require('../validation/register');
-const validateLogin = require('../validation/login');
-const keys = require("../config/keys");
 
 const router = express.Router();
 

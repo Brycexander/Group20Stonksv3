@@ -30,10 +30,12 @@ router.post("/buyStock", (req, res) => {
             }
             if (index != -1) {
                 portfolio.StocksOwned[index].Amount += req.body.Amount;
+                portfolio.StocksOwned[index].TotalValue += req.body.Price * req.body.Amount;
             } else {
                 portfolio.StocksOwned.push({ Company: req.body.Company, Amount: req.body.Amount, StockValue: req.body.Price, TotalValue: req.body.Price * req.body.Amount, Date: Date.now() });
             }
-            Portfolio.Cash -= req.body.Price * req.body.Amount;
+            portfolio.Cash -= req.body.Price * req.body.Amount;
+            portfolio.Holdings += req.body.Price * req.body.Amount;
             portfolio.save().then(res.status(200).json("Shares Bought"));
         }
     });
@@ -56,6 +58,7 @@ router.post("/sellStock", (req, res) => {
             return res.status(400).json("Don't own enough shares");
         }
         portfolio.StocksOwned[index].Amount -= req.body.Amount;
+        portfolio.StocksOwned[index].TotalValue -= req.body.Price * req.body.Amount;
         portfolio.Cash += req.body.Amount * req.body.Price;
         portfolio.Holdings -= req.body.Amount * req.body.Price;
         portfolio.save().then(res.status(200).json("Shares Sold"));

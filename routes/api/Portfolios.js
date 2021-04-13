@@ -37,8 +37,8 @@ router.post("/buyStock", (req, res) => {
             portfolio.save().then(res.status(200).json("Stock Bought"));
             
         }*/
-        portfolio.StocksOwned.push({Company:"MSFT", Amount: 2, StocksValues: 1, TotalValue: 1, Date: Date.now()});
-        // portfolio.save();
+        portfolio.StocksOwned.push({Company:"MSFT", Amount: 2, StockValue: 1, TotalValue: 1, Date: Date.now()});
+        portfolio.save();
         res.json(portfolio);
     });
 });

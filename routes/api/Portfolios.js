@@ -31,7 +31,7 @@ router.post("/buyStock", (req, res) => {
             if (index != -1) {
                 portfolio.StocksOwned[index].Amount += req.body.Amount;
             } else {
-                portfolio.StocksOwned.push({ Company: req.body.Company, Amount: req.body.Amount, StockValue: req.body.Price, TotalValue: rep.body.Price * req.body.Amount, Date: Date.now() });
+                portfolio.StocksOwned.push({ Company: req.body.Company, Amount: req.body.Amount, StockValue: req.body.Price, TotalValue: req.body.Price * req.body.Amount, Date: Date.now() });
             }
             Portfolio.Cash -= rep.body.Price * req.body.Amount;
             portfolio.save().then(res.status(200).json("Shares Bought"));

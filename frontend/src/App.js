@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import Home from './components/Home';
 import CardPage from './pages/CardPage';
 import UserPage from './components/UserPage';
+import Tab from './pages/Tab';
 import Deposit from './components/Deposits';
 import Chart from './components/Chart';
 import "react-bootstrap/dist/react-bootstrap.min.js"
@@ -28,7 +29,7 @@ function App()
         <CardPage />
       </Route>
       <Route path="/Search" exact>
-        <UserPage />
+        <Tab />
       </Route>
       <Route path="/Landing" exact>
         <Deposit />

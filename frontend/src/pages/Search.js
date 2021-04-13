@@ -41,7 +41,14 @@ function createData(symbol, description, open, high, low, price, pcurrent, perce
   return {symbol, description, open, high, low, price, pcurrent, percent};
 }
 
-
+/*
+open: 1243.1, 
+high: 1213.2, 
+low: 123.4, 
+price: 5000, 
+pcurrent: 4000,
+percent: -30   
+*/
 
 var rows = []
 
@@ -224,7 +231,7 @@ EnhancedTableToolbar.propTypes = {
 
 const darkTheme = createMuiTheme({
   palette: {
-    type: "dark",
+    type: "light",
     primary: red,
     secondary: {
       main: '#b9f6ca',
@@ -327,7 +334,7 @@ export default function EnhancedTable() {
   const API_URL_1_Pre = "https://finnhub.io/api/v1/quote?symbol=";
   const API_URL_1_POST = "&token=c1f0tcn48v6of5hb7f90";
   
-  
+  /*
   useEffect(() => {
     axios.get(API_URL)
     .then(res => {
@@ -347,7 +354,7 @@ export default function EnhancedTable() {
     })
     .catch(error => console.log(error));
   }, []);  
-  
+  */
   const[search, setSearch] = useState('');
 
   const handleChange = e => {

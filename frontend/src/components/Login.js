@@ -24,7 +24,6 @@ function Login()
 
        console.log(loginName.value + " " + loginPassword.value);
 
-
        const postCall = () => {
         axios
           .post('https://group20-stocksimulatorv2.herokuapp.com/api/auth/login', {
@@ -35,16 +34,17 @@ function Login()
             var res = response.data;
             if (res.error) 
             {
-              setMessage(res.error);
+              setMessage("Incorrect user/password combination");
             }
             else 
             {
+             // storage.storeToken(res);
               window.location.href = '#/Landing';
             }
           })
           .catch(function (error) {
             // handle error
-            setMessage('User/Password is invalid');
+            setMessage(error);
           });
 
       };

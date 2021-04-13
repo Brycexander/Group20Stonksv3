@@ -4,6 +4,7 @@ import logo from './../vector-creator.png'; //import image
 import {LinkContainer} from 'react-router-bootstrap'
 import './PageTitle.css';
 import axios from 'axios'
+import Forgot from './Forgot';
 
 function Login()
 {
@@ -69,9 +70,7 @@ function Login()
     <Form.Text className="text-muted">
       Never share your username or password with anyone!
     </Form.Text>
-    <LinkContainer to="/about">
-      <Nav.Link>Forgot Password?</Nav.Link>
-  </LinkContainer>
+    <Forgot/>
   </Form.Group>
 
   <Button variant="primary" type="submit" onClick={doLogin} className="color-button">

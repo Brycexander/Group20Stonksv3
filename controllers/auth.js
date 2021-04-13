@@ -10,7 +10,7 @@ exports.register = async (req, res) => {
         const { Email, Login } = req.body;
 
         // Make sure this account doesn't already exist
-        const user = await User.findOne({ Email, Login });
+        const user = await User.findOne({ Email: req.body.Email, Login: req.body.Login });
 
         if (user) return res.status(401).json({message: 'The email address/login you have entered is already associated with another account.'});
 

@@ -20,7 +20,7 @@ router.post("/buyStock", (req, res) => {
     Portfolio.findOne({ "Login": req.body.Login }).then(portfolio => {
         if (req.body.Price * req.body.Amount > portfolio.Cash) {
             return res.status(400).json("Insufficient founds");
-        } /*else {
+        } else {
             var index = -1;
             for (i = 0; i < portfolio.StocksOwned.length; i++){
                 if (portfolio.StocksOwned[i].Company == req.body.Company) {
@@ -34,12 +34,8 @@ router.post("/buyStock", (req, res) => {
                 portfolio.StocksOwned.push({ Company: req.body.Company, Amount: req.body.Amount, StockValue: req.body.Price, TotalValue: rep.body.Price * req.body.Amount, Date: Date.now() });
             }
             Portfolio.Cash -= rep.body.Price * req.body.Amount;
-            portfolio.save().then(res.status(200).json("Stock Bought"));
-            
-        }*/
-        portfolio.StocksOwned.push({Company:"MSFT", Amount: 2, StockValue: 1, TotalValue: 1, Date: Date.now()});
-        portfolio.save();
-        res.json(portfolio);
+            portfolio.save().then(res.status(200).json("Shares Bought"));
+        }
     });
 });
 

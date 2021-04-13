@@ -18,9 +18,9 @@ router.post("/getPortfolio", (req, res) => {
 // API to Buy
 router.post("/buyStock", (req, res) => {
     Portfolio.findOne({ "Login": req.body.Login }).then(portfolio => {
-        if (req.body.Price * req.body.Amount > portfolio.Cash) {
+        if (req.body.Price * req.body.Amount < portfolio.Cash) {
             return res.status(400).json("Insufficient founds");
-        } else {
+        } /*else {
             var index = -1;
             for (i = 0; i < portfolio.StocksOwned.length; i++){
                 if (portfolio.StocksOwned[i].Company == req.body.Company) {
@@ -36,7 +36,7 @@ router.post("/buyStock", (req, res) => {
             Portfolio.Cash -= rep.body.Price * req.body.Amount;
             portfolio.save().then(res.status(200).json("Stock Bought"));
             
-        }
+        }*/
     });
 });
 

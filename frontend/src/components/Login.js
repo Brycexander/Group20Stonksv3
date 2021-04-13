@@ -45,7 +45,7 @@ function Login()
           })
           .catch(function (error) {
             // handle error
-            setMessage(error);
+            setMessage("Login invalid");
           });
 
       };

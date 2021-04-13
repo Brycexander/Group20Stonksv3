@@ -45,7 +45,7 @@ function Login()
           })
           .catch(function (error) {
             // handle error
-            setMessage("Incorrect user/password combination");
+            setMessage(error);
           });
 
       };

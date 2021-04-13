@@ -90,7 +90,7 @@ for (i = 0; i < stocks.length; i++)
 // WORKING
 // NOTE: COMMENTED ON GITHUB TO NOT MESS SOMETHING UP
 //---------------------------------------------------------------------------------------------------------------
-cron.schedule('* * * * *', () => {
+cron.schedule('*/2 * * * *', () => {
    // for AAPL
    finnhubClient.quote("AAPL", (error, data, response) => {
 		if (error) {console.error(error);}

@@ -64,13 +64,12 @@ router.post("/sellStock", (req, res) => {
 });
 
 router.post("/bankrupt", (req, res) => {
-    Portfolio.findOne({ "Login" : req.body.Login }.then(portfolio => {
-        portfolio.deleteOne({ Login: req.body.Login });
+    Portfolio.findOneAndDelete({ "Login" : req.body.Login }).then(portfolio => {
         const newPortfolio = new Portfolio({ Login: req.body.Login });
         newPortfolio.save();
-        res.status(200).json("Your old portfolio has been deleted, and a new one has been created.");
-    }))
-})
+        res.status(200).json({ message: "Your old portfolio has been deleted, and a new one has been created."});
+    });
+});
 
 
 module.exports = router;

@@ -38,7 +38,7 @@ function Login()
             }
             else 
             {
-              storage.storeToken(res);
+             // storage.storeToken(res);
               window.location.href = '#/Landing';
             }
           })

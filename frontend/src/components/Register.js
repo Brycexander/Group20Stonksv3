@@ -39,16 +39,17 @@ function Register() {
         var res = response.data;
         if (res.error) 
         {
-          console.log(res.error);
+          setMessage(res.error);
         }
         else 
         {
-          console.log("OOOOOOOOOOH! :)");
+          setMessage("OOOOOOOOOOH! :)");
+          window.location.href = '#/';
         }
       })
       .catch(function (error) {
         // handle error
-        alert('Not valid');
+        setMessage('Not valid');
       });
 
   };
@@ -133,6 +134,9 @@ return(
   <Button className="color-button" type="submit" onClick={doRegister}>
     Submit
   </Button>
+  </center>
+  <center>
+  <span id="loginResult">{message}</span>
   </center>
 </Form>
 </Col>

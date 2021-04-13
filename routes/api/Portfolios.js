@@ -67,7 +67,7 @@ router.post("/bankrupt", (req, res) => {
     Portfolio.findOne({ "Login" : req.body.Login }.then(portfolio => {
         portfolio.deleteOne({ Login: req.body.Login });
         const newPortfolio = new Portfolio({ Login: req.body.Login });
-        await newPortfolio.save();
+        newPortfolio.save();
         res.status(200).json("Your old portfolio has been deleted, and a new one has been created.");
     }))
 })

@@ -49,7 +49,7 @@ if(ud !== null)
         var res = response.data;
         if (res.error) 
         {
-          setMessage(res.error);
+          console.log(res.error);
         }
         else 
         {
@@ -58,7 +58,7 @@ if(ud !== null)
       })
       .catch(function (error) {
         // handle error
-        setMessage('Not valid');
+        console.log('Not valid');
       });
 
   };

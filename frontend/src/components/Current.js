@@ -19,6 +19,12 @@ import {
 } from "react-router-dom";
 import axios from 'axios'
 
+/*function preventDefault(event) {
+event.preventDefault();
+};*/
+
+function Current()
+{
 const storage = require('../tokenStorage.js');  
 const jwt = require("jsonwebtoken");
 var tok = storage.retrieveToken();
@@ -31,13 +37,6 @@ if(ud !== null)
   var firstName = ud.payload.FirstName;
   var lastName = ud.payload.LastName;
 }
-
-/*function preventDefault(event) {
-event.preventDefault();
-};*/
-
-function Current()
-{
     return(
         <center>
         <h1>Welcome, {firstName} {lastName}</h1>

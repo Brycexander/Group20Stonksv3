@@ -36,7 +36,7 @@ exports.store = async (req, res) => {
         let domain = "http://" + req.headers.host;
         let subject = "New Account Created";
         let to = user.Email;
-        let from = "stockhub.app@gmail.com";
+        let from = "stockhub.help@gmail.com";
         let link = "http://" + req.headers.host + "/api/auth/reset/" + user.ResetPasswordToken;
         let html = `<p>Hi ${user.Login}<p><br><p>A new account has been created for you on ${domain}. Please click on the following <a href="${link}">link</a> to set your password and login.</p> 
                   <br><p>If you did not request this, please ignore this email.</p>`

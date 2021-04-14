@@ -27,9 +27,11 @@ function Deposits()
     var ud = jwt.decode(tok,{complete:true});
     console.log(ud);
 
+    console.log(ud.payload.id);
+
     /*var userId = ud.payload.id;
-    var firstName = ud.payload.firstName;
-    var lastName = ud.payload.lastName;*/
+    var firstName = ud.payload.FirstName;
+    var lastName = ud.payload.LastName;*/
 
   /*function preventDefault(event) {
     event.preventDefault();
@@ -84,6 +86,7 @@ function Deposits()
       <Orders/>
       </Col>
      </Row>
+     <br></br>
       </div>
     );
 

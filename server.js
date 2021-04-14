@@ -130,7 +130,7 @@ cron.schedule('*/2 * * * *', () => {
          });
       }
    });
-   finnhubClient.stockCandles("MSFT", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("MSFT", "D", from3Months, toNow, {}, (error, data, response) => {
       if (error) { console.error(error); }
       else if (data != null) {
          Stock.findOne({ Company: "MSFT" }).then(stock => {
@@ -151,7 +151,7 @@ cron.schedule('*/2 * * * *', () => {
          });
       }
    });
-   finnhubClient.stockCandles("FB", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("FB", "D", from3Months, toNow, {}, (error, data, response) => {
       if (error) { console.error(error); }
       else if (data != null) {
          Stock.findOne({ Company: "FB" }).then(stock => {
@@ -172,7 +172,7 @@ cron.schedule('*/2 * * * *', () => {
          });
       }
    });
-   finnhubClient.stockCandles("TSLA", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("TSLA", "D", from3Months, toNow, {}, (error, data, response) => {
       if (error) { console.error(error); }
       else if (data != null) {
          Stock.findOne({ Company: "TSLA" }).then(stock => {
@@ -193,7 +193,7 @@ cron.schedule('*/2 * * * *', () => {
          });
       }
    });
-   finnhubClient.stockCandles("BABA", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("BABA", "D", from3Months, toNow, {}, (error, data, response) => {
       if (error) { console.error(error); }
       else if (data != null) {
          Stock.findOne({ Company: "BABA" }).then(stock => {
@@ -214,7 +214,7 @@ cron.schedule('*/2 * * * *', () => {
          });
       }
    });
-   finnhubClient.stockCandles("TSM", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("TSM", "D", from3Months, toNow, {}, (error, data, response) => {
       if (error) { console.error(error); }
       else if (data != null) {
          Stock.findOne({ Company: "TSM" }).then(stock => {
@@ -235,7 +235,7 @@ cron.schedule('*/2 * * * *', () => {
          });
       }
    });
-   finnhubClient.stockCandles("JPM", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("JPM", "D", from3Months, toNow, {}, (error, data, response) => {
       if (error) { console.error(error); }
       else if (data != null) {
          Stock.findOne({ Company: "JPM" }).then(stock => {
@@ -256,7 +256,7 @@ cron.schedule('*/2 * * * *', () => {
          });
       }
    });
-   finnhubClient.stockCandles("BAC", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("BAC", "D", from3Months, toNow, {}, (error, data, response) => {
       if (error) { console.error(error); }
       else if (data != null) {
          Stock.findOne({ Company: "BAC" }).then(stock => {
@@ -277,7 +277,7 @@ cron.schedule('*/2 * * * *', () => {
          });
       }
    });
-   finnhubClient.stockCandles("WMT", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("WMT", "D", from3Months, toNow, {}, (error, data, response) => {
       if (error) { console.error(error); }
       else if (data != null) {
          Stock.findOne({ Company: "WMT" }).then(stock => {
@@ -298,7 +298,7 @@ cron.schedule('*/2 * * * *', () => {
          });
       }
    });
-   finnhubClient.stockCandles("INTC", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("INTC", "D", from3Months, toNow, {}, (error, data, response) => {
       if (error) { console.error(error); }
       else if (data != null) {
          Stock.findOne({ Company: "INTC" }).then(stock => {
@@ -319,7 +319,7 @@ cron.schedule('*/2 * * * *', () => {
          });
       }
    });
-   finnhubClient.stockCandles("CMCSA", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("CMCSA", "D", from3Months, toNow, {}, (error, data, response) => {
       if (error) { console.error(error); }
       else if (data != null) {
          Stock.findOne({ Company: "CMCSA" }).then(stock => {
@@ -340,7 +340,7 @@ cron.schedule('*/2 * * * *', () => {
          });
       }
    });
-   finnhubClient.stockCandles("VZ", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("VZ", "D", from3Months, toNow, {}, (error, data, response) => {
       if (error) { console.error(error); }
       else if (data != null) {
          Stock.findOne({ Company: "VZ" }).then(stock => {
@@ -361,7 +361,7 @@ cron.schedule('*/2 * * * *', () => {
          });
       }
    });
-   finnhubClient.stockCandles("XOM", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("XOM", "D", from3Months, toNow, {}, (error, data, response) => {
       if (error) { console.error(error); }
       else if (data != null) {
          Stock.findOne({ Company: "XOM" }).then(stock => {
@@ -382,7 +382,7 @@ cron.schedule('*/2 * * * *', () => {
          });
       }
    });
-   finnhubClient.stockCandles("KO", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("KO", "D", from3Months, toNow, {}, (error, data, response) => {
       if (error) { console.error(error); }
       else if (data != null) {
          Stock.findOne({ Company: "KO" }).then(stock => {
@@ -403,7 +403,7 @@ cron.schedule('*/2 * * * *', () => {
          });
       }
    });
-   finnhubClient.stockCandles("CSCO", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("CSCO", "D", from3Months, toNow, {}, (error, data, response) => {
       if (error) { console.error(error); }
       else if (data != null) {
          Stock.findOne({ Company: "CSCO" }).then(stock => {
@@ -424,7 +424,7 @@ cron.schedule('*/2 * * * *', () => {
          });
       }
    });
-   finnhubClient.stockCandles("ORCL", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("ORCL", "D", from3Months, toNow, {}, (error, data, response) => {
       if (error) { console.error(error); }
       else if (data != null) {
          Stock.findOne({ Company: "ORCL" }).then(stock => {
@@ -445,7 +445,7 @@ cron.schedule('*/2 * * * *', () => {
             });
         }
     });
-    finnhubClient.stockCandles("T", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("T", "D", from3Months, toNow, {}, (error, data, response) => {
         if (error) { console.error(error); }
         else if (data != null) {
             Stock.findOne({ Company: "T" }).then(stock => {
@@ -466,7 +466,7 @@ cron.schedule('*/2 * * * *', () => {
             });
         }
     });
-    finnhubClient.stockCandles("PFE", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("PFE", "D", from3Months, toNow, {}, (error, data, response) => {
         if (error) { console.error(error); }
         else if (data != null) {
             Stock.findOne({ Company: "PFE" }).then(stock => {
@@ -487,7 +487,7 @@ cron.schedule('*/2 * * * *', () => {
             });
         }
     });
-    finnhubClient.stockCandles("WFC", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("WFC", "D", from3Months, toNow, {}, (error, data, response) => {
         if (error) { console.error(error); }
         else if (data != null) {
             Stock.findOne({ Company: "WFC" }).then(stock => {
@@ -508,7 +508,7 @@ cron.schedule('*/2 * * * *', () => {
             });
         }
     });
-    finnhubClient.stockCandles("C", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("C", "D", from3Months, toNow, {}, (error, data, response) => {
         if (error) { console.error(error); }
         else if (data != null) {
             Stock.findOne({ Company: "C" }).then(stock => {
@@ -529,7 +529,7 @@ cron.schedule('*/2 * * * *', () => {
             });
         }
     });
-    finnhubClient.stockCandles("QCOM", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("QCOM", "D", from3Months, toNow, {}, (error, data, response) => {
         if (error) { console.error(error); }
         else if (data != null) {
             Stock.findOne({ Company: "QCOM" }).then(stock => {
@@ -550,7 +550,7 @@ cron.schedule('*/2 * * * *', () => {
             });
         }
     });
-    finnhubClient.stockCandles("BA", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("BA", "D", from3Months, toNow, {}, (error, data, response) => {
         if (error) { console.error(error); }
         else if (data != null) {
             Stock.findOne({ Company: "BA" }).then(stock => {
@@ -571,7 +571,7 @@ cron.schedule('*/2 * * * *', () => {
             });
         }
     });
-    finnhubClient.stockCandles("AMAT", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("AMAT", "D", from3Months, toNow, {}, (error, data, response) => {
         if (error) { console.error(error); }
         else if (data != null) {
             Stock.findOne({ Company: "AMAT" }).then(stock => {
@@ -592,7 +592,7 @@ cron.schedule('*/2 * * * *', () => {
             });
         }
     });
-    finnhubClient.stockCandles("JD", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("JD", "D", from3Months, toNow, {}, (error, data, response) => {
         if (error) { console.error(error); }
         else if (data != null) {
             Stock.findOne({ Company: "JD" }).then(stock => {
@@ -613,7 +613,7 @@ cron.schedule('*/2 * * * *', () => {
             });
         }
     });
-    finnhubClient.stockCandles("GE", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("GE", "D", from3Months, toNow, {}, (error, data, response) => {
         if (error) { console.error(error); }
         else if (data != null) {
             Stock.findOne({ Company: "GE" }).then(stock => {
@@ -666,7 +666,7 @@ cron.schedule('*/2 * * * *', () => {
 //       }
 //    });
 
-//    finnhubClient.stockCandles(stocks[i], "D", 1590988249, 1591852249, {}, (error, data, response) => {
+//    finnhubClient.stockCandles(stocks[i], "D", 1590988249, toNow, {}, (error, data, response) => {
 //       if (error) {console.error(error);}
 //       else {
 //          newStock.Candlestick = data;
@@ -694,7 +694,7 @@ cron.schedule('*/2 * * * *', () => {
 //   // console.log(newStock);
 // });
 
-// finnhubClient.stockCandles("C", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+// finnhubClient.stockCandles("C", "D", 1590988249, toNow, {}, (error, data, response) => {
 //   newStock.Candlestick.o = data.o;
 //   newStock.Candlestick.h = data.h;
 //   newStock.Candlestick.l = data.l;

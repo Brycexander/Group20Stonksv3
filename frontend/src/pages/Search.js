@@ -390,6 +390,7 @@ export default function EnhancedTable() {
         else 
         {
          // console.log(res);
+         stocks = [];
          for (var i = 0; i < res.length; i++){
            var quote = res[i].Quote;
            var open = quote.o;
@@ -399,10 +400,10 @@ export default function EnhancedTable() {
            var pprice = quote.pc;
            var percent = (((price - pprice) / pprice) * 100)
            var company = res[i].Company;
-           for (var i = 0; i < temp.length; i++){
-             if (company === temp[i].symbol){
-               var description = temp[i].description;
-               stocks.push(createData(company, description, open, high, low, price, pprice, percent));
+           for (var j = 0; j < temp.length; j++){
+             if (company === temp[j].symbol){
+               var description = temp[j].description;
+               stocks.push(createData(company, description, open, high, low, price, pprice, percent.toFixed(2)));
              }
            }
          }

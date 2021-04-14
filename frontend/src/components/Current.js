@@ -19,7 +19,7 @@ import {
 } from "react-router-dom";
 import axios from 'axios'
 
-const storage = require('../tokenStorage.js');  
+/*const storage = require('../tokenStorage.js');  
 const jwt = require("jsonwebtoken");
 var tok = storage.retrieveToken();
 var ud = jwt.decode(tok,{complete:true});
@@ -27,7 +27,7 @@ console.log(ud);
 
 var userId = ud.payload.id;
 var firstName = ud.payload.FirstName;
-var lastName = ud.payload.LastName;
+var lastName = ud.payload.LastName;*/
 
 /*function preventDefault(event) {
 event.preventDefault();
@@ -37,7 +37,7 @@ function Current()
 {
     return(
         <center>
-        <h1>Welcome, {firstName} {lastName}</h1>
+        <h1>Welcome, User</h1>
         <br></br>
         <Row>
         <Col>

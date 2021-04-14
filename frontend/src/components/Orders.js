@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, useState, PureComponent } from 'react'; 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import axios from 'axios'
 
 const columns = [
   { id: 'name', label: 'Name', minWidth: 170 },
@@ -31,17 +32,65 @@ const columns = [
     label: 'Purchase',
     minWidth: 170,
     align: 'right',
-    format: (value) => value.toFixed(2),
+    format: (value) => value.toLocaleString('en-US'),
   },
 ];
 
-function createData(name, time, value, shares) {
-    const avg = value*shares;
+function createData(name, time, value, shares, avg) {
   return { name, time, value, shares, avg };
 }
 
+function get(){
+
+const storage = require('../tokenStorage.js');  
+const jwt = require("jsonwebtoken");
+var tok = storage.retrieveToken();
+var ud = jwt.decode(tok,{complete:true});
+console.log(ud);
+
+if(ud !== null)
+{
+  var userId = ud.payload.id;
+  var firstName = ud.payload.FirstName;
+  var lastName = ud.payload.LastName;
+  var login = ud.payload.Login;
+}
+
+const postCall = () => {  
+  axios
+    .post('https://group20-stocksimulatorv2.herokuapp.com/api/portfolios/getPortfolio', {
+      "Login": login
+    })
+    .then(function (response) {
+      var res = response.data;
+      if (res.error) 
+      {
+        console.log(res.error);
+      }
+      else 
+      {
+       console.log(response);
+       const data = response.data.StocksOwned;
+       
+       //loop through an createData
+       for(var i = 0; i < data.length; i++)
+       {
+           console.log(data[i]);
+       }
+      }
+    })
+    .catch(function (error) {
+      // handle error
+      console.log('Error');
+    });
+
+};
+postCall();
+}
+
 const rows = [
-  createData('Tesla', '11:45am', 124, 22),
+  createData('Tesla', '11:90am', 123, 22, '3')
+  /*createData('Tesla', '11:45am', 124, 22),
   createData('AMC', '1:29pm', 9.50, 30),
   createData('Game Stop', '3:30am', 120, 7),
   createData('Lululemon', '6:20pm', 200, 2),
@@ -55,7 +104,7 @@ const rows = [
   createData('Spotify', '12:00pm', 273.50, 2),
   createData('Chase', '6:00pnm', 120.20, 8),
   createData('Square', '8:05pm', 230.29, 1),
-  createData('DOW', '3:09pm', 64.60, 7),
+  createData('DOW', '3:09pm', 64.60, 7),*/
 ];
 
 const useStyles = makeStyles({
@@ -80,6 +129,8 @@ export default function StickyHeadTable() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  get();
 
   return (
     <Paper className={classes.root}>

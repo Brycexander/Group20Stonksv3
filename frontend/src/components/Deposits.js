@@ -29,9 +29,9 @@ function Deposits()
 
     console.log(ud.payload.id);
 
-    /*var userId = ud.payload.id;
+    var userId = ud.payload.id;
     var firstName = ud.payload.FirstName;
-    var lastName = ud.payload.LastName;*/
+    var lastName = ud.payload.LastName;
 
   /*function preventDefault(event) {
     event.preventDefault();
@@ -49,7 +49,7 @@ function Deposits()
     return(
       <div>
         <Navbar className="color-nav" expand="lg">
-  <Navbar.Brand className="font">Welcome, </Navbar.Brand>
+  <Navbar.Brand className="font">Welcome, {firstName} {lastName} </Navbar.Brand>
   <Nav.Link className="font">Learderboard</Nav.Link>
   <Link className="nav-link" to="/Search">
       Stocks

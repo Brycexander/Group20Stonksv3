@@ -36,7 +36,34 @@ if(ud !== null)
   var userId = ud.payload.id;
   var firstName = ud.payload.FirstName;
   var lastName = ud.payload.LastName;
+  var login = ud.payload.Login;
 }
+
+    const postCall = () => {
+     
+    axios
+      .post('https://group20-stocksimulatorv2.herokuapp.com/api/portfolios/getPortfolio', {
+        "Login": login
+      })
+      .then(function (response) {
+        var res = response.data;
+        if (res.error) 
+        {
+          setMessage(res.error);
+        }
+        else 
+        {
+         console.log(response);
+        }
+      })
+      .catch(function (error) {
+        // handle error
+        setMessage('Not valid');
+      });
+
+  };
+  postCall();
+
     return(
         <center>
         <h1>Welcome, {firstName} {lastName}</h1>
@@ -44,11 +71,11 @@ if(ud !== null)
         <Row>
         <Col>
         <span>Current Cash Balance </span>
-        <h2>$10000</h2>
+        <h2>$</h2>
         </Col>
         <Col>
         <span>Current Holdings </span>
-        <h2>$10000</h2>
+        <h2>$</h2>
         </Col>
         </Row>
         </center>

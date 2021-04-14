@@ -39,6 +39,9 @@ if(ud !== null)
   var login = ud.payload.Login;
 }
 
+  var cash;
+  var holdings;
+
     const postCall = () => {
      
     axios
@@ -54,8 +57,8 @@ if(ud !== null)
         else 
         {
          console.log(response);
-         var cash = response.data.Cash;
-         var holdings = response.data.Holdings;
+         cash = response.data.Cash;
+         holdings = response.data.Holdings;
         }
       })
       .catch(function (error) {

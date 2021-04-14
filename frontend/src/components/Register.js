@@ -26,6 +26,7 @@ function Register() {
       event.preventDefault();
 
     const postCall = () => {
+     
     axios
       .post('https://group20-stocksimulatorv2.herokuapp.com/api/auth/register', {
         "FirstName": firstName.value,
@@ -44,7 +45,7 @@ function Register() {
         else 
         {
           setMessage("OOOOOOOOOOH! :)");
-          window.location.href = '#/';
+          window.location.href = '/';
         }
       })
       .catch(function (error) {

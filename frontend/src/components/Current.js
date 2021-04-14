@@ -19,13 +19,13 @@ import {
 } from "react-router-dom";
 import axios from 'axios'
 
-/*const storage = require('../tokenStorage.js');  
+const storage = require('../tokenStorage.js');  
 const jwt = require("jsonwebtoken");
 var tok = storage.retrieveToken();
 var ud = jwt.decode(tok,{complete:true});
 console.log(ud);
 
-var userId = ud.payload.id;
+/*var userId = ud.payload.id;
 var firstName = ud.payload.FirstName;
 var lastName = ud.payload.LastName;*/
 

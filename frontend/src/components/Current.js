@@ -54,11 +54,13 @@ if(ud !== null)
         else 
         {
          console.log(response);
+         var cash = response.data.Cash;
+         var holdings = response.data.Holdings;
         }
       })
       .catch(function (error) {
         // handle error
-        console.log('Not valid');
+        console.log('Error');
       });
 
   };
@@ -71,11 +73,11 @@ if(ud !== null)
         <Row>
         <Col>
         <span>Current Cash Balance </span>
-        <h2>$</h2>
+        <h2>${cash}</h2>
         </Col>
         <Col>
         <span>Current Holdings </span>
-        <h2>$</h2>
+        <h2>${holdings}</h2>
         </Col>
         </Row>
         </center>

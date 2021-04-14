@@ -40,7 +40,7 @@ function Current()
 {
     return(
         <center>
-        <h1>Welcome, User</h1>
+        <h1>Welcome, {firstName} {lastName}</h1>
         <br></br>
         <Row>
         <Col>

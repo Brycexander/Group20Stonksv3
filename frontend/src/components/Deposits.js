@@ -21,13 +21,14 @@ import axios from 'axios'
 
 function Deposits()
 {
-    /*const storage = require('../tokenStorage.js');  
+    const storage = require('../tokenStorage.js');  
     const jwt = require("jsonwebtoken");
     var tok = storage.retrieveToken();
-    var ud = jwt.decode(tok,{complete:true});*/
+    /*var ud = jwt.decode(tok,{complete:true});
 
-    var first;
-    var last;
+    var userId = ud.payload.id;
+    var firstName = ud.payload.firstName;
+    var lastName = ud.payload.lastName;*/
 
   /*function preventDefault(event) {
     event.preventDefault();

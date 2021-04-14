@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const finnhub = require('finnhub');
 var cron = require('node-cron');
+var unixTimestamp = require("unix-timestamp")
+
 
 // for first finnhub API
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
@@ -91,6 +93,10 @@ for (i = 0; i < stocks.length; i++)
 // NOTE: COMMENTED ON GITHUB TO NOT MESS SOMETHING UP
 //---------------------------------------------------------------------------------------------------------------
 cron.schedule('*/2 * * * *', () => {
+   // setting timestamps
+   var from3Months = unixTimestamp.now("-3M");
+   var toNow = unixTimestamp.now();
+
    // for AAPL
    finnhubClient.quote("AAPL", (error, data, response) => {
 		if (error) {console.error(error);}
@@ -102,7 +108,7 @@ cron.schedule('*/2 * * * *', () => {
 			});
 		}
 	});
-   finnhubClient.stockCandles("AAPL", "D", 1590988249, 1591852249, {}, (error, data, response) => {
+   finnhubClient.stockCandles("AAPL", "D", from3Months, toNow, {}, (error, data, response) => {
       if (error) { console.error(error); }
       else if (data != null) {
          Stock.findOne({ Company: "AAPL" }).then(stock => {

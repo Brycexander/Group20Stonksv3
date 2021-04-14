@@ -109,7 +109,8 @@ exports.resendToken = async (req, res) => {
 };
 
 async function sendVerificationEmail(user, req, res){
-    try{
+    try
+    {
         const token = user.generateVerificationToken();
 
         // Save the verification token
@@ -117,7 +118,7 @@ async function sendVerificationEmail(user, req, res){
 
         let subject = "Account Verification Token";
         let to = user.Email;
-        let from = "stockhub.app@gmail.com";
+        let from = process.env.FROM_EMAIL;
         let link="http://"+req.headers.host+"/api/auth/verify/"+token.token;
         let html = `<h1>Just one more step before you can get trading.</h1>
                     <p>Hello, ${user.Login}! Please click on the following <a href="${link}">link</a> to verify your account.</p> 

@@ -39,8 +39,8 @@ if(ud !== null)
   var login = ud.payload.Login;
 }
 
-  var cash;
-  var holdings;
+  const cash;
+  const holdings;
 
     const postCall = () => {
      
@@ -57,7 +57,7 @@ if(ud !== null)
         else 
         {
          console.log(response);
-         cash = response.data.Cash;
+         cash = response.data.AccountBalance;
          holdings = response.data.Holdings;
         }
       })

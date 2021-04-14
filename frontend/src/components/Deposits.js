@@ -24,9 +24,10 @@ function Deposits()
     const storage = require('../tokenStorage.js');  
     const jwt = require("jsonwebtoken");
     var tok = storage.retrieveToken();
-    /*var ud = jwt.decode(tok,{complete:true});
+    var ud = jwt.decode(tok,{complete:true});
+    console.log(ud);
 
-    var userId = ud.payload.id;
+    /*var userId = ud.payload.id;
     var firstName = ud.payload.firstName;
     var lastName = ud.payload.lastName;*/
 

@@ -81,7 +81,7 @@ const stocks = [
   createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
 ];
 */
-const stocks = []
+var stocks = []
 const temp = [
   {symbol:"AAPL", description:"Apple"}, 
   {symbol: "MSFT", description: "Microsoft"}, 

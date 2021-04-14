@@ -6,7 +6,8 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const finnhub = require('finnhub');
 var cron = require('node-cron');
-var unixTimestamp = require("unix-timestamp")
+var unixTimestamp = require("unix-timestamp");
+unixTimestamp.round = true;
 
 
 // for first finnhub API

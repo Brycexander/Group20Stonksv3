@@ -52,7 +52,7 @@ percent: -30
 
 var rows = []
 
-
+/*
 const stocks = [
   createData('Cupcake', '305', (3.7), 67, 4.3, 0, 0, 0),
   createData('Donut', 'a', 25.0, 51, 4.9, 0, 0, 0),
@@ -80,8 +80,35 @@ const stocks = [
   createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
   createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
 ];
+*/
 
-//const stocks = []
+const stocks = [
+  {symbol:"AAPL", description:"Apple"}, 
+  {symbol: "MSFT", description: "Microsoft"}, 
+  {symbol: "FB", description: "Facebook"}, 
+  {symbol: "TSLA", description: "Tesla"}, 
+  {symbol: "BABA", description: "Alibaba Group"},
+  {symbol: "TSM", description: "Taiwan Semicounductor Manufacturing Company"},
+  {symbol: "JPM", description: "JPMorgan Chase"},
+  {symbol: "BAC", description: "Bank of America"},
+  {symbol: "WMT", description: "Walmart"},
+  {symbol: "INTC", description: "Intel"},
+  {symbol: "CMCSA", description: "Comcast"},
+  {symbol: "VZ", description: "Verizon"},
+  {symbol: "XOM", description: "ExxonMobil"},
+  {symbol: "KO", description: "The Coca-Cola Company"},
+  {symbol: "CSCO", description: "Cisco Systems"},
+  {symbol: "ORCL", description: "Oracle Corporation"},
+  {symbol: "T", description: "AT&T"},
+  {symbol: "PFE", description: "Pfizer"},
+  {symbol: "WFC", description: "Wells Fargo"},
+  {symbol: "C", description: "Citigroup"},
+  {symbol: "QCOM", description: "Qualcomm"},
+  {symbol: "BA", description: "Boeing"},
+  {symbol: "AMAT", description: "Applied Materials"},
+  {symbol: "JD", description: "JD.com"},
+  {symbol: "GE", description: "General Electric"}
+]
  
     
 
@@ -349,6 +376,30 @@ export default function EnhancedTable() {
   const API_URL_1_Pre = "https://finnhub.io/api/v1/quote?symbol=";
   const API_URL_1_POST = "&token=c1f0tcn48v6of5hb7f90";
   
+  const postCall = () => {
+    axios
+      .post('https://group20-stocksimulatorv2.herokuapp.com/api/stock/search', {
+        Query: "" 
+      })
+      .then(function (response) {
+        var res = response.data;
+        if (res.error) 
+        {
+          console.log("Failed To Get Stocks");
+        }
+        else 
+        {
+         console.log(res);
+        }
+      })
+      .catch(function (error) {
+        // handle error
+        console.log("invalid");
+      });
+
+  };
+  postCall();
+
   /*
   useEffect(() => {
     axios.get(API_URL)
@@ -370,6 +421,7 @@ export default function EnhancedTable() {
     .catch(error => console.log(error));
   }, []);  
   */
+ 
   const[search, setSearch] = useState('');
 
   const handleChange = e => {

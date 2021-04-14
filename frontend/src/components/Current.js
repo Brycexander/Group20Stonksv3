@@ -25,9 +25,12 @@ var tok = storage.retrieveToken();
 var ud = jwt.decode(tok,{complete:true});
 console.log(ud);
 
-/*var userId = ud.payload.id;
-var firstName = ud.payload.FirstName;
-var lastName = ud.payload.LastName;*/
+if(ud !== null)
+{
+  var userId = ud.payload.id;
+  var firstName = ud.payload.FirstName;
+  var lastName = ud.payload.LastName;
+}
 
 /*function preventDefault(event) {
 event.preventDefault();

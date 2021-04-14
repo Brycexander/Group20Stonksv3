@@ -52,14 +52,14 @@ percent: -30
 
 var rows = []
 
-/*
+
 const stocks = [
-  createData('Cupcake', '305', String(3.7), 67, 4.3, 0, 0, 0),
-  createData('Donut', 452, 25.0, 51, 4.9, 0, 0, 0),
-  createData('Eclair', 262, 16.0, 24, 6.0, 0, 0, 0),
+  createData('Cupcake', '305', (3.7), 67, 4.3, 0, 0, 0),
+  createData('Donut', 'a', 25.0, 51, 4.9, 0, 0, 0),
+  createData('Eclair', 'b', 16.0, 24, 6.0, 0, 0, 0),
   createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 0, 0, 0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9, 0, 0, 0),
-  createData('Honeycomb', 408, 3.2, 87, 6.5, 0, 0, 0),
+  createData('Gingerbread', '356', 16.0, 49, 3.9, 0, 0, 0),
+  createData('Honeycomb', '408', 3.2, 87, 6.5, 0, 0, 0),
   createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 0, 0, 0),
   createData('Jelly Bean', 375, 0.0, 94, 0.0, 0, 0, 0),
   createData('KitKat', 518, 26.0, 65, 7.0, 0, 0, 0),
@@ -67,9 +67,21 @@ const stocks = [
   createData('Marshmallow', 318, 0, 81, 2.0, 0, 0, 0),
   createData('Nougat', 360, 19.0, 9, 37.0, 0, 0, 0),
   createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
+  createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
+  createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
+  createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
+  createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
+  createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
+  createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
+  createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
+  createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
+  createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
+  createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
+  createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
+  createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
 ];
-*/
-const stocks = []
+
+//const stocks = []
  
     
 
@@ -111,7 +123,7 @@ function stableSort(array, comparator) {
 */
 
 const headCells = [
-  { id: 'symbol', numeric: false, disablePadding: true, label: 'Symbol' },
+  { id: 'symbol', numeric: false, disablePadding: false, label: 'Symbol' },
   { id: 'description', numeric: true, disablePadding: false, label: 'Name' },
   { id: 'open', numeric: true, disablePadding: false, label: 'Open' },
   { id: 'high', numeric: true, disablePadding: false, label: 'High' },
@@ -246,17 +258,20 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary,
   },
   root: {
-    width: '80%',
-    paddingLeft:'350px',
+    width: '100%',
+    paddingLeft:'0%',
   },
   paper: {
     width: '100%', 
-    paddingLeft: '10px',
+    //paddingLeft: '10px',
+    paddingRight: '30px',
     marginBottom: theme.spacing(2),
   },
   table: {
     minWidth: 750,
-    border: '10px',
+    paddingRight: theme.spacing(100),
+    width: '100%',
+    
   },
   visuallyHidden: {
     clip: 'rect(0 0 0 0)',
@@ -276,8 +291,8 @@ export default function EnhancedTable() {
   const [orderBy, setOrderBy] = React.useState('symbol');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [dense, setDense] = React.useState(true);
+  const [rowsPerPage, setRowsPerPage] = React.useState(25);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';

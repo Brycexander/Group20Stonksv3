@@ -46,7 +46,7 @@ function Deposits()
     return(
       <div>
         <Navbar className="color-nav" expand="lg">
-  <Navbar.Brand className="font">Welcome, {first} {last}</Navbar.Brand>
+  <Navbar.Brand className="font">Welcome, </Navbar.Brand>
   <Nav.Link className="font">Learderboard</Nav.Link>
   <Link className="nav-link" to="/Search">
       Stocks

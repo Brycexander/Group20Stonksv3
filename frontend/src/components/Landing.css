@@ -1,6 +1,6 @@
 body{
     background-color: rgb(230, 224, 224) !important;
-    color: rgb(0, 0, 0) !important;
+    color: rgb(0, 0, 0);
 }
 
 .color-nav { 

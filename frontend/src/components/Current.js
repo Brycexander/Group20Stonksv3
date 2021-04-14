@@ -31,6 +31,9 @@ var tok = storage.retrieveToken();
 var ud = jwt.decode(tok,{complete:true});
 console.log(ud);
 
+const [cash, getCash] = useState('');
+const [holdings, getHold] = useState('');
+
 if(ud !== null)
 {
   var userId = ud.payload.id;
@@ -38,9 +41,6 @@ if(ud !== null)
   var lastName = ud.payload.LastName;
   var login = ud.payload.Login;
 }
-
-  const cash;
-  const holdings;
 
     const postCall = () => {
      
@@ -57,8 +57,10 @@ if(ud !== null)
         else 
         {
          console.log(response);
-         cash = response.data.AccountBalance;
-         holdings = response.data.Holdings;
+         const cash = response.data.AccountBalance;
+         getCash(cash);
+         const holdings = response.data.Holdings;
+         getHold(holdings);
         }
       })
       .catch(function (error) {

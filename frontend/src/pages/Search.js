@@ -81,8 +81,8 @@ const stocks = [
   createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
 ];
 */
-
-const stocks = [
+const stocks = []
+const temp = [
   {symbol:"AAPL", description:"Apple"}, 
   {symbol: "MSFT", description: "Microsoft"}, 
   {symbol: "FB", description: "Facebook"}, 
@@ -389,7 +389,24 @@ export default function EnhancedTable() {
         }
         else 
         {
-         console.log(res);
+         // console.log(res);
+         stocks = [];
+         for (var i = 0; i < res.length; i++){
+           var quote = res[i].Quote;
+           var open = quote.o;
+           var high = quote.h;
+           var low = quote.l;
+           var price = quote.c;
+           var pprice = quote.pc;
+           var percent = (((price - pprice) / pprice) * 100)
+           var company = res[i].Company;
+           for (var j = 0; j < temp.length; j++){
+             if (company === temp[j].symbol){
+               var description = temp[j].description;
+               stocks.push(createData(company, description, open, high, low, price, pprice, percent.toFixed(2)));
+             }
+           }
+         }
         }
       })
       .catch(function (error) {

@@ -10,6 +10,7 @@ import Recent from './Recent';
 import { Button,  ButtonGroup, DropdownButton, MenuItem,Navbar, Nav, NavItem, NavDropdown, Jumbotron, Container, Row, Col, InputGroup, Form, FormControl} from 'react-bootstrap';
 import Pie from './Portfolio';
 import Orders from './Orders';
+import Current from './Current';
 
 import {
   BrowserRouter as Router,
@@ -21,17 +22,15 @@ import axios from 'axios'
 
 function Deposits()
 {
-    const storage = require('../tokenStorage.js');  
+    /*const storage = require('../tokenStorage.js');  
     const jwt = require("jsonwebtoken");
     var tok = storage.retrieveToken();
     var ud = jwt.decode(tok,{complete:true});
-    console.log(ud);
+    console.log(ud);*/
 
-    console.log(ud.payload.id);
-
-    var userId = ud.payload.id;
+    /*var userId = ud.payload.id;
     var firstName = ud.payload.FirstName;
-    var lastName = ud.payload.LastName;
+    var lastName = ud.payload.LastName;*/
 
   /*function preventDefault(event) {
     event.preventDefault();
@@ -49,7 +48,7 @@ function Deposits()
     return(
       <div>
         <Navbar className="color-nav" expand="lg">
-  <Navbar.Brand className="font">Welcome, {firstName} {lastName} </Navbar.Brand>
+  <Navbar.Brand className="font">StockHub</Navbar.Brand>
   <Nav.Link className="font">Learderboard</Nav.Link>
   <Link className="nav-link" to="/Search">
       Stocks
@@ -67,6 +66,14 @@ function Deposits()
   </Navbar.Collapse>
 </Navbar>
 <br></br>
+      <Row className="justify-content-md-center">
+        <Col xs={6}>
+          <Paper>
+            <Current/>
+          </Paper>
+        </Col>
+      </Row>
+      <br></br>
 
       <Row className="justify-content-md-center">
         <Col md="auto">

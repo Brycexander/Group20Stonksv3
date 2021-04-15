@@ -327,7 +327,7 @@ export default function EnhancedTable() {
   const postCall = () => {
     axios
       .post('https://group20-stocksimulatorv2.herokuapp.com/api/stock/search', {
-        Query: "" 
+        "Query" : "" 
       })
       .then(function (response) {
         var res = response.data;
@@ -460,7 +460,6 @@ export default function EnhancedTable() {
   emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
   
   rows = []
-  
   
   return (
     <ThemeProvider theme={darkTheme}>

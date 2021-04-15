@@ -52,7 +52,7 @@ percent: -30
 
 
 
-/*
+
 const stocks = [
   createData('Cupcake', '305', (3.7), 67, 4.3, 0, 0, 0),
   createData('Donut', 'a', 25.0, 51, 4.9, 0, 0, 0),
@@ -80,7 +80,8 @@ const stocks = [
   createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
   createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
 ];
-*/
+
+var rows = []
 
 const temp = [
   {symbol:"AAPL", description:"Apple"}, 
@@ -313,8 +314,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EnhancedTable() {
-  var rows = []
-  var stocks = []
+  // var stocks = []
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('symbol');
@@ -323,7 +323,7 @@ export default function EnhancedTable() {
   const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
 
-
+  /*
   const postCall = async event => {
 
     var obj = {Query:""};
@@ -379,7 +379,7 @@ export default function EnhancedTable() {
   };
   
   postCall();
-
+  */
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -427,7 +427,7 @@ export default function EnhancedTable() {
   };
 
 
-  var emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  
   
   // const [stocks, setStocks] = useState([])
 
@@ -468,10 +468,8 @@ export default function EnhancedTable() {
     (stocks.symbol.toLowerCase().includes(search.toLowerCase()) || stocks.description.toLowerCase().includes(search.toLowerCase()))
   );
   
-  emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
-  
+  var emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
   rows = []
-  
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />

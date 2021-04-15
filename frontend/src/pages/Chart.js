@@ -368,7 +368,7 @@ class Chart extends React.Component {
       console.log(error);
     });
     
-
+    console.log(this.state);
   }
 
   componentWillUnmount(){

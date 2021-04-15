@@ -324,13 +324,23 @@ export default function EnhancedTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
 
 
-  const postCall = () => {
-    axios
-      .get('https://group20-stocksimulatorv2.herokuapp.com/api/stock/search', {
-        params: {
-          Query: ""
-        } 
-      })
+  const postCall = async event => {
+
+    var obj = {Query:""};
+    var js = JSON.stringify(obj);
+
+    var config = 
+    {
+        method: 'post',
+        url: 'https://group20-stocksimulatorv2.herokuapp.com/api/stock/search',        // or api/addcard or api/searchcards
+        headers: 
+        {
+            'Content-Type': 'application/json'
+        },
+        data: js
+    };
+
+    axios(config)
       .then(function (response) {
         var res = response.data;
         if (res.error) 

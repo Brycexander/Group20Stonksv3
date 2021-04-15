@@ -52,7 +52,7 @@ percent: -30
 
 
 
-
+/*
 const stocks = [
   createData('Cupcake', '305', (3.7), 67, 4.3, 0, 0, 0),
   createData('Donut', 'a', 25.0, 51, 4.9, 0, 0, 0),
@@ -80,8 +80,7 @@ const stocks = [
   createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
   createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
 ];
-
-var rows = []
+*/
 
 const temp = [
   {symbol:"AAPL", description:"Apple"}, 
@@ -327,8 +326,11 @@ export default function EnhancedTable() {
     const [value, setValue] = useState(0); // integer state
     return () => setValue(value => value + 1); // update the state to force render
   }
-  
-  const postCall = async event => {
+  var rows = [];
+  var stocks = []
+  const [stocksTemp, setStocks] = useState([]);
+  const[search, setSearch] = useState('');
+  useEffect(() =>  {
 
     var obj = {Query:""};
     var js = JSON.stringify(obj);
@@ -345,14 +347,9 @@ export default function EnhancedTable() {
     };
 
     axios(config)
-      .then(function (response) {
+      .then(response => {
         var res = response.data;
-        if (res.error) 
-        {
-          console.log("Failed To Get Stocks");
-        }
-        else 
-        {
+         setStocks(res);
          // console.log(res);
          stocks = [];
          for (var i = 0; i < res.length; i++){
@@ -362,7 +359,7 @@ export default function EnhancedTable() {
            var low = quote.l;
            var price = quote.c;
            var pprice = quote.pc;
-           var percent = (((price - pprice) / pprice) * 100)
+           var percent = (((price - pprice) / pprice) * 100);
            var company = res[i].Company;
            for (var j = 0; j < temp.length; j++){
              if (company === temp[j].symbol){
@@ -372,18 +369,19 @@ export default function EnhancedTable() {
               }
            }
          }
+
          // emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-        }
+        
       })
-      .catch(function (error) {
+      .catch(error => {
         // handle error
         console.log("invalid");
       });
-  };
+  }, []);
   
-  postCall();
+  // postCall();
 
-  const forceUpdate = useForceUpdate();
+  // const forceUpdate = useForceUpdate();
 
 
   const handleRequestSort = (event, property) => {
@@ -463,9 +461,6 @@ export default function EnhancedTable() {
   }, []);  
   */
  
- 
-  const[search, setSearch] = useState('');
-
   const handleChange = e => {
     setSearch(e.target.value);
   }

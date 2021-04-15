@@ -348,7 +348,6 @@ export default function EnhancedTable() {
     axios(config)
       .then(response => {
         var res = response.data;
-         setStocks(res);
          // console.log(res);
          stocks = [];
          for (var i = 0; i < res.length; i++){
@@ -368,7 +367,7 @@ export default function EnhancedTable() {
               }
            }
          }
-
+         setStocks(res);
          // emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
         
       })

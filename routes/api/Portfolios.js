@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 // Load Stock model
 const Stock = require("../../models/Portfolio");
 const { StockTranscripts } = require("finnhub");
@@ -73,5 +74,18 @@ router.post("/bankrupt", (req, res) => {
     });
 });
 
+/*
+router.post("/leaderboard", (req, res) => {
+    Portfolio.find({}.then(portfolio => {
+        if (!portfolio) {
+            res.status(404).json({ NoUser: "No User Found" })
+        }
+        else {
+            var retVal = [];
+            for (i = 0; i < port)
+        }
+    }))
+})
+*/
 
 module.exports = router;

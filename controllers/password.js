@@ -23,7 +23,7 @@ exports.recover = async (req, res) => {
         let to = user.Email;
         let from = process.env.FROM_EMAIL;
         let link = "http://" + req.headers.host + "/api/auth/reset/" + user.ResetPasswordToken;
-        let html = `<p>Hi ${user.username}</p>
+        let html = `<p>Hi ${user.Login}</p>
                     <p>Please click on the following <a href="${link}">link</a> to reset your password.</p> 
                     <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>`;
 
@@ -46,7 +46,7 @@ exports.reset = async (req, res) => {
 
         if (!user) return res.status(401).json({message: 'Password reset token is invalid or has expired.'});
 
-        //Redirect user to form with the email address
+        // Redirect user to form with the email address
         res.render('reset', {user});
     } catch (error) {
         res.status(500).json({message: error.message})
@@ -64,10 +64,10 @@ exports.resetPassword = async (req, res) => {
 
         if (!user) return res.status(401).json({message: 'Password reset token is invalid or has expired.'});
 
-        //Set the new password
+        // Set the new password
         user.Password = req.body.Password;
-        user.ResetPasswordToken = undefined;
-        user.ResetPasswordExpires = undefined;
+        user.ResetPasswordToken = crypto.randomBytes(20).toString('hex');
+        user.ResetPasswordExpires = Date.now() + 3600000;
         user.IsVerified = true;
 
         // Save the updated user object

@@ -6,6 +6,7 @@ import {
     Route,
     Link
   } from "react-router-dom";
+  import axios from 'axios'
 
 
 function Forgot()
@@ -14,12 +15,36 @@ function Forgot()
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [message,setMessage] = useState('');
+  var email;
 
-  const doReset = async event =>{
-  
-    event.preventDefault();
-      
-      window.location.href = '/';
+  const doReset = async event =>
+  {
+      event.preventDefault();
+
+      const postCall = () => {
+       axios
+         .post('https://group20-stocksimulatorv2.herokuapp.com/api/auth/recover', {
+           "Email": email.value,
+         })
+         .then(function (response) {
+           var res = response.data;
+           if (res.error) 
+           {
+             setMessage("Cannot find user");
+           }
+           else 
+           {
+             window.location.href = '/';
+           }
+         })
+         .catch(function (error) {
+           // handle error
+           setMessage("Cannot find user email");
+         });
+
+     };
+     postCall();
   };
 
   return (
@@ -34,7 +59,7 @@ function Forgot()
         </Modal.Header>
         <Modal.Body> <Form.Group controlId="formBasicEmail">
     <Form.Label>Please Enter Your Email Address</Form.Label>
-    <Form.Control type="email" placeholder="Enter email" />
+    <Form.Control type="email" placeholder="Enter email" ref={(c) => email = c}/>
   </Form.Group></Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={doReset}>

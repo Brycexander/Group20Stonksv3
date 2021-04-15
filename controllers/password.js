@@ -41,9 +41,9 @@ exports.recover = async (req, res) => {
 // @access Public
 exports.reset = async (req, res) => {
     try {
-        const { ResetPasswordToken } = req.params;
+        const { token } = req.params;
 
-        const user = await User.findOne({ ResetPasswordToken });
+        const user = await User.findOne({ ResetPasswordToken: token });
 
         if (!user) return res.status(401).json({message: 'Password reset token is invalid or has expired.'});
 
@@ -59,9 +59,9 @@ exports.reset = async (req, res) => {
 // @access Public
 exports.resetPassword = async (req, res) => {
     try {
-        const { ResetPasswordToken } = req.params;
+        const { token } = req.params;
 
-        const user = await User.findOne({ ResetPasswordToken });
+        const user = await User.findOne({ ResetPasswordToken: token });
 
         if (!user) return res.status(401).json({message: 'Password reset token is invalid or has expired.'});
 
@@ -82,7 +82,7 @@ exports.resetPassword = async (req, res) => {
 
         await sendEmail({to, from, subject, html});
 
-        res.status(200).json({message: 'Your password for ' + user.Login + ' has been updated.'});
+        res.status(200).json({message: 'Your password for ' + user.Login + ' has been updated'});
 
     } catch (error) {
         res.status(500).json({message: error.message})

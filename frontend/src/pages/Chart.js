@@ -351,17 +351,12 @@ class Chart extends React.Component {
     .then(function (response) 
     {
         var res = response.data;
-        if (res.error) 
-        {
-            console.log(res.error);
-        }
-        else 
-        {
-             this.setState({graphData: res}); 
-             console.log(res);
-            //storage.storeToken(res);
-            //window.location.href = '/cards'
-        }
+        
+        this.setState({graphData: res}); 
+        console.log(res);
+      //storage.storeToken(res);
+      //window.location.href = '/cards'
+        
     })
     .catch(function (error) 
     {

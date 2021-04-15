@@ -370,7 +370,7 @@ class Chart extends React.Component {
         var res = response.data;
         console.log(res);
         var dataGraph = [];
-        for (var i = 0; i < res.c[i].length; i++){
+        for (var i = 0; i < res.c.length; i++){
           var temp = [];
           temp.push(res.c[i]);
           temp.push(res.h[i]);

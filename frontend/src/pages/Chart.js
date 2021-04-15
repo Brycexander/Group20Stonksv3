@@ -378,7 +378,7 @@ class Chart extends React.Component {
           temp.push(res.o[i]);
           dataGraph.push(
             {
-              x: new Date(temp[i].t).toDateString(), 
+              x: new Date(res.t[i]).toDateString(), 
               y: temp,
             }
           );

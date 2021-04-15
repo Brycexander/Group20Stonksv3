@@ -35,7 +35,7 @@ router.get('/reset/:token', Password.reset);
 
 router.post('/reset/:token', [
     check('Password').not().isEmpty().isLength({min: 6}).withMessage('Must be at least 6 chars long'),
-    check('ConfirmPassword', 'Passwords do not match').custom((value, {req}) => (value === req.body.password)),
+    check('ConfirmPassword', 'Passwords do not match').custom((value, {req}) => (value === req.body.Password)),
 ], validate, Password.resetPassword);
 
 

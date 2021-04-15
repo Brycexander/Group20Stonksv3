@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const {sendEmail} = require('../utils/index');
+const crypto = require('crypto');
 
 // @route POST api/auth/recover
 // @desc Recover Password - Generates token and Sends password reset email
@@ -35,14 +36,14 @@ exports.recover = async (req, res) => {
     }
 };
 
-// @route POST api/auth/reset
+// @route GET api/auth/reset
 // @desc Reset Password - Validate password reset token and shows the password reset view
 // @access Public
 exports.reset = async (req, res) => {
     try {
-        const { Token } = req.params;
+        const { ResetPasswordToken } = req.params;
 
-        const user = await User.findOne({ResetPasswordToken: Token, ResetPasswordExpires: {$gt: Date.now()}});
+        const user = await User.findOne({ ResetPasswordToken });
 
         if (!user) return res.status(401).json({message: 'Password reset token is invalid or has expired.'});
 
@@ -58,16 +59,16 @@ exports.reset = async (req, res) => {
 // @access Public
 exports.resetPassword = async (req, res) => {
     try {
-        const { Token } = req.params;
+        const { ResetPasswordToken } = req.params;
 
-        const user = await User.findOne({ResetPasswordToken: Token, ResetPasswordExpires: {$gt: Date.now()}});
+        const user = await User.findOne({ ResetPasswordToken });
 
         if (!user) return res.status(401).json({message: 'Password reset token is invalid or has expired.'});
 
         // Set the new password
         user.Password = req.body.Password;
-        user.ResetPasswordToken = crypto.randomBytes(20).toString('hex');
-        user.ResetPasswordExpires = Date.now() + 3600000;
+        user.ResetPasswordToken = undefined;
+        user.ResetPasswordExpires = undefined;
         user.IsVerified = true;
 
         // Save the updated user object
@@ -77,11 +78,11 @@ exports.resetPassword = async (req, res) => {
         let to = user.Email;
         let from = process.env.FROM_EMAIL;
         let html = `<p>Hi ${user.Login}</p>
-                    <p>This is a confirmation that the password for your account ${user.email} has just been changed.</p>`
+                    <p>This is a confirmation that the password for your account ${user.Login} has just been changed.</p>`
 
         await sendEmail({to, from, subject, html});
 
-        res.status(200).json({message: 'Your password has been updated.'});
+        res.status(200).json({message: 'Your password for ' + user.Login + ' has been updated.'});
 
     } catch (error) {
         res.status(500).json({message: error.message})

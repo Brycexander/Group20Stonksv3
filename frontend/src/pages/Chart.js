@@ -327,7 +327,8 @@ class Chart extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = {graphData: []};
+    this.onChange = this.onChange.bind(this);
+    this.state = {c:[], h:[], l:[], o:[], t:[], v:[]};
   }
 
   componentDidMount(){
@@ -351,17 +352,11 @@ class Chart extends React.Component {
     .then(function (response) 
     {
         var res = response.data;
-        if (res.error) 
-        {
-            console.log(res.error);
-        }
-        else 
-        {
-             this.setState({graphData: res}); 
-             console.log(res);
-            //storage.storeToken(res);
-            //window.location.href = '/cards'
-        }
+        console.log(res);
+        this.setState({c: res.c, h:res.h, l:res.l, o:res.o, t:res.t, v: res.v}); 
+      //storage.storeToken(res);
+      //window.location.href = '/cards'
+        
     })
     .catch(function (error) 
     {

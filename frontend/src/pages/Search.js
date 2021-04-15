@@ -339,6 +339,7 @@ export default function EnhancedTable() {
         {
          // console.log(res);
          stocks = [];
+         rows = [];
          for (var i = 0; i < res.length; i++){
            var quote = res[i].Quote;
            var open = quote.o;
@@ -352,7 +353,8 @@ export default function EnhancedTable() {
              if (company === temp[j].symbol){
                var description = temp[j].description;
                stocks.push(createData(company, description, open, high, low, price, pprice, percent.toFixed(2)));
-             }
+               rows.push(stocks[i]);
+              }
            }
          }
          emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)

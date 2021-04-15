@@ -58,8 +58,10 @@ if(ud !== null)
         {
          console.log(response);
          const cash = response.data.AccountBalance;
+         cash.toFixed(2);
          getCash(cash);
          const holdings = response.data.Holdings;
+         holdings.toFixed(2);
          getHold(holdings);
         }
       })

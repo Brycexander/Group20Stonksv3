@@ -15,7 +15,7 @@ const columns = [
   { id: 'time', label: 'Time', minWidth: 100 },
   {
     id: 'value',
-    label: 'Value',
+    label: 'Current Value',
     minWidth: 170,
     align: 'right',
     format: (value) => value.toFixed(2),
@@ -29,7 +29,7 @@ const columns = [
   },
   {
     id: 'avg',
-    label: 'Purchase',
+    label: 'Sell Price',
     minWidth: 170,
     align: 'right',
     format: (value) => value.toFixed(2),
@@ -42,7 +42,9 @@ function createData(name, time, value, shares, avg) {
 
 const rows = [];
 
-function get(){
+var flag = 0;
+
+function get() {
 
 const storage = require('../tokenStorage.js');  
 const jwt = require("jsonwebtoken");
@@ -75,11 +77,16 @@ const postCall = () => {
        const data = response.data.StocksOwned;
        
        //loop through and createData
+       if(flag === 0)
+       {
        for(var i = 0; i < data.length; i++)
        {
            console.log(data[i]);
            rows.push(createData(data[i].Company, data[i].Date, data[i].StockValue, data[i].Amount, data[i].TotalValue));
        }
+       //We already got our data
+       flag = 1;
+      }
       }
     })
     .catch(function (error) {

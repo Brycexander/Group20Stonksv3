@@ -364,7 +364,7 @@ export default function EnhancedTable() {
 
     }, []);
   
-  postCall();
+  // postCall();
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -453,7 +453,7 @@ export default function EnhancedTable() {
   
   const [rows, setRow] = useState([]);
 
-  emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
+  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
   
   
   

@@ -461,95 +461,97 @@ export default function EnhancedTable() {
   
   rows = []
   
-  
-  return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-    <div className = {classes.aboveRoot}>
-    <div className={classes.root}>
-         <div className="stock-search">
-          <h1 className="stock-text"></h1>
-          <form>
-            <input type="text" placeholder="Search"
-            className="stock-input" onChange={handleChange}/>
-          </form>
-        </div>
+  if (stocks.length > 0){
+    return (
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+      <div className = {classes.aboveRoot}>
+      <div className={classes.root}>
+          <div className="stock-search">
+            <h1 className="stock-text"></h1>
+            <form>
+              <input type="text" placeholder="Search"
+              className="stock-input" onChange={handleChange}/>
+            </form>
+          </div>
 
-        {filteredStocks.map(stocks => {
-          rows.push(stocks);
-            console.log(rows);
-        })}
-    
-        
+          {filteredStocks.map(stocks => {
+            rows.push(stocks);
+              console.log(rows);
+          })}
       
-      <Paper className={classes.paper}>
-        <TableContainer className="chart">
-          <Table
-            className={classes.table}
-            aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
-            aria-label="enhanced table"
-          >
-            <EnhancedTableHead
-              classes={classes}
-              order={order}
-              orderBy={orderBy}
-              onRequestSort={handleRequestSort}
-              rowCount={rows.length}
-            />
-            <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const labelId = `enhanced-table-checkbox-${index}`;
-
-                  return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.name)}
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.name}
-                    >
+          
         
-                      <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.symbol}
-                      </TableCell>
-                      
-                      <TableCell align="right">{row.description}</TableCell>
-                      <TableCell align="right">{row.open}</TableCell>
-                      <TableCell align="right">{row.high}</TableCell>
-                      <TableCell align="right">{row.low}</TableCell>
-                      <TableCell align="right">{row.price}</TableCell>
-                      <TableCell align="right">{row.pcurrent}</TableCell>
-                      <TableCell align="right">{row.percent}</TableCell>
-                    </TableRow>
-                  );
-                })}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
+        <Paper className={classes.paper}>
+          <TableContainer className="chart">
+            <Table
+              className={classes.table}
+              aria-labelledby="tableTitle"
+              size={dense ? 'small' : 'medium'}
+              aria-label="enhanced table"
+            >
+              <EnhancedTableHead
+                classes={classes}
+                order={order}
+                orderBy={orderBy}
+                onRequestSort={handleRequestSort}
+                rowCount={rows.length}
+              />
+              <TableBody>
+                {stableSort(rows, getComparator(order, orderBy))
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row, index) => {
+                    const labelId = `enhanced-table-checkbox-${index}`;
+
+                    return (
+                      <TableRow
+                        hover
+                        onClick={(event) => handleClick(event, row.name)}
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={row.name}
+                      >
+          
+                        <TableCell component="th" id={labelId} scope="row" padding="none">
+                          {row.symbol}
+                        </TableCell>
+                        
+                        <TableCell align="right">{row.description}</TableCell>
+                        <TableCell align="right">{row.open}</TableCell>
+                        <TableCell align="right">{row.high}</TableCell>
+                        <TableCell align="right">{row.low}</TableCell>
+                        <TableCell align="right">{row.price}</TableCell>
+                        <TableCell align="right">{row.pcurrent}</TableCell>
+                        <TableCell align="right">{row.percent}</TableCell>
+                      </TableRow>
+                    );
+                  })}
+                {emptyRows > 0 && (
+                  <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangeRowsPerPage}
+          />
+        </Paper>
+        <FormControlLabel
+          control={<Switch checked={dense} onChange={handleChangeDense} />}
+          label="Dense padding"
         />
-      </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
-    </div>
-    </div>
-    </ThemeProvider>
-  );
+      </div>
+      </div>
+      </ThemeProvider>
+    );
+  }
 }
+

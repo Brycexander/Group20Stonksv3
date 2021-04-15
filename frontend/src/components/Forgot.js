@@ -19,7 +19,7 @@ function Forgot()
   
     event.preventDefault();
       
-      window.location.href = '/Reset';
+      window.location.href = '/';
   };
 
   return (
@@ -39,20 +39,6 @@ function Forgot()
         <Modal.Footer>
           <Button variant="primary" onClick={doReset}>
             OK
-          </Button>
-        </Modal.Footer>
-        <Modal.Body> <Form.Group controlId="formPassword">
-    <Form.Label>Enter new password</Form.Label>
-    <Form.Control type="password" placeholder="Enter password" />
-    <Form.Label>Confirm new password</Form.Label>
-    <Form.Control type="password" placeholder="Enter password" />
-    <Form.Text className="text-muted">
-      Please allow some time after clicking Reset
-    </Form.Text>
-  </Form.Group></Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            Reset
           </Button>
         </Modal.Footer>
       </Modal>

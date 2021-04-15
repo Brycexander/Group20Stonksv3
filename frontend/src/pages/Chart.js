@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import { green, purple } from '@material-ui/core/colors';
 import axios from 'axios'
 
+
+/*
 const series = [{
   name: 'candle',
   data: [
@@ -252,7 +254,7 @@ const series = [{
     },
   ]
 }];
-
+*/
 const options = {
   chart: {
     height: 350,
@@ -328,7 +330,17 @@ class Chart extends React.Component {
   constructor(props){
     super(props);
     // this.onChange = this.onChange.bind(this);
-    this.state = {c:[], h:[], l:[], o:[], t:[], v:[]};
+    this.state = {
+    series: {name: 'candle', data: [{
+      x: new Date(1538883000000).toDateString(),
+      y: [6603.85, 6605, 6600, 6604.07]
+    }]}, 
+    c:[], 
+    h:[], 
+    l:[], 
+    o:[], 
+    t:[], 
+    v:[]};
   }
 
   onChange(state) {
@@ -357,10 +369,27 @@ class Chart extends React.Component {
     {
         var res = response.data;
         console.log(res);
-        this.setState({c: res.c, h:res.h, l:res.l, o:res.o, t:res.t, v: res.v}); 
+        var dataGraph = [];
+        for (var i = 0; i < res.length; i++){
+          var temp = [];
+          temp.push(res.c[i]);
+          temp.push(res.h[i]);
+          temp.push(res.l[i]);
+          temp.push(res.o[i]);
+          dataGraph.push(
+            {
+              x: new Date(temp[i].t).toDateString(), 
+              y: temp,
+            }
+          );
+        }
+        this.setState({
+          series: {name: 'candle', data: dataGraph}, 
+          c: res.c, h:res.h, l:res.l, o:res.o, t:res.t, v: res.v
+        }); 
       //storage.storeToken(res);
       //window.location.href = '/cards'
-        
+      console.log(this.state);
     })
     .catch(error =>
     {
@@ -385,7 +414,7 @@ class Chart extends React.Component {
           <Grid item xs ={12} sm = {8}>
             <Paper className={classes.paper}> 
               <div id="chart">
-                  <ReactApexChart options={options} series={series} type="candlestick" height={525} width={"100%"}/>
+                  <ReactApexChart options={options} series={this.state.series} type="candlestick" height={525} width={"100%"}/>
               </div>
               <ThemeProvider theme={theme}>
               <Button className={classes.margin} mx="auto" variant="contained" color="primary">3 WEEKS</Button>

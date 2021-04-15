@@ -41,9 +41,9 @@ exports.recover = async (req, res) => {
 // @access Public
 exports.reset = async (req, res) => {
     try {
-        const { Token } = req.params;
+        const { ResetPasswordToken } = req.params;
 
-        const user = await User.findOne({ ResetPasswordToken: Token });
+        const user = await User.findOne({ ResetPasswordToken });
 
         if (!user) return res.status(401).json({message: 'Password reset token is invalid or has expired.'});
 

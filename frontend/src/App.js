@@ -9,6 +9,7 @@ import UserPage from './components/UserPage';
 import Tab from './pages/Tab';
 import Deposit from './components/Deposits';
 import Chart from './components/Chart';
+import Reset from './components/Reset'
 import "react-bootstrap/dist/react-bootstrap.min.js"
 
 function App() 
@@ -36,6 +37,9 @@ function App()
       </Route>
       <Route path="/Chart" exact>
         <Chart />
+      </Route>
+      <Route path="/Reset" exact>
+        <Reset />
       </Route>
       <Redirect to="/" />
     </Switch>  

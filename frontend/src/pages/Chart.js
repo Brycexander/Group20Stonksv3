@@ -356,8 +356,8 @@ class Chart extends React.Component {
             console.log(res.error);
         }
         else 
-        {;
-             this.setState(res); 
+        {
+             this.setState({graphData: res}); 
              console.log(res);
             //storage.storeToken(res);
             //window.location.href = '/cards'

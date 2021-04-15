@@ -331,10 +331,10 @@ class Chart extends React.Component {
     super(props);
     // this.onChange = this.onChange.bind(this);
     this.state = {
-    series: {name: 'candle', data: [{
+    series: [{name: 'candle', data: [{
       x: new Date(1538883000000).toDateString(),
       y: [6603.85, 6605, 6600, 6604.07]
-    }]}, 
+    }]}], 
     c:[], 
     h:[], 
     l:[], 
@@ -384,7 +384,7 @@ class Chart extends React.Component {
           );
         }
         this.setState({
-          series: {name: 'candle', data: dataGraph}, 
+          series: [{name: 'candle', data: dataGraph}], 
           c: res.c, h:res.h, l:res.l, o:res.o, t:res.t, v: res.v
         }); 
       //storage.storeToken(res);

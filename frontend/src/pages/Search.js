@@ -321,6 +321,47 @@ export default function EnhancedTable() {
   const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
 
+
+  const postCall = () => {
+    axios
+      .post('https://group20-stocksimulatorv2.herokuapp.com/api/stock/search', {
+        Query: "" 
+      })
+      .then(function (response) {
+        var res = response.data;
+        if (res.error) 
+        {
+          console.log("Failed To Get Stocks");
+        }
+        else 
+        {
+         // console.log(res);
+         stocks = [];
+         for (var i = 0; i < res.length; i++){
+           var quote = res[i].Quote;
+           var open = quote.o;
+           var high = quote.h;
+           var low = quote.l;
+           var price = quote.c;
+           var pprice = quote.pc;
+           var percent = (((price - pprice) / pprice) * 100)
+           var company = res[i].Company;
+           for (var j = 0; j < temp.length; j++){
+             if (company === temp[j].symbol){
+               var description = temp[j].description;
+               stocks.push(createData(company, description, open, high, low, price, pprice, percent.toFixed(2)));
+             }
+           }
+         }
+        }
+      })
+      .catch(function (error) {
+        // handle error
+        console.log("invalid");
+      });
+
+  };
+  
   postCall();
 
   const handleRequestSort = (event, property) => {
@@ -377,46 +418,6 @@ export default function EnhancedTable() {
   const API_URL = "https://finnhub.io/api/v1/stock/symbol?exchange=US&token=c1f0tcn48v6of5hb7f90";
   const API_URL_1_Pre = "https://finnhub.io/api/v1/quote?symbol=";
   const API_URL_1_POST = "&token=c1f0tcn48v6of5hb7f90";
-  
-  const postCall = () => {
-    axios
-      .post('https://group20-stocksimulatorv2.herokuapp.com/api/stock/search', {
-        Query: "" 
-      })
-      .then(function (response) {
-        var res = response.data;
-        if (res.error) 
-        {
-          console.log("Failed To Get Stocks");
-        }
-        else 
-        {
-         // console.log(res);
-         stocks = [];
-         for (var i = 0; i < res.length; i++){
-           var quote = res[i].Quote;
-           var open = quote.o;
-           var high = quote.h;
-           var low = quote.l;
-           var price = quote.c;
-           var pprice = quote.pc;
-           var percent = (((price - pprice) / pprice) * 100)
-           var company = res[i].Company;
-           for (var j = 0; j < temp.length; j++){
-             if (company === temp[j].symbol){
-               var description = temp[j].description;
-               stocks.push(createData(company, description, open, high, low, price, pprice, percent.toFixed(2)));
-             }
-           }
-         }
-        }
-      })
-      .catch(function (error) {
-        // handle error
-        console.log("invalid");
-      });
-
-  };
 
   /*
   useEffect(() => {

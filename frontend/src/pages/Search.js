@@ -313,8 +313,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EnhancedTable() {
-  var rows = []
-  var stocks = []
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('symbol');
@@ -323,8 +321,9 @@ export default function EnhancedTable() {
   const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
 
+  const [stocks, setStocks] = useState([]);
 
-  const postCall = () => {
+  useEffect(() => { 
     axios
       .post('https://group20-stocksimulatorv2.herokuapp.com/api/stock/search', {
         Query: "" 
@@ -338,8 +337,6 @@ export default function EnhancedTable() {
         else 
         {
          // console.log(res);
-         stocks = [];
-         rows = [];
          for (var i = 0; i < res.length; i++){
            var quote = res[i].Quote;
            var open = quote.o;
@@ -352,12 +349,12 @@ export default function EnhancedTable() {
            for (var j = 0; j < temp.length; j++){
              if (company === temp[j].symbol){
                var description = temp[j].description;
-               stocks.push(createData(company, description, open, high, low, price, pprice, percent.toFixed(2)));
-               rows.push(stocks[i]);
+               setStocks(oldArray => [...oldArray, createData(company, description, open, high, low, price, pprice, percent.toFixed(2))]);
+               // rows.push(stocks[i]);
               }
            }
          }
-         emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
+         // emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
         }
       })
       .catch(function (error) {
@@ -365,7 +362,7 @@ export default function EnhancedTable() {
         console.log("invalid");
       });
 
-  };
+    }, []);
   
   postCall();
 
@@ -415,9 +412,6 @@ export default function EnhancedTable() {
     setDense(event.target.checked);
   };
 
-
-  var emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-  
   // const [stocks, setStocks] = useState([])
 
   const API_URL = "https://finnhub.io/api/v1/stock/symbol?exchange=US&token=c1f0tcn48v6of5hb7f90";
@@ -445,6 +439,7 @@ export default function EnhancedTable() {
     .catch(error => console.log(error));
   }, []);  
   */
+  
  
   const[search, setSearch] = useState('');
 
@@ -456,10 +451,12 @@ export default function EnhancedTable() {
     (stocks.symbol.toLowerCase().includes(search.toLowerCase()) || stocks.description.toLowerCase().includes(search.toLowerCase()))
   );
   
-  
-  rows = []
-  
+  const [rows, setRow] = useState([]);
 
+  emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
+  
+  
+  
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
@@ -474,7 +471,7 @@ export default function EnhancedTable() {
         </div>
 
         {filteredStocks.map(stocks => {
-          rows.push(stocks);
+            setRow(oldArray => [...oldArray, stocks]);
             console.log(rows);
         })}
     

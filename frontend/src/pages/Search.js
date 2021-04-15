@@ -323,7 +323,11 @@ export default function EnhancedTable() {
   const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
 
-  /*
+  function useForceUpdate(){
+    const [value, setValue] = useState(0); // integer state
+    return () => setValue(value => value + 1); // update the state to force render
+  }
+  
   const postCall = async event => {
 
     var obj = {Query:""};
@@ -375,11 +379,13 @@ export default function EnhancedTable() {
         // handle error
         console.log("invalid");
       });
-
   };
   
   postCall();
-  */
+
+  const forceUpdate = useForceUpdate();
+
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -467,8 +473,8 @@ export default function EnhancedTable() {
   const filteredStocks = stocks.filter(stocks => 
     (stocks.symbol.toLowerCase().includes(search.toLowerCase()) || stocks.description.toLowerCase().includes(search.toLowerCase()))
   );
-  
-  var emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  var emptyRows = 0;
+ // var emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
   rows = []
   return (
     <ThemeProvider theme={darkTheme}>

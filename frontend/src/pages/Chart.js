@@ -331,10 +331,7 @@ class Chart extends React.Component {
     super(props);
     // this.onChange = this.onChange.bind(this);
     this.state = {
-    series: [{name: 'candle', data: [{
-      x: new Date(1538883000000).toDateString(),
-      y: [6603.85, 6605, 6600, 6604.07]
-    }]}], 
+    series: [{name: 'candle', data: [{}]}], 
     c:[], 
     h:[], 
     l:[], 

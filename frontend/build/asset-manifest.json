@@ -1,13 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.176df1c4.chunk.css",
-<<<<<<< HEAD
     "main.js": "/static/js/main.942191db.chunk.js",
     "main.js.map": "/static/js/main.942191db.chunk.js.map",
-=======
-    "main.js": "/static/js/main.77709ba3.chunk.js",
-    "main.js.map": "/static/js/main.77709ba3.chunk.js.map",
->>>>>>> mybranch
     "runtime-main.js": "/static/js/runtime-main.68faf39a.js",
     "runtime-main.js.map": "/static/js/runtime-main.68faf39a.js.map",
     "static/css/2.ef9168ec.chunk.css": "/static/css/2.ef9168ec.chunk.css",
@@ -26,10 +21,6 @@
     "static/css/2.ef9168ec.chunk.css",
     "static/js/2.82b06b76.chunk.js",
     "static/css/main.176df1c4.chunk.css",
-<<<<<<< HEAD
     "static/js/main.942191db.chunk.js"
-=======
-    "static/js/main.77709ba3.chunk.js"
->>>>>>> mybranch
   ]
 }

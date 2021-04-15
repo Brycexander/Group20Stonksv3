@@ -50,7 +50,7 @@ pcurrent: 4000,
 percent: -30   
 */
 
-var rows = []
+
 
 /*
 const stocks = [
@@ -81,7 +81,7 @@ const stocks = [
   createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
 ];
 */
-var stocks = []
+
 const temp = [
   {symbol:"AAPL", description:"Apple"}, 
   {symbol: "MSFT", description: "Microsoft"}, 
@@ -313,6 +313,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EnhancedTable() {
+  var rows = []
+  var stocks = []
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('symbol');
@@ -353,6 +355,7 @@ export default function EnhancedTable() {
              }
            }
          }
+         emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage)
         }
       })
       .catch(function (error) {
@@ -411,7 +414,7 @@ export default function EnhancedTable() {
   };
 
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  var emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
   
   // const [stocks, setStocks] = useState([])
 

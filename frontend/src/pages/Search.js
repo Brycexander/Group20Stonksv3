@@ -321,6 +321,8 @@ export default function EnhancedTable() {
   const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
 
+  postCall();
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -415,7 +417,6 @@ export default function EnhancedTable() {
       });
 
   };
-  postCall();
 
   /*
   useEffect(() => {

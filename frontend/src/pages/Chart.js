@@ -327,8 +327,12 @@ class Chart extends React.Component {
 
   constructor(props){
     super(props);
-    this.onChange = this.onChange.bind(this);
+    // this.onChange = this.onChange.bind(this);
     this.state = {c:[], h:[], l:[], o:[], t:[], v:[]};
+  }
+
+  onChange(state) {
+    this.setState(state);
   }
 
   componentDidMount(){
@@ -349,7 +353,7 @@ class Chart extends React.Component {
     };
 
     axios(config)
-    .then(function (response) 
+    .then((response) => 
     {
         var res = response.data;
         console.log(res);
@@ -358,7 +362,7 @@ class Chart extends React.Component {
       //window.location.href = '/cards'
         
     })
-    .catch(function (error) 
+    .catch(error =>
     {
         //setMessage(error);
       console.log(error);

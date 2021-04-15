@@ -18,21 +18,21 @@ const columns = [
     label: 'Value',
     minWidth: 170,
     align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
+    format: (value) => value.toFixed(2),
   },
   {
     id: 'shares',
     label: 'Shares',
     minWidth: 170,
     align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
+    format: (value) => value.toFixed(2),
   },
   {
     id: 'avg',
     label: 'Purchase',
     minWidth: 170,
     align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
+    format: (value) => value.toFixed(2),
   },
 ];
 

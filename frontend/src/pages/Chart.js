@@ -8,8 +8,8 @@ import { green, purple } from '@material-ui/core/colors';
 import axios from 'axios'
 
 function Chart() {
-        /*
-        var obj = {Company:"AAPL"};
+        
+        var obj = {Company:'AAPL'};
         var js = JSON.stringify(obj);
 
         const postCall = () => {
@@ -48,7 +48,7 @@ function Chart() {
         };
 
         postCall();
-        */
+        
         const series = [{
           name: 'candle',
           data: [

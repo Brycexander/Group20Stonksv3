@@ -91,7 +91,7 @@ const postCall = () => {
        console.log(response);
        const data = response.data.StocksOwned;
        
-       //loop through and figure out how to createData
+       //loop through and createData
        for(var i = 0; i < data.length; i++)
        {
            console.log(data[i]);
@@ -118,6 +118,8 @@ const useStyles = makeStyles({
 });
 
 export default function StickyHeadTable() {
+  get();
+  
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -130,8 +132,6 @@ export default function StickyHeadTable() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
-  get();
 
   return (
     <Paper className={classes.root}>

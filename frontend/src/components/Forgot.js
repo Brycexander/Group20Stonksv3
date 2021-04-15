@@ -1,4 +1,5 @@
 import React, { Component, useState, PureComponent } from 'react'; 
+import './PageTitle.css';
 import { Button, Modal,  ButtonGroup, DropdownButton, MenuItem,Navbar, Nav, NavItem, NavDropdown, Jumbotron, Container, Row, Col, InputGroup, Form, FormControl} from 'react-bootstrap';
 import {
     BrowserRouter as Router,
@@ -35,6 +36,7 @@ function Forgot()
            }
            else 
            {
+             setMessage("Check email for password reset");
              window.location.href = '/';
            }
          })
@@ -66,6 +68,8 @@ function Forgot()
             OK
           </Button>
         </Modal.Footer>
+        <span className="error">{message}</span>
+        <br></br>
       </Modal>
     </>
   );

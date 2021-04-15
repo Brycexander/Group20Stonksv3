@@ -326,8 +326,10 @@ export default function EnhancedTable() {
 
   const postCall = () => {
     axios
-      .post('https://group20-stocksimulatorv2.herokuapp.com/api/stock/search', {
-        "Query" : "" 
+      .get('https://group20-stocksimulatorv2.herokuapp.com/api/stock/search', {
+        params: {
+          Query: ""
+        } 
       })
       .then(function (response) {
         var res = response.data;
@@ -339,7 +341,6 @@ export default function EnhancedTable() {
         {
          // console.log(res);
          stocks = [];
-         rows = [];
          for (var i = 0; i < res.length; i++){
            var quote = res[i].Quote;
            var open = quote.o;

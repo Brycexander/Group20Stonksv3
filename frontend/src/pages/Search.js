@@ -81,7 +81,7 @@ const stocks = [
   createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
 ];
 */
-
+var stocks = []
 const temp = [
   {symbol:"AAPL", description:"Apple"}, 
   {symbol: "MSFT", description: "Microsoft"}, 
@@ -327,7 +327,6 @@ export default function EnhancedTable() {
     return () => setValue(value => value + 1); // update the state to force render
   }
   var rows = [];
-  var stocks = []
   const [stocksTemp, setStocks] = useState([]);
   const[search, setSearch] = useState('');
   useEffect(() =>  {

@@ -92,10 +92,14 @@ return(
   <Modal.Body>
        
   </Modal.Body>
+  <Container className="width">
+      <center>
+      <Col xs={10}>
   <center>
   <TextField
           id="standard-read-only-input"
           label={"ID"}
+          fullWidth
           defaultValue= {userId}
           InputProps={{
             readOnly: true,
@@ -107,6 +111,7 @@ return(
   <TextField
           id="standard-read-only-input"
           label={"First Name"}
+          fullWidth
           defaultValue= {firstName}
           InputProps={{
             readOnly: true,
@@ -118,6 +123,7 @@ return(
   <TextField
           id="standard-read-only-input"
           label={"Last Name"}
+          fullWidth
           defaultValue= {lastName}
           InputProps={{
             readOnly: true,
@@ -129,6 +135,7 @@ return(
     <TextField
           id="standard-read-only-input"
           label="Username"
+          fullWidth
           defaultValue={login}
           InputProps={{
             readOnly: true,
@@ -140,6 +147,7 @@ return(
     <TextField
           id="standard-read-only-input"
           label="Email"
+          fullWidth
           defaultValue= {email}
           InputProps={{
             readOnly: true,
@@ -149,6 +157,9 @@ return(
 
 
  <br></br>
+ </Col>
+ </center>
+ </Container>
   <Modal.Footer>
     <Button variant="danger" onClick={handleClickOpen}>Bankrupt</Button>
   </Modal.Footer>

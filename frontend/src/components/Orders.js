@@ -87,6 +87,7 @@ export default function StickyHeadTable() {
         else 
         {
          console.log(response);
+         rows = [];
          const data = response.data.StocksOwned;
          
          //loop through and createData

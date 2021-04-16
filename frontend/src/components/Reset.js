@@ -13,16 +13,24 @@ function Reset()
     var newPass;
     var confirm;
 
+    const storage = require('../tokenStorage.js');  
+    const jwt = require("jsonwebtoken");
+    var tok = storage.retrieveToken();
+    var ud = jwt.decode(tok,{complete:true});
+    console.log(ud);
+
     //do Reset
     const [message,setMessage] = useState('');
 
     const doReset = async event =>
     {
         event.preventDefault();
+        console.log(newPass);
+        console.log(confirm);
  
         const postCall = () => {
          axios
-           .post('https://group20-stocksimulatorv2.herokuapp.com/api/auth/reset', {
+           .post('https://group20-stocksimulatorv2.herokuapp.com/api/auth/reset/' + tok, {
              "Password": newPass.value,
              "ConfirmPassword": confirm.value
            })

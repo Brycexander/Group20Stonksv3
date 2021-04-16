@@ -37,7 +37,7 @@ function Forgot()
            else 
            {
              setMessage("Check email for password reset");
-             window.location.href = '/';
+             window.location.href = '#/Token';
            }
          })
          .catch(function (error) {

@@ -86,7 +86,10 @@ var stocks = new Array("AAPL", "MSFT", "FB", "TSLA", "BABA", "TSM", "JPM",
 let StocksValues = new Map()
 for (i = 0; i < stocks.length; i++)
 {
-   StocksValues[stocks[i]] = i;
+   // StocksValues[stocks[i]] = i;
+   Stock.findOne({ "Company": stock[i]}).then(stock => {
+      StocksValues[stock.Company] = stock.Quote.c;
+   });
 }
 
 

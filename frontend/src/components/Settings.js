@@ -95,6 +95,17 @@ return(
   <center>
   <TextField
           id="standard-read-only-input"
+          label={"ID"}
+          defaultValue= {userId}
+          InputProps={{
+            readOnly: true,
+          }}
+        />
+    </center>
+    <br></br>
+  <center>
+  <TextField
+          id="standard-read-only-input"
           label={"First Name"}
           defaultValue= {firstName}
           InputProps={{

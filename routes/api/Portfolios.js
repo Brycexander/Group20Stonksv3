@@ -19,6 +19,7 @@ router.post("/getPortfolio", (req, res) => {
 // API to Buy
 router.post("/buyStock", (req, res) => {
     Portfolio.findOne({ "Login": req.body.Login }).then(portfolio => {
+        return res.status(400).json({ test: req.body.Company});
         Stock.findOne({ "Company": req.body.Company}).then(stock => {
             if (stock.Quote.c * req.body.Amount > portfolio.Cash) {
                 return res.status(400).json("Insufficient founds");

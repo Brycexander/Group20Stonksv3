@@ -1,4 +1,4 @@
-import React, { Component, useState, PureComponent } from 'react'; 
+import React, { Component, useState, PureComponent, useEffect } from 'react'; 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -46,6 +46,8 @@ var flag = 0;
 
 function get() {
 
+const [stocksTemp, setStocks] = useState([]);
+
 const storage = require('../tokenStorage.js');  
 const jwt = require("jsonwebtoken");
 var tok = storage.retrieveToken();
@@ -60,12 +62,13 @@ if(ud !== null)
   var login = ud.payload.Login;
 }
 
-const postCall = () => {  
-  axios
+//const postCall = () => {  
+useEffect(() =>  {  
+ axios
     .post('https://group20-stocksimulatorv2.herokuapp.com/api/portfolios/getPortfolio', {
       "Login": login
     })
-    .then(function (response) {
+    .then(response => {
       var res = response.data;
       if (res.error) 
       {
@@ -77,25 +80,24 @@ const postCall = () => {
        const data = response.data.StocksOwned;
        
        //loop through and createData
-       if(flag === 0)
-       {
+
        for(var i = 0; i < data.length; i++)
        {
            console.log(data[i]);
            rows.push(createData(data[i].Company, data[i].Date, data[i].StockValue, data[i].Amount, data[i].TotalValue));
        }
        //We already got our data
-       flag = 1;
-      }
+       setStocks(res);
       }
     })
-    .catch(function (error) {
+    .catch(error => {
       // handle error
       console.log('Error');
     });
 
-};
-postCall();
+//};
+}, []);
+//postCall();
 }
 
 const useStyles = makeStyles({

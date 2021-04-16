@@ -341,31 +341,43 @@ const theme = createMuiTheme({
   },
 });
 
+var message = "";
+
 class Chart extends React.Component {
 
   constructor(props){
     super(props);
     // this.onChange = this.onChange.bind(this);
     this.state = {
-    series: [{name: 'candle', data: []}], 
-    c:[], 
-    h:[], 
-    l:[], 
-    o:[], 
-    t:[], 
-    v:[]};
+      series: [{name: 'candle', data: []}], 
+      c:[], 
+      h:[], 
+      l:[], 
+      o:[], 
+      t:[], 
+      v:[],
+      search: ''
+    };
     this.company = '';
     comp = this.company;
-    this.message = "";
+    // this.message = "";
   }
   
-  onChange(state) {
-    this.setState(state);
+  handleChange(e){
+    message = e.target.value
+    console.log("message" + " " + message);
+  }
+
+  buttonClick(){
+    this.setState({
+      search: message
+    });
+    console.log(this.state.search);
   }
 
   componentDidMount(){
-    console.log(this.company);
-    var obj = {Company: this.company};
+    console.log(this.state.search);
+    var obj = {Company: this.state.search};
     var js = JSON.stringify(obj);
 
     
@@ -417,6 +429,98 @@ class Chart extends React.Component {
     console.log(this.state);
   }
 
+  buyStock()
+  {   
+      /*
+       "Login": "SwaggerHub",
+       "Company": "AAPL",
+       "Amount": 1,
+       "Price": 100
+      */
+       const storage = require('../tokenStorage.js');  
+       const jwt = require("jsonwebtoken");
+       var tok = storage.retrieveToken();
+       var ud = jwt.decode(tok,{complete:true});
+       if(ud !== null)
+       {
+         return;
+       }
+
+       var userId = ud.payload.id;
+       var firstName = ud.payload.FirstName;
+       var lastName = ud.payload.LastName;
+       var login = ud.payload.Login;
+       console.log(login);
+      var obj = {Login:login, Company:this.state.search, Amount: 1};
+      var js = JSON.stringify(obj);
+
+      // console.log(loginName.value + " " + loginPassword.value);
+
+      const postCall = () => {
+       axios
+         .post('https://group20-stocksimulatorv2.herokuapp.com/api/portfolios/buyStock', {
+           "Login": login,
+           "Company": this.state.search,
+           "Amount": 1,
+         })
+         .then(function (response) {
+           var res = response.data;
+           console.log(res);
+         })
+         .catch(function (error) {
+           console.log("error");
+         });
+
+     };
+     postCall();
+  };
+
+  sellStock()
+  {   
+      /*
+       "Login": "SwaggerHub",
+       "Company": "AAPL",
+       "Amount": 1,
+       "Price": 100
+      */
+       const storage = require('../tokenStorage.js');  
+       const jwt = require("jsonwebtoken");
+       var tok = storage.retrieveToken();
+       var ud = jwt.decode(tok,{complete:true});
+       if(ud !== null)
+       {
+         return;
+       }
+
+       var userId = ud.payload.id;
+       var firstName = ud.payload.FirstName;
+       var lastName = ud.payload.LastName;
+       var login = ud.payload.Login;
+       console.log(login);
+       var obj = {Login:login, Company:this.state.search, Amount: 1};
+       var js = JSON.stringify(obj);
+
+      // console.log(loginName.value + " " + loginPassword.value);
+
+      const postCall = () => {
+       axios
+         .post('https://group20-stocksimulatorv2.herokuapp.com/api/portfolios/sellStock', {
+           "Login": login,
+           "Company": this.state.search,
+           "Amount": 1,
+         })
+         .then(function (response) {
+           var res = response.data;
+           console.log(res);
+         })
+         .catch(function (error) {
+           console.log("error");
+         });
+
+     };
+     postCall();
+  };
+
   componentWillUnmount(){
 
   }
@@ -446,12 +550,12 @@ class Chart extends React.Component {
                 <h1 className="stock-text"></h1>
                 <form>
                 <input type="text" placeholder="Enter Stock"
-                    className="stock-input" />
+                    className="stock-input" onChange={this.handleChange}/>
                 </form>
               </div>
-              <div>{this.message}</div>
+              <div></div>
               <Container className = {classes.box} maxWidth="lg">
-              <Button variant="contained" color="primary" aria-label="contained primary button group" 
+              <Button onClick={this.buttonClick.bind(this)} variant="contained" color="primary" aria-label="contained primary button group" 
               style={{
                 margin: 10 
               }}> 
@@ -460,8 +564,8 @@ class Chart extends React.Component {
               </Container>
               
               <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-              <Button>BUY STOCK</Button>
-              <Button>SELL STOCK</Button>
+              <Button onClick={this.buyStock}>BUY STOCK</Button>
+              <Button onClick={this.sellStock}>SELL STOCK</Button>
               </ButtonGroup>
               
             </Paper> 

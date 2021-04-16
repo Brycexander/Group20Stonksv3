@@ -358,8 +358,8 @@ class Chart extends React.Component {
       v:[],
       search: ''
     };
-    this.company = '';
-    comp = this.company;
+    // this.company = '';
+    // comp = this.company;
     // this.message = "";
   }
   
@@ -371,8 +371,7 @@ class Chart extends React.Component {
   buttonClick(){
     this.setState({
       search: message
-    });
-    this.updateGraph();
+    }, this.updateGraph());
     console.log(this.state.search);
   }
 

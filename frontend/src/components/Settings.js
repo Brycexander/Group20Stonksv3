@@ -58,7 +58,7 @@ function Settings()
         const postCall = () => {
          axios
            .post('https://group20-stocksimulatorv2.herokuapp.com/api/portfolios/bankrupt', {
-             "Login": login.value
+             "Login": login
            })
            .then(function (response) {
              var res = response.data;
@@ -68,8 +68,8 @@ function Settings()
              }
              else 
              {
-                console.log("API called");
-                console.log(login);
+               console.log("API called");
+               console.log(login);
                window.location.href = '#/Landing';
              }
            })

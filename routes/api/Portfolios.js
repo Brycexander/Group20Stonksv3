@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Load Stock model
-const Stock = require("../../models/Portfolio");
+const Stock = require("../../models/Stock");
 const { StockTranscripts } = require("finnhub");
 const Portfolio = require("../../models/Portfolio");
 
@@ -20,7 +20,7 @@ router.post("/getPortfolio", (req, res) => {
 router.post("/buyStock", (req, res) => {
     Portfolio.findOne({ "Login": req.body.Login }).then(portfolio => {
         // return res.status(400).json({ test: req.body.Company});
-        Stock.findOne({ "Company": req.body.Company}).then(stock => {
+        Stock.findOne({"Company": req.body.Company}).then(stock => {
             return res.status(400).json(stock);
             if (stock.Quote.c * req.body.Amount > portfolio.Cash) {
                 return res.status(400).json("Insufficient founds");

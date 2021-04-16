@@ -57,14 +57,14 @@ function Settings()
  
         const postCall = () => {
          axios
-           .post('hhttps://group20-stocksimulatorv2.herokuapp.com/api/portfolios/bankrupt', {
+           .post('https://group20-stocksimulatorv2.herokuapp.com/api/portfolios/bankrupt', {
              "Login": login.value
            })
            .then(function (response) {
              var res = response.data;
              if (res.error) 
              {
-               setMessage("Cannot execute bankrupt");
+               console.log("Cannot execute bankrupt");
              }
              else 
              {
@@ -73,7 +73,7 @@ function Settings()
            })
            .catch(function (error) {
              // handle error
-             setMessage("Cannot execute bankrupt");
+             console.log("Cannot execute bankrupt");
            });
  
        };

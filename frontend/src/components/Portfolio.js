@@ -72,8 +72,6 @@ function Portfolio()
         { name: 'Apple', value: 80 },
       ];*/
 
-      rows.push(createData("Tesla", 345.2));
-
     return(
         <div>
           <center>

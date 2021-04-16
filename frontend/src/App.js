@@ -12,6 +12,7 @@ import Chart from './components/Chart';
 import Reset from './components/Reset'
 import "react-bootstrap/dist/react-bootstrap.min.js"
 import Settings from './components/Settings'
+import Token from './components/Token'
 
 function App() 
 {
@@ -44,6 +45,9 @@ function App()
       </Route>
       <Route path="/Settings" exact>
         <Settings />
+      </Route>
+      <Route path="/Token" exact>
+        <Token />
       </Route>
       <Redirect to="/" />
     </Switch>  

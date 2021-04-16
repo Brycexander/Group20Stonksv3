@@ -87,7 +87,7 @@ let StocksValues = new Map()
 for (i = 0; i < stocks.length; i++)
 {
    // StocksValues[stocks[i]] = i;
-   Stock.findOne({ "Company": stock[i]}).then(stock => {
+   Stock.findOne({ "Company": stocks[i]}).then(stock => {
       StocksValues[stock.Company] = stock.Quote.c;
    });
 }

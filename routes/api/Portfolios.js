@@ -48,23 +48,25 @@ router.post("/buyStock", (req, res) => {
 // API for Sell
 router.post("/sellStock", (req, res) => {
     Portfolio.findOne({ "Login": req.body.Login }).then(portfolio => {
-        var index = -1;
-        var stockQuantity = -1;
-        for (i = 0; i < portfolio.StocksOwned.length; i++) {
-            if (portfolio.StocksOwned[i].Company == req.body.Company) {
-                index = i;
-                stockQuantity = portfolio.StocksOwned[i].Amount;
-                break;
+        Stock.findOne({ "Company": req.body.Compnay}).then(stock => {
+            var index = -1;
+            var stockQuantity = -1;
+            for (i = 0; i < portfolio.StocksOwned.length; i++) {
+                if (portfolio.StocksOwned[i].Company == req.body.Company) {
+                    index = i;
+                    stockQuantity = portfolio.StocksOwned[i].Amount;
+                    break;
+                }
             }
-        }
-        if (index == -1 || stockQuantity < req.body.Amount) {
-            return res.status(400).json("Don't own enough shares");
-        }
-        portfolio.StocksOwned[index].Amount -= req.body.Amount;
-        portfolio.StocksOwned[index].TotalValue -= req.body.Price * req.body.Amount;
-        portfolio.Cash += req.body.Amount * req.body.Price;
-        portfolio.Holdings -= req.body.Amount * req.body.Price;
-        portfolio.save().then(res.status(200).json("Shares Sold"));
+            if (index == -1 || stockQuantity < req.body.Amount) {
+                return res.status(400).json("Don't own enough shares");
+            }
+            portfolio.StocksOwned[index].Amount -= req.body.Amount;
+            portfolio.StocksOwned[index].TotalValue -= stock.Quote.c * req.body.Amount;
+            portfolio.Cash += req.body.Amount * stock.Quote.c;
+            portfolio.Holdings -= req.body.Amount * stock.Quote.c;
+            portfolio.save().then(res.status(200).json("Shares Sold"));
+        })
     });
 });
 

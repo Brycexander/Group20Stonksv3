@@ -372,10 +372,15 @@ class Chart extends React.Component {
     this.setState({
       search: message
     });
+    this.updateGraph();
     console.log(this.state.search);
   }
 
   componentDidMount(){
+    
+  }
+
+  updateGraph(){
     console.log(this.state.search);
     var obj = {Company: this.state.search};
     var js = JSON.stringify(obj);
@@ -427,6 +432,7 @@ class Chart extends React.Component {
     });
     
     console.log(this.state);
+    this.forceUpdate();
   }
 
   buyStock()

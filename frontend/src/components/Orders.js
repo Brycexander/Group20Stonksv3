@@ -40,7 +40,7 @@ function createData(name, time, value, shares, avg) {
   return { name, time, value, shares, avg };
 }
 
-const rows = [];
+var rows = [];
 
 var flag = 0;
 

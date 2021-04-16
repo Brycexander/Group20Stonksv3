@@ -2,10 +2,12 @@ import React, {useState, useEffect} from 'react';
 import ReactApexChart from 'react-apexcharts';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme, withStyles, makeStyles, ThemeProvider, styled} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { green, purple } from '@material-ui/core/colors';
 import axios from 'axios'
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Container from '@material-ui/core/Container';
 
 
 /*
@@ -255,6 +257,21 @@ const series = [{
   ]
 }];
 */
+
+const MyButton = styled(Button)({
+  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+  border: 3,
+  borderRadius: 3,
+  boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  color: 'white',
+  minheight: 30,
+  minwidth: 80,
+  marginLeft: "20%",
+});
+
+
+var comp = '';
+
 const options = {
   chart: {
     height: 350,
@@ -262,7 +279,7 @@ const options = {
     type: 'candlestick',
   },
   title: {
-    text: 'AAPL',
+    text: comp,
     align: 'left'
   },
   annotations: {
@@ -282,7 +299,8 @@ const options = {
           text: 'Date'
         }
       }
-    ]
+    ],
+    tickPlacement: 'on'
   },
   tooltip: {
     enabled: true,
@@ -308,14 +326,12 @@ const useStyles = withStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(0),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-  margin: {
-    margin: "5%",
-    marginTop: "2%",
-    marginBottom: "0%",
+  box: {
+    margin: 10,
   }
 }));
 
@@ -331,21 +347,25 @@ class Chart extends React.Component {
     super(props);
     // this.onChange = this.onChange.bind(this);
     this.state = {
-    series: [{name: 'candle', data: [{}]}], 
+    series: [{name: 'candle', data: []}], 
     c:[], 
     h:[], 
     l:[], 
     o:[], 
     t:[], 
     v:[]};
+    this.company = '';
+    comp = this.company;
+    this.message = "";
   }
-
+  
   onChange(state) {
     this.setState(state);
   }
 
   componentDidMount(){
-    var obj = {Company:'AAPL'};
+    console.log(this.company);
+    var obj = {Company: this.company};
     var js = JSON.stringify(obj);
 
     
@@ -408,20 +428,43 @@ class Chart extends React.Component {
       <ThemeProvider theme={theme}>
       <div className={classes.root}>
         <Grid container spacing={3}>
-          <Grid item xs ={12} sm = {8}>
+          <Grid item xs ={12} lg = {8}>
             <Paper className={classes.paper}> 
               <div id="chart">
-                  <ReactApexChart options={options} series={this.state.series} type="candlestick" height={525} width={"100%"}/>
+                  <ReactApexChart options={options} series={this.state.series} type="candlestick" height={600} width={"100%"}/>
               </div>
               <ThemeProvider theme={theme}>
-              <Button className={classes.margin} mx="auto" variant="contained" color="primary">3 WEEKS</Button>
-              <Button className={classes.margin} mx="auto" variant="contained" color="primary">3 MONTHS</Button>
-              <Button className={classes.margin} mx="auto" variant="contained" color="primary">1 YEAR</Button>
+              
               </ThemeProvider>
             </Paper>
           </Grid>
-          <Grid item xs={12} sm = {4}>
-            <Paper className={classes.paper}>STATS</Paper> 
+          <Grid item xs={12} lg = {4} style={{
+              textAlign:'center' 
+            }}>
+            <Paper className={classes.paper}>
+              <div className="stock-search">
+                <h1 className="stock-text"></h1>
+                <form>
+                <input type="text" placeholder="Enter Stock"
+                    className="stock-input" />
+                </form>
+              </div>
+              <div>{this.message}</div>
+              <Container className = {classes.box} maxWidth="lg">
+              <Button variant="contained" color="primary" aria-label="contained primary button group" 
+              style={{
+                margin: 10 
+              }}> 
+                Query
+              </Button>
+              </Container>
+              
+              <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+              <Button>BUY STOCK</Button>
+              <Button>SELL STOCK</Button>
+              </ButtonGroup>
+              
+            </Paper> 
           </Grid>
         </Grid>
 

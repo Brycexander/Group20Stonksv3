@@ -330,7 +330,7 @@ export default function EnhancedTable() {
   const [stocksTemp, setStocks] = useState([]);
   const[search, setSearch] = useState('');
   useEffect(() =>  {
-
+    const storage = require('../tokenStorage.js');
     var obj = {Query:""};
     var js = JSON.stringify(obj);
 
@@ -368,6 +368,7 @@ export default function EnhancedTable() {
            }
          }
          setStocks(res);
+         storage.storeList(res);
          // emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
         
       })

@@ -68,6 +68,8 @@ function Settings()
              }
              else 
              {
+                console.log("API called");
+                console.log(login);
                window.location.href = '#/Landing';
              }
            })

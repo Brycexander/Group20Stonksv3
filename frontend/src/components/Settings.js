@@ -68,7 +68,7 @@ function Settings()
              }
              else 
              {
-               window.location.href = '/Landing';
+               window.location.href = '#/Landing';
              }
            })
            .catch(function (error) {

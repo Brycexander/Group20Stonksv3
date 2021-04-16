@@ -48,7 +48,7 @@ router.post("/buyStock", (req, res) => {
 // API for Sell
 router.post("/sellStock", (req, res) => {
     Portfolio.findOne({ "Login": req.body.Login }).then(portfolio => {
-        Stock.findOne({ "Company": req.body.Compnay}).then(stock => {
+        Stock.findOne({ "Company": req.body.Company}).then(stock => {
             var index = -1;
             var stockQuantity = -1;
             for (i = 0; i < portfolio.StocksOwned.length; i++) {

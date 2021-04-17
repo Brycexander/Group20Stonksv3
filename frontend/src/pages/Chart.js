@@ -342,7 +342,7 @@ const theme = createMuiTheme({
 });
 
 var message = "";
-
+var displayMessage = "";
 class Chart extends React.Component {
 
   constructor(props){
@@ -422,12 +422,14 @@ class Chart extends React.Component {
         }); 
       //storage.storeToken(res);
       //window.location.href = '/cards'
+      
       console.log(this.state);
     })
     .catch(error =>
     {
         //setMessage(error);
       console.log(error);
+      displayMessage = error.message;
     });
     
     console.log(this.state);
@@ -471,12 +473,14 @@ class Chart extends React.Component {
          .then(function (response) {
            var res = response.data;
            console.log(res);
+           displayMessage = "Stock Bought";
          })
          .catch(function (error) {
            console.log("error");
+           displayMessage = error.message;
          });
-
      };
+     this.forceUpdate();
      postCall();
   };
 
@@ -517,13 +521,16 @@ class Chart extends React.Component {
          .then(function (response) {
            var res = response.data;
            console.log(res);
+           displayMessage = "Stock Sold";
          })
          .catch(function (error) {
            console.log("error");
+           displayMessage = error.message;
          });
 
      };
      postCall();
+     this.forceUpdate();
   };
 
   componentWillUnmount(){
@@ -558,7 +565,7 @@ class Chart extends React.Component {
                     className="stock-input" onChange={this.handleChange}/>
                 </form>
               </div>
-              <div></div>
+              <div>{displayMessage}</div>
               <Container className = {classes.box} maxWidth="lg">
               <Button onClick={this.buttonClick.bind(this)} variant="contained" color="primary" aria-label="contained primary button group" 
               style={{

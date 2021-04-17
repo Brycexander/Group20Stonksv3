@@ -456,7 +456,7 @@ class Chart extends React.Component {
        var lastName = ud.payload.LastName;
        var login = ud.payload.Login;
        console.log(login);
-      var obj = {Login:login, Company:this.state.search, Amount: 1};
+      var obj = {Login:login, Company:message, Amount: 1};
       var js = JSON.stringify(obj);
 
       // console.log(loginName.value + " " + loginPassword.value);
@@ -502,7 +502,7 @@ class Chart extends React.Component {
        var lastName = ud.payload.LastName;
        var login = ud.payload.Login;
        console.log(login);
-       var obj = {Login:login, Company:this.state.search, Amount: 1};
+       var obj = {Login:login, Company:message, Amount: 1};
        var js = JSON.stringify(obj);
 
       // console.log(loginName.value + " " + loginPassword.value);

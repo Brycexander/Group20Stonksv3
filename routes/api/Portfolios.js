@@ -91,7 +91,7 @@ router.post("/bankrupt", (req, res) => {
 });
 
 router.post("/leaderboard", (req, res) => {
-    Portfolio.find({}.then(portfolios => {
+    Portfolio.find({}).then(portfolios => {
         if (!portfolios) {
             res.status(404).json({ NoPortfolios: "No Portfolios Found" })
         }

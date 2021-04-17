@@ -48,7 +48,7 @@ function Deposits()
       <div>
         <Navbar className="color-nav" expand="lg">
   <Navbar.Brand className="font">StockHub</Navbar.Brand>
-  <Nav.Link className="font">Learderboard</Nav.Link>
+  <Nav.Link className="font">Leaderboard</Nav.Link>
   <Link id="change" className="nav-link" to="/Search">
       Stocks
     </Link>

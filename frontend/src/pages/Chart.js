@@ -371,7 +371,7 @@ class Chart extends React.Component {
   buttonClick(){
     this.setState({
       search: message
-    }, this.updateGraph());
+    }, this.updateGraph(message));
     console.log(this.state.search);
   }
 
@@ -381,7 +381,7 @@ class Chart extends React.Component {
 
   updateGraph(){
     console.log(this.state.search);
-    var obj = {Company: this.state.search};
+    var obj = {Company: message};
     var js = JSON.stringify(obj);
 
     

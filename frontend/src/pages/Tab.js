@@ -54,8 +54,8 @@ export default function FullWidthTabs() {
 
   return (
     <div>
-      <NavigationBar></NavigationBar>
       <div className={classes.root}>
+      <NavigationBar></NavigationBar>
       <AppBar position="static" color="default">
         <Tabs
           value={value}

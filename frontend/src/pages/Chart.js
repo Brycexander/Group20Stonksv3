@@ -430,7 +430,7 @@ class Chart extends React.Component {
     {
         //setMessage(error);
       console.log(error);
-      if (error.response.data !== undefined){
+      if (typeof(error.response) !== 'undefined'){
         displayMessage = error.response.data;
         this.setState({
         show: error.response.data
@@ -488,7 +488,7 @@ class Chart extends React.Component {
           })
          .catch(function (error) {
            console.log("error");
-           if (error.response.data !== undefined){
+           if (typeof(error.response) !== 'undefined'){
             displayMessage = error.response.data;
             this.setState({
               show: error.response.data
@@ -546,7 +546,7 @@ class Chart extends React.Component {
         })
          .catch(function (error) {
            console.log("error");
-           if (error.response.data !== undefined){
+           if (typeof(error.response) !== 'undefined'){
             displayMessage = error.response.data;
             this.setState({
               show: error.response.data

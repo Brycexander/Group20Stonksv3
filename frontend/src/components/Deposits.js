@@ -49,10 +49,10 @@ function Deposits()
         <Navbar className="color-nav" expand="lg">
   <Navbar.Brand className="font">StockHub</Navbar.Brand>
   <Nav.Link className="font">Learderboard</Nav.Link>
-  <Link className="nav-link" to="/Search">
+  <Link id="change" className="nav-link" to="/Search">
       Stocks
     </Link>
-  <Nav.Link className="font">Settings</Nav.Link>
+    <Link id="change" className="nav-link" to="/Settings">Settings</Link>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">

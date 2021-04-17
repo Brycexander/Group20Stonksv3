@@ -62,12 +62,14 @@ body{
 {
     background: white !important;
     color: black;
+    background-blend-mode: luminosity;
     height: 100vh;  
     width: 100%;
 }
 
 .right-side{
-    background-color: #1a1a1c !important;
+    background-color: #0a0a0a !important;
+    background-blend-mode: luminosity;
     height: 100vh;  
     width: 70%;
 }
@@ -88,6 +90,8 @@ Align-Items: center;
 Justify-Content: center;
 margin-top: 100px;
 margin-left: 80px;
+transform: translatey(0px);
+animation: floating 3s ease-in-out infinite;
 }
 
 .quote
@@ -118,5 +122,11 @@ margin-left: 80px;
 #loginResult
 {
     color: rgb(228, 56, 56);
+}
+
+.error
+{
+    color: rgb(87, 0, 128);
+    margin-left: 300px;
 }
 

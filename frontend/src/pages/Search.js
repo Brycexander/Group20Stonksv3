@@ -52,7 +52,7 @@ percent: -30
 
 
 
-
+/*
 const stocks = [
   createData('Cupcake', '305', (3.7), 67, 4.3, 0, 0, 0),
   createData('Donut', 'a', 25.0, 51, 4.9, 0, 0, 0),
@@ -80,9 +80,8 @@ const stocks = [
   createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
   createData('Oreo', 437, 18.0, 63, 4.0, 0, 0, 0),
 ];
-
-var rows = []
-
+*/
+var stocks = []
 const temp = [
   {symbol:"AAPL", description:"Apple"}, 
   {symbol: "MSFT", description: "Microsoft"}, 
@@ -323,9 +322,15 @@ export default function EnhancedTable() {
   const [dense, setDense] = React.useState(true);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
 
-  /*
-  const postCall = async event => {
-
+  function useForceUpdate(){
+    const [value, setValue] = useState(0); // integer state
+    return () => setValue(value => value + 1); // update the state to force render
+  }
+  var rows = [];
+  const [stocksTemp, setStocks] = useState([]);
+  const[search, setSearch] = useState('');
+  useEffect(() =>  {
+    const storage = require('../tokenStorage.js');
     var obj = {Query:""};
     var js = JSON.stringify(obj);
 
@@ -341,14 +346,8 @@ export default function EnhancedTable() {
     };
 
     axios(config)
-      .then(function (response) {
+      .then(response => {
         var res = response.data;
-        if (res.error) 
-        {
-          console.log("Failed To Get Stocks");
-        }
-        else 
-        {
          // console.log(res);
          stocks = [];
          for (var i = 0; i < res.length; i++){
@@ -358,7 +357,7 @@ export default function EnhancedTable() {
            var low = quote.l;
            var price = quote.c;
            var pprice = quote.pc;
-           var percent = (((price - pprice) / pprice) * 100)
+           var percent = (((price - pprice) / pprice) * 100);
            var company = res[i].Company;
            for (var j = 0; j < temp.length; j++){
              if (company === temp[j].symbol){
@@ -368,18 +367,22 @@ export default function EnhancedTable() {
               }
            }
          }
+         setStocks(res);
+         storage.storeList(res);
          // emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-        }
+        
       })
-      .catch(function (error) {
+      .catch(error => {
         // handle error
         console.log("invalid");
       });
-
-  };
+  }, []);
   
-  postCall();
-  */
+  // postCall();
+
+  // const forceUpdate = useForceUpdate();
+
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -457,9 +460,6 @@ export default function EnhancedTable() {
   }, []);  
   */
  
- 
-  const[search, setSearch] = useState('');
-
   const handleChange = e => {
     setSearch(e.target.value);
   }
@@ -467,8 +467,8 @@ export default function EnhancedTable() {
   const filteredStocks = stocks.filter(stocks => 
     (stocks.symbol.toLowerCase().includes(search.toLowerCase()) || stocks.description.toLowerCase().includes(search.toLowerCase()))
   );
-  
-  var emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  var emptyRows = 0;
+ // var emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
   rows = []
   return (
     <ThemeProvider theme={darkTheme}>

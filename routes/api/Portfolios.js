@@ -102,7 +102,7 @@ router.post("/leaderboard", (req, res) => {
                 retVal.push({Login: portfolios[i].Login, AccountBalance: portfolios[i].AccountBalance});
             }
 
-            const sorted = array.sort((a, b) => {
+            const sorted = retVal.sort((a, b) => {
                 return b - a;
             })
 

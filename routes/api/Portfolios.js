@@ -21,7 +21,7 @@ router.post("/buyStock", (req, res) => {
     Portfolio.findOne({ "Login": req.body.Login }).then(portfolio => {
         Stock.findOne({"Company": req.body.Company}).then(stock => {
             if (!stock)
-                return res.status(404).json({ StockNotFound: "No Stock Found" });
+                return res.status(404).json("No Stock Found");
             if (stock.Quote.c * req.body.Amount > portfolio.Cash) {
                 return res.status(400).json("Insufficient founds");
             } else {
@@ -38,6 +38,7 @@ router.post("/buyStock", (req, res) => {
                 } else {
                     portfolio.StocksOwned.push({ Company: req.body.Company, Amount: req.body.Amount, StockValue: stock.Quote.c, TotalValue: stock.Quote.c * req.body.Amount, Date: Date.now() });
                 }
+
                 portfolio.Cash -= stock.Quote.c * req.body.Amount;
                 portfolio.Holdings += stock.Quote.c * req.body.Amount;
                 portfolio.save().then(res.status(200).json("Shares Bought"));
@@ -52,7 +53,7 @@ router.post("/sellStock", (req, res) => {
     Portfolio.findOne({ "Login": req.body.Login }).then(portfolio => {
         Stock.findOne({ "Company": req.body.Company}).then(stock => {
             if (!stock)
-                return res.status(404).json({ StockNotFound: "No Stock Found" });
+                return res.status(404).json("No Stock Found");
             var index = -1;
             var stockQuantity = -1;
             for (i = 0; i < portfolio.StocksOwned.length; i++) {
@@ -76,7 +77,6 @@ router.post("/sellStock", (req, res) => {
 
             portfolio.Cash += req.body.Amount * stock.Quote.c;
             portfolio.Holdings -= req.body.Amount * stock.Quote.c;
-
             portfolio.save().then(res.status(200).json("Shares Sold"));
         })
     });
@@ -90,18 +90,26 @@ router.post("/bankrupt", (req, res) => {
     });
 });
 
-/*
 router.post("/leaderboard", (req, res) => {
-    Portfolio.find({}.then(portfolio => {
-        if (!portfolio) {
-            res.status(404).json({ NoUser: "No User Found" })
+    Portfolio.find({}.then(portfolios => {
+        if (!portfolios) {
+            res.status(404).json({ NoPortfolios: "No Portfolios Found" })
         }
         else {
             var retVal = [];
-            for (i = 0; i < port)
+            for (i = 0; i < portfolios.length; i++)
+            {
+                retVal.push({Login: portfolios[i].Login, AccountBalance: portfolios[i].AccountBalance});
+            }
+
+            const sorted = array.sort((a, b) => {
+                return b - a;
+            })
+
+            res.status(200).json(sorted);
         }
     }))
 })
-*/
+
 
 module.exports = router;

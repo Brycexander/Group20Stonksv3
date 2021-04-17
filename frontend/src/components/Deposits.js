@@ -11,6 +11,7 @@ import { Button,  ButtonGroup, DropdownButton, MenuItem,Navbar, Nav, NavItem, Na
 import Pie from './Portfolio';
 import Orders from './Orders';
 import Current from './Current';
+import BarChart from './BarChart';
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,6 +22,16 @@ import axios from 'axios'
 
 function Deposits()
 {
+  const useStyles = makeStyles({
+    root: {
+      width: '100%',
+      marginLeft: 10,
+    },
+    container: {
+      maxHeight: 440,
+    },
+  });
+
     const storage = require('../tokenStorage.js');  
     const jwt = require("jsonwebtoken");
     var tok = storage.retrieveToken();
@@ -44,11 +55,15 @@ function Deposits()
 
   };  
 
+  const classes = useStyles;
+
     return(
-      <div>
+      <div className={classes.root}>
         <Navbar className="color-nav" expand="lg">
   <Navbar.Brand className="font">StockHub</Navbar.Brand>
-  <Nav.Link className="font">Leaderboard</Nav.Link>
+  <Link id="change" className="nav-link" to="/Leaderboard">
+      Leaderboard
+    </Link>
   <Link id="change" className="nav-link" to="/Search">
       Stocks
     </Link>
@@ -64,6 +79,7 @@ function Deposits()
     </Form>
   </Navbar.Collapse>
 </Navbar>
+
 <br></br>
       <Row className="justify-content-md-center">
         <Col xs={6}>
@@ -77,7 +93,7 @@ function Deposits()
       <Row className="justify-content-md-center">
         <Col md="auto">
           <Paper>
-         <Chart/>
+           <BarChart/>
          </Paper>
         </Col>
       <Col md="auto">

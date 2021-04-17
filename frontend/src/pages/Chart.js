@@ -429,7 +429,7 @@ class Chart extends React.Component {
     {
         //setMessage(error);
       console.log(error);
-      displayMessage = error.message;
+      displayMessage = error.response.data;
     });
     
     console.log(this.state);
@@ -477,7 +477,7 @@ class Chart extends React.Component {
          })
          .catch(function (error) {
            console.log("error");
-           displayMessage = error.message;
+           displayMessage = error.response.data;
          });
      };
      this.forceUpdate();
@@ -525,7 +525,7 @@ class Chart extends React.Component {
          })
          .catch(function (error) {
            console.log("error");
-           displayMessage = error.message;
+           displayMessage = error.response.data;
          });
 
      };
@@ -547,7 +547,7 @@ class Chart extends React.Component {
           <Grid item xs ={12} lg = {8}>
             <Paper className={classes.paper}> 
               <div id="chart">
-                  <ReactApexChart options={options} series={this.state.series} type="candlestick" height={600} width={"100%"}/>
+                  <ReactApexChart options={options} series={this.state.series} type="candlestick" height={550} width={"100%"}/>
               </div>
               <ThemeProvider theme={theme}>
               
@@ -576,8 +576,8 @@ class Chart extends React.Component {
               </Container>
               
               <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-              <Button onClick={this.buyStock}>BUY STOCK</Button>
-              <Button onClick={this.sellStock}>SELL STOCK</Button>
+              <Button onClick={this.buyStock.bind(this)}>BUY STOCK</Button>
+              <Button onClick={this.sellStock.bind(this)}>SELL STOCK</Button>
               </ButtonGroup>
               
             </Paper> 

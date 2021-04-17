@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Search from './Search';
 import Chart from './Chart'
+import NavigationBar from '../components/NavigationBar';
 import './Tab.css'
 
 function TabPanel(props) {
@@ -53,6 +54,7 @@ export default function FullWidthTabs() {
 
   return (
     <div className={classes.root}>
+      <NavigationBar></NavigationBar>
       <AppBar position="static" color="default">
         <Tabs
           value={value}

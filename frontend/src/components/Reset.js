@@ -15,8 +15,6 @@ function Reset()
 
     const storage = require('../tokenStorage.js');  
     const jwt = require("jsonwebtoken");
-    var tok = storage.retrieveToken();
-    var ud = jwt.decode(tok,{complete:true});
     
     var token = localStorage.getItem("token");
     console.log(token);

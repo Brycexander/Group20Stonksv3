@@ -23,9 +23,11 @@ exports.recover = async (req, res) => {
         let subject = "Password change request";
         let to = user.Email;
         let from = process.env.FROM_EMAIL;
-        let link = "http://" + req.headers.host + "/api/auth/reset/" + user.ResetPasswordToken;
+        let token = user.ResetPasswordToken;
+        let link = "http://" + req.headers.host + "/#/Token";
         let html = `<p>Hi ${user.Login}</p>
-                    <p>Please click on the following <a href="${link}">link</a> to reset your password.</p> 
+                    <p>Please copy and paste this token: <br></br> <br></br> ${token} <br></br> <br></br>into the Password Recovery page that you have open or click this link to be
+                    redirected to reset your password. <br></br><br></br> ${link}" 
                     <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>`;
 
         await sendEmail({to, from, subject, html});
@@ -36,25 +38,25 @@ exports.recover = async (req, res) => {
     }
 };
 
-// @route GET api/auth/reset
+// @route POST api/auth/reset
 // @desc Reset Password - Validate password reset token and shows the password reset view
 // @access Public
 exports.reset = async (req, res) => {
     try {
-        const { token } = req.params;
+        const { token } = req.body;
 
         const user = await User.findOne({ ResetPasswordToken: token });
 
         if (!user) return res.status(401).json({message: 'Password reset token is invalid or has expired.'});
 
         // Redirect user to form with the email address
-        res.render('reset', {user});
+        res.status(200).json({message: token});
     } catch (error) {
         res.status(500).json({message: error.message})
     }
 };
 
-// @route POST api/auth/reset
+// @route POST api/auth/reset/:token
 // @desc Reset Password
 // @access Public
 exports.resetPassword = async (req, res) => {

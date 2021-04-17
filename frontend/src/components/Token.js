@@ -18,12 +18,13 @@ function Token()
     const goReset = async event =>
     {
         event.preventDefault();
-        var js = JSON.stringify(token);
+        //var obj = {Token:token.value};
+        //var js = JSON.stringify(obj);
 
-        console.log(js);
+       // console.log(js);
         if(token !== null)
         {
-            localStorage.setItem("token", js);
+            window.localStorage.setItem("token", token.value);
             window.location.href = '#/Reset';
         } else
         {
@@ -42,11 +43,7 @@ return(
         <br></br>
         <center>
           <h5>A token has been sent to your email</h5>
-      <TextField
-          id="standard-helperText"
-          label="Enter token"
-          autoComplete="current-password"
-          variant="filled" ref={(c) => token = c}/>
+          <Form.Control type="text" placeholder="Enter token" ref={(c) => token = c}/>
         <br></br>
 
         <br></br> <br></br>

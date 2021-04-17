@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const finnhub = require('finnhub');
 var cron = require('node-cron');
+const path = require("path");
 var unixTimestamp = require("unix-timestamp");
 unixTimestamp.round = true;
 
@@ -45,7 +46,6 @@ const User = require("./models/User");
 const Stock = require("./models/Stock");
 const Portfolio = require("./models/Portfolio");
 // const { where } = require("./models/User");
-
 
 // Connect to MongoDB
 mongoose

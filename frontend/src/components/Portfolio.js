@@ -3,7 +3,7 @@ import { PieChart, Pie, Sector, Cell, LineChart, Line, XAxis, YAxis, CartesianGr
 import './PageTitle.css';
 import axios from 'axios'
 
-function createData(name,  value, ) {
+function createData(name,  value ) {
   return { name, value };
 }
 
@@ -63,14 +63,6 @@ function Portfolio()
   
   //};
   }, []);
-  //postCall();
-
-    /*const data02 = [
-        { name: 'Tesla', value: 100 },
-        { name: 'Game Stop', value: 300 },
-        { name: 'AMC', value: 100 },
-        { name: 'Apple', value: 80 },
-      ];*/
 
     return(
         <div>

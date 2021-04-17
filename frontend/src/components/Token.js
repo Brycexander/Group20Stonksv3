@@ -19,10 +19,10 @@ function Token()
     {
         event.preventDefault();
 
-        console.log(token);
+        console.log(token.value);
         if(token !== null)
         {
-            storage.storeToken(token.value);
+            localStorage.setItem("token", token.value);
             window.location.href = '#/Reset';
         } else
         {

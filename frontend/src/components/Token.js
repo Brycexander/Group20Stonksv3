@@ -18,11 +18,12 @@ function Token()
     const goReset = async event =>
     {
         event.preventDefault();
+        var js = JSON.stringify(token);
 
-        console.log(token.value);
+        console.log(js);
         if(token !== null)
         {
-            localStorage.setItem("token", token.value);
+            localStorage.setItem("token", js);
             window.location.href = '#/Reset';
         } else
         {

@@ -9,10 +9,11 @@ import UserPage from './components/UserPage';
 import Tab from './pages/Tab';
 import Deposit from './components/Deposits';
 import Chart from './components/Chart';
-import Reset from './components/Reset'
-import "react-bootstrap/dist/react-bootstrap.min.js"
-import Settings from './components/Settings'
-import Token from './components/Token'
+import Reset from './components/Reset';
+import "react-bootstrap/dist/react-bootstrap.min.js";
+import Settings from './components/Settings';
+import Token from './components/Token';
+import Leaderboard from './components/Leaderboard'
 
 function App() 
 {
@@ -48,6 +49,9 @@ function App()
       </Route>
       <Route path="/Token" exact>
         <Token />
+      </Route>
+      <Route path="/Leaderboard" exact>
+        <Leaderboard />
       </Route>
       <Redirect to="/" />
     </Switch>  

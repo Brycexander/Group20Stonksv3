@@ -430,10 +430,12 @@ class Chart extends React.Component {
     {
         //setMessage(error);
       console.log(error);
-      displayMessage = error.response.data;
-      this.setState({
+      if (error.response.data !== undefined){
+        displayMessage = error.response.data;
+        this.setState({
         show: error.response.data
-      });
+        });
+      }
       // this.forceUpdate();
     });
     
@@ -468,7 +470,7 @@ class Chart extends React.Component {
 
       // console.log(loginName.value + " " + loginPassword.value);
 
-      const postCall = () => {
+      
        axios
          .post('https://group20-stocksimulatorv2.herokuapp.com/api/portfolios/buyStock', {
            "Login": login,
@@ -486,15 +488,17 @@ class Chart extends React.Component {
           })
          .catch(function (error) {
            console.log("error");
-           displayMessage = error.response.data;
-           this.setState({
-            show: error.response.data
-           });
+           if (error.response.data !== undefined){
+            displayMessage = error.response.data;
+            this.setState({
+              show: error.response.data
+            });
+          }
            // this.forceUpdate();
          });
-     };
+     
      //this.forceUpdate();
-     postCall();
+     
   };
 
   sellStock()
@@ -524,7 +528,7 @@ class Chart extends React.Component {
 
       // console.log(loginName.value + " " + loginPassword.value);
 
-      const postCall = () => {
+      
        axios
          .post('https://group20-stocksimulatorv2.herokuapp.com/api/portfolios/sellStock', {
            "Login": login,
@@ -542,15 +546,15 @@ class Chart extends React.Component {
         })
          .catch(function (error) {
            console.log("error");
-           displayMessage = error.response.data;
-           this.setState({
-            show: error.response.data
-          });
+           if (error.response.data !== undefined){
+            displayMessage = error.response.data;
+            this.setState({
+              show: error.response.data
+            });
+           }
            // this.forceUpdate();
          });
 
-     };
-     postCall();
   };
 
   componentWillUnmount(){

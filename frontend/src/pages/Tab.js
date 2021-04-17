@@ -53,8 +53,9 @@ export default function FullWidthTabs() {
   };
 
   return (
-    <div className={classes.root}>
+    <div>
       <NavigationBar></NavigationBar>
+      <div className={classes.root}>
       <AppBar position="static" color="default">
         <Tabs
           value={value}
@@ -76,5 +77,6 @@ export default function FullWidthTabs() {
           <Chart/>
         </TabPanel>
     </div>
+  </div>
   );
 }

@@ -357,7 +357,7 @@ class Chart extends React.Component {
       t:[], 
       v:[],
       search: '',
-      show: 'hello'
+      show: ''
     };
     // this.company = '';
     // comp = this.company;

@@ -465,7 +465,7 @@ class Chart extends React.Component {
        axios
          .post('https://group20-stocksimulatorv2.herokuapp.com/api/portfolios/buyStock', {
            "Login": login,
-           "Company": this.state.search,
+           "Company": message,
            "Amount": 1,
          })
          .then(function (response) {
@@ -511,7 +511,7 @@ class Chart extends React.Component {
        axios
          .post('https://group20-stocksimulatorv2.herokuapp.com/api/portfolios/sellStock', {
            "Login": login,
-           "Company": this.state.search,
+           "Company": message,
            "Amount": 1,
          })
          .then(function (response) {

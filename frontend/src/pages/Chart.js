@@ -430,6 +430,7 @@ class Chart extends React.Component {
         //setMessage(error);
       console.log(error);
       displayMessage = error.response.data;
+      this.forceUpdate();
     });
     
     console.log(this.state);
@@ -474,10 +475,12 @@ class Chart extends React.Component {
            var res = response.data;
            console.log(res);
            displayMessage = "Stock Bought";
-         })
+           this.forceUpdate();
+          })
          .catch(function (error) {
            console.log("error");
            displayMessage = error.response.data;
+           this.forceUpdate();
          });
      };
      this.forceUpdate();
@@ -522,15 +525,16 @@ class Chart extends React.Component {
            var res = response.data;
            console.log(res);
            displayMessage = "Stock Sold";
+           this.forceUpdate();
          })
          .catch(function (error) {
            console.log("error");
            displayMessage = error.response.data;
+           this.forceUpdate();
          });
 
      };
      postCall();
-     this.forceUpdate();
   };
 
   componentWillUnmount(){

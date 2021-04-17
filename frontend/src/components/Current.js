@@ -57,7 +57,7 @@ if(ud !== null)
         else 
         {
          console.log(response);
-         const cash = response.data.AccountBalance;
+         const cash = response.data.Cash;
          cash.toFixed(2);
          getCash(cash);
          const holdings = response.data.Holdings;

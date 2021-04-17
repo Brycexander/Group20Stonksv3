@@ -102,11 +102,11 @@ router.post("/leaderboard", (req, res) => {
                 retVal.push({Login: portfolios[i].Login, AccountBalance: portfolios[i].AccountBalance});
             }
 
-            const sorted = retVal.sort((a, b) => {
-                return b - a;
-            })
+            retVal.sort(function(a, b) {
+                return b.AccountBalance - a.AccountBalance;
+            });
 
-            res.status(200).json(sorted);
+            res.status(200).json(retVal);
         }
     });
 });

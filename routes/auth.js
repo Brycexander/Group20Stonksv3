@@ -31,7 +31,7 @@ router.post('/recover', [
     check('Email').isEmail().withMessage('Enter a valid email address'),
 ], validate, Password.recover);
 
-router.get('/reset/:token', Password.reset);
+router.post('/reset', Password.reset);
 
 router.post('/reset/:token', [
     check('Password').not().isEmpty().isLength({min: 6}).withMessage('Must be at least 6 chars long'),

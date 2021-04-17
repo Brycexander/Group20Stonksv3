@@ -380,7 +380,10 @@ class Chart extends React.Component {
     
   }
 
+  
+
   updateGraph(){
+    var unixTimestamp = require("unix-timestamp");
     console.log(this.state.search);
     var obj = {Company: message};
     var js = JSON.stringify(obj);
@@ -412,7 +415,7 @@ class Chart extends React.Component {
           temp.push(res.o[i]);
           dataGraph.push(
             {
-              x: new Date(res.t[i]).toDateString(), 
+              x: new Date(res.t[i] * 1000).toDateString(), 
               y: temp,
             }
           );

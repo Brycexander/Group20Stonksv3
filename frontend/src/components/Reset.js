@@ -65,12 +65,12 @@ return(
         <br></br>
         <center>
           <h5>Enter new password</h5>
-          <Form.Control type="text" placeholder="Enter new password" ref={(c) => newPass = c}/>
+          <Form.Control type="password" placeholder="Enter new password" ref={(c) => newPass = c}/>
         <br></br>
 
         <br></br> <br></br>
         <h5>Confirm new password</h5>
-        <Form.Control type="text" placeholder="Enter confirm" ref={(c) => confirm = c}/>
+        <Form.Control type="password" placeholder="Enter confirm" ref={(c) => confirm = c}/>
         <br></br><br></br>
         </center>
   </Modal.Body>

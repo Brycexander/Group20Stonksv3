@@ -20,6 +20,8 @@ router.post("/getPortfolio", (req, res) => {
 router.post("/buyStock", (req, res) => {
     Portfolio.findOne({ "Login": req.body.Login }).then(portfolio => {
         Stock.findOne({"Company": req.body.Company}).then(stock => {
+            if (!stock)
+                return res.status(404).json({ StockNotFound: "No Stock Found" });
             if (stock.Quote.c * req.body.Amount > portfolio.Cash) {
                 return res.status(400).json("Insufficient founds");
             } else {
@@ -49,6 +51,8 @@ router.post("/buyStock", (req, res) => {
 router.post("/sellStock", (req, res) => {
     Portfolio.findOne({ "Login": req.body.Login }).then(portfolio => {
         Stock.findOne({ "Company": req.body.Company}).then(stock => {
+            if (!stock)
+                return res.status(404).json({ StockNotFound: "No Stock Found" });
             var index = -1;
             var stockQuantity = -1;
             for (i = 0; i < portfolio.StocksOwned.length; i++) {

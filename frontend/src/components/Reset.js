@@ -43,6 +43,7 @@ function Reset()
              }
              else 
              {
+               localStorage.removeItem("token");
                window.location.href = '/';
              }
            })

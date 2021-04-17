@@ -446,7 +446,7 @@ class Chart extends React.Component {
        const jwt = require("jsonwebtoken");
        var tok = storage.retrieveToken();
        var ud = jwt.decode(tok,{complete:true});
-       if(ud !== null)
+       if(ud === null)
        {
          return;
        }
@@ -492,7 +492,7 @@ class Chart extends React.Component {
        const jwt = require("jsonwebtoken");
        var tok = storage.retrieveToken();
        var ud = jwt.decode(tok,{complete:true});
-       if(ud !== null)
+       if(ud === null)
        {
          return;
        }

@@ -58,13 +58,21 @@ router.post("/sellStock", (req, res) => {
                     break;
                 }
             }
+
             if (index == -1 || stockQuantity < req.body.Amount) {
                 return res.status(400).json("Don't own enough shares");
             }
-            portfolio.StocksOwned[index].Amount -= req.body.Amount;
-            portfolio.StocksOwned[index].TotalValue -= stock.Quote.c * req.body.Amount;
+            else if (stockQuantity == req.body.Amount) {
+                portfolio.StocksOwned.splice(index, 1);
+            }
+            else {
+                portfolio.StocksOwned[index].Amount -= req.body.Amount;
+                portfolio.StocksOwned[index].TotalValue -= stock.Quote.c * req.body.Amount;
+            }
+
             portfolio.Cash += req.body.Amount * stock.Quote.c;
             portfolio.Holdings -= req.body.Amount * stock.Quote.c;
+
             portfolio.save().then(res.status(200).json("Shares Sold"));
         })
     });

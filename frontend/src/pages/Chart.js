@@ -477,7 +477,7 @@ class Chart extends React.Component {
            "Company": message,
            "Amount": 1,
          })
-         .then(function (response) {
+         .then((response) => {
            var res = response.data;
            console.log(res);
            displayMessage = "Stock Bought";
@@ -486,7 +486,7 @@ class Chart extends React.Component {
             show: res
            });
           })
-         .catch(function (error) {
+         .catch((error) => {
            console.log("error");
            if (typeof(error.response) !== 'undefined'){
             displayMessage = error.response.data;
@@ -535,7 +535,7 @@ class Chart extends React.Component {
            "Company": message,
            "Amount": 1,
          })
-         .then(function (response) {
+         .then((response) => {
            var res = response.data;
            console.log(res);
            displayMessage = "Stock Sold";
@@ -544,7 +544,7 @@ class Chart extends React.Component {
             show: res
           });
         })
-         .catch(function (error) {
+         .catch((error) => {
            console.log("error");
            if (typeof(error.response) !== 'undefined'){
             displayMessage = error.response.data;

@@ -22,7 +22,7 @@ router.post("/buyStock", (req, res) => {
         Stock.findOne({"Company": req.body.Company}).then(stock => {
             if (!stock)
                 return res.status(404).json("No Stock Found");
-            if (stock.Quote.c * req.body.Amount > portfolio.Cash) {
+            if (stock.Quote.c * parseInt(req.body.Amount) > portfolio.Cash) {
                 return res.status(400).json("Insufficient founds");
             } else {
                 var index = -1;
@@ -33,14 +33,14 @@ router.post("/buyStock", (req, res) => {
                     }
                 }
                 if (index != -1) {
-                    portfolio.StocksOwned[index].Amount += req.body.Amount;
-                    portfolio.StocksOwned[index].TotalValue += stock.Quote.c * req.body.Amount;
+                    portfolio.StocksOwned[index].Amount += parseInt(req.body.Amount);
+                    portfolio.StocksOwned[index].TotalValue += stock.Quote.c * parseInt(req.body.Amount);
                 } else {
-                    portfolio.StocksOwned.push({ Company: req.body.Company, Amount: req.body.Amount, StockValue: stock.Quote.c, TotalValue: stock.Quote.c * req.body.Amount, Date: Date.now() });
+                    portfolio.StocksOwned.push({ Company: req.body.Company, Amount: parseInt(req.body.Amount), StockValue: stock.Quote.c, TotalValue: stock.Quote.c * parseInt(req.body.Amount), Date: Date.now() });
                 }
 
-                portfolio.Cash -= stock.Quote.c * req.body.Amount;
-                portfolio.Holdings += stock.Quote.c * req.body.Amount;
+                portfolio.Cash -= stock.Quote.c * parseInt(req.body.Amount);
+                portfolio.Holdings += stock.Quote.c * parseInt(req.body.Amount);
                 portfolio.save().then(res.status(200).json("Shares Bought"));
             }
         });

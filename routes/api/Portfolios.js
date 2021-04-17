@@ -108,8 +108,8 @@ router.post("/leaderboard", (req, res) => {
 
             res.status(200).json(sorted);
         }
-    }))
-})
+    });
+});
 
 
 module.exports = router;

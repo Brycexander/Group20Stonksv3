@@ -356,7 +356,8 @@ class Chart extends React.Component {
       o:[], 
       t:[], 
       v:[],
-      search: ''
+      search: '',
+      show: 'hello'
     };
     // this.company = '';
     // comp = this.company;
@@ -430,11 +431,14 @@ class Chart extends React.Component {
         //setMessage(error);
       console.log(error);
       displayMessage = error.response.data;
-      this.forceUpdate();
+      this.setState({
+        show: error.response.data
+      });
+      // this.forceUpdate();
     });
     
     console.log(this.state);
-    this.forceUpdate();
+    // this.forceUpdate();
   }
 
   buyStock()
@@ -475,15 +479,21 @@ class Chart extends React.Component {
            var res = response.data;
            console.log(res);
            displayMessage = "Stock Bought";
-           this.forceUpdate();
+           // this.forceUpdate();
+           this.setState({
+            show: res
+           });
           })
          .catch(function (error) {
            console.log("error");
            displayMessage = error.response.data;
-           this.forceUpdate();
+           this.setState({
+            show: error.response.data
+           });
+           // this.forceUpdate();
          });
      };
-     this.forceUpdate();
+     //this.forceUpdate();
      postCall();
   };
 
@@ -525,12 +535,18 @@ class Chart extends React.Component {
            var res = response.data;
            console.log(res);
            displayMessage = "Stock Sold";
-           this.forceUpdate();
-         })
+           // this.forceUpdate();
+           this.setState({
+            show: res
+          });
+        })
          .catch(function (error) {
            console.log("error");
            displayMessage = error.response.data;
-           this.forceUpdate();
+           this.setState({
+            show: error.response.data
+          });
+           // this.forceUpdate();
          });
 
      };
@@ -569,7 +585,7 @@ class Chart extends React.Component {
                     className="stock-input" onChange={this.handleChange}/>
                 </form>
               </div>
-              <div>{displayMessage}</div>
+              <div>{this.state.show}</div>
               <Container className = {classes.box} maxWidth="lg">
               <Button onClick={this.buttonClick.bind(this)} variant="contained" color="primary" aria-label="contained primary button group" 
               style={{

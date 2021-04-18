@@ -3,6 +3,8 @@ import './App.css';
 import Register from "./components/Register.js";
 import { BrowserRouter as Router, Route, Redirect, Switch, HashRouter } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
+import NewLogin from './components/NewLogin';
+import NewRegister from './components/NewRegister';
 import Home from './components/Home';
 import CardPage from './pages/CardPage';
 import UserPage from './components/UserPage';
@@ -14,17 +16,33 @@ import "react-bootstrap/dist/react-bootstrap.min.js";
 import Settings from './components/Settings';
 import Token from './components/Token';
 import Leaderboard from './components/Leaderboard'
+import { createMuiTheme } from '@material-ui/core/styles';
+import { palette } from '@material-ui/system';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import red from '@material-ui/core/colors/red';
+import { lighten, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
 function App() 
 {
+  const darkTheme = createMuiTheme({
+    palette: {
+      type: "light",
+      primary: red,
+      secondary: {
+        main: '#b9f6ca',
+      },
+    },
+  });
   return (
+  <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
     <HashRouter >
     <Switch>
       <Route path="/" exact>
-        <LoginPage />
+        <NewLogin />
       </Route>
       <Route path="/Register" exact>
-        <Register />
+        <NewRegister />
       </Route>
       <Route path="/Home" exact>
         <Home />
@@ -56,6 +74,7 @@ function App()
       <Redirect to="/" />
     </Switch>  
   </HashRouter>
+  </ThemeProvider>
   );
 }
 

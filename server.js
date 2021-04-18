@@ -42,12 +42,10 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.use(session({ cookie: { maxAge: 60000 }, 
-   secret: 'woot',
-   resave: false, 
-   saveUninitialized: false}));
-   
+app.use(cookieParser('secret'));
+app.use(session({cookie: { maxAge: 60000 }}));
 app.use(flash());
+
 
 // DB Config
 const db = process.env.mongoURI;

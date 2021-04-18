@@ -146,10 +146,7 @@ export default function SignIn() {
             value = {password}
             onChange = {handleChange2}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+         
           <Button
             type="submit"
             fullWidth

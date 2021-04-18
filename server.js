@@ -7,6 +7,7 @@ const passport = require("passport");
 const finnhub = require('finnhub');
 var flash = require('connect-flash');
 var cron = require('node-cron');
+var session = require('express-session');
 const path = require("path");
 var unixTimestamp = require("unix-timestamp");
 unixTimestamp.round = true;
@@ -40,6 +41,12 @@ app.use(
    })
 );
 app.use(bodyParser.json());
+
+app.use(session({ cookie: { maxAge: 60000 }, 
+   secret: 'woot',
+   resave: false, 
+   saveUninitialized: false}));
+   
 app.use(flash());
 
 // DB Config

@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const Token = require('../models/token');
+
 const {sendEmail} = require('../utils/index');
 
 // @route POST api/auth/register
@@ -81,8 +82,8 @@ exports.verify = async (req, res) => {
             user.save(function (err) {
                 if (err) return res.status(500).json({message:err.message});
 
-                res.redirect('http://' + req.headers.host + '/#');
                 req.flash('success', 'The account has been verified. Please log in.');
+                res.redirect('http://' + req.headers.host + '/#');
                 res.status(200).json("The account has been verified. Please log in.");
             });
         });

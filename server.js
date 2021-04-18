@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const finnhub = require('finnhub');
+var flash = require('connect-flash');
 var cron = require('node-cron');
 const path = require("path");
 var unixTimestamp = require("unix-timestamp");

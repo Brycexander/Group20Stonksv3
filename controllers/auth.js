@@ -81,7 +81,8 @@ exports.verify = async (req, res) => {
             user.save(function (err) {
                 if (err) return res.status(500).json({message:err.message});
 
-                res.status(200).send("The account has been verified. Please log in.");
+                res.redirect('http://' + req.headers.host + '/');
+                res.status(200).flash("The account has been verified. Please log in.");
             });
         });
     } catch (error) {

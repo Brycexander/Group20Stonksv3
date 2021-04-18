@@ -57,11 +57,12 @@ if(ud !== null)
         else 
         {
          console.log(response);
-         const cash = response.data.Cash;
-         cash.toFixed(2);
+         var cash = response.data.Cash;
+          cash = cash.toFixed(2);
          getCash(cash);
-         const holdings = response.data.Holdings;
-         holdings.toFixed(2);
+
+         var holdings = response.data.Holdings;
+         holdings = holdings.toFixed(2);
          getHold(holdings);
         }
       })

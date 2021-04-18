@@ -64,6 +64,7 @@ function Deposits()
   <Link id="change" className="nav-link" to="/Leaderboard">
       Leaderboard
     </Link>
+    <Link id="change" className="nav-link" to="/Landing">Profile</Link>
   <Link id="change" className="nav-link" to="/Search">
       Stocks
     </Link>

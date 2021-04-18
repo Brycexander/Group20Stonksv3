@@ -34,7 +34,7 @@ function NavigationBar()
       <div>
         <Navbar className="color-nav" expand="lg">
         <Navbar.Brand className="font">StockHub</Navbar.Brand>
-        <Nav.Link className="font">Leaderboard</Nav.Link>
+        <Link id="change" className="nav-link" to="/Leaderboard">Leaderboard</Link>
         <Link id="change" className="nav-link" to="/Landing">Profile</Link>
         <Link id="change" className="nav-link" to="/Search">Stocks</Link>
         <Link id="change" className="nav-link" to="/Settings">Settings</Link>

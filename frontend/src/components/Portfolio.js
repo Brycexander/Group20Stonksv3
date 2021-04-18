@@ -46,11 +46,12 @@ function Portfolio()
          const data = response.data.StocksOwned;
          
          //loop through and createData
-  
          for(var i = 0; i < data.length; i++)
          {
              console.log(data[i]);
-             rows.push(createData(data[i].Company, data[i].TotalValue));
+             var total = data[i].TotalValue;
+             total = total.toFixed(2);
+             rows.push(createData(data[i].Company, total));
          }
          //We already got our data
          setStocks(res);
@@ -68,7 +69,7 @@ function Portfolio()
         <div>
           <center>
         <h1 className="display-4 chart1">Portfolio</h1>
-        <PieChart width={400} height={300}>
+        <PieChart width={500} height={320}>
           <Pie data={rows} dataKey="value" cx="50%" cy="50%" innerRadius={70} outerRadius={90} fill="#A032B6" label />
         </PieChart>
         </center>

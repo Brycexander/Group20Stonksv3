@@ -20,6 +20,11 @@ import {
     Link
   } from "react-router-dom";
   import axios from 'axios'
+  import Dialog from '@material-ui/core/Dialog';
+  import DialogActions from '@material-ui/core/DialogActions';
+  import DialogContent from '@material-ui/core/DialogContent';
+  import DialogContentText from '@material-ui/core/DialogContentText';
+  import DialogTitle from '@material-ui/core/DialogTitle';
 
 function Copyright() {
   return (
@@ -63,6 +68,15 @@ export default function SignUp() {
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
+  const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+     setOpen(true);
+    };
+
+    const handleClose = () => {
+      setOpen(false);
+    };
   
   const firstNameChange = e => {
     setFirstName(e.target.value);
@@ -97,8 +111,8 @@ export default function SignUp() {
   const doRegister = async event => 
     {
       event.preventDefault();
-    setMessage("");
-    const postCall = () => {
+      setMessage("");
+      const postCall = () => {
      
     axios
       .post('https://group20-stocksimulatorv2.herokuapp.com/api/auth/register', {
@@ -117,8 +131,7 @@ export default function SignUp() {
         }
         else 
         {
-          // setMessage("OOOOOOOOOOH! :)");
-          window.location.href = '/';
+          setOpen(true);
         }
       })
       .catch(function (error) {
@@ -249,6 +262,25 @@ export default function SignUp() {
       <Box mt={5}>
         <Copyright />
       </Box>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Verification Email"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            A verification link has been sent to your email. Please go verify your new account before logging in.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            Okay
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
+    
   );
 }

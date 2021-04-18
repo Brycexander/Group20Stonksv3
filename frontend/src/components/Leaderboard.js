@@ -9,17 +9,17 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import axios from 'axios'
+import { Button,  ButtonGroup, DropdownButton, MenuItem,Navbar, Nav, NavItem, NavDropdown, Jumbotron, Container, Row, Col, InputGroup, Form} from 'react-bootstrap';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
 const columns = [
   { id: 'rank', label: 'Ranking', minWidth: 170 },
   { id: 'name', label: 'Name', minWidth: 100 },
-  {
-    id: 'shares',
-    label: 'Total Shares',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2),
-  },
   {
     id: 'balance',
     label: 'Account Balance',
@@ -29,8 +29,8 @@ const columns = [
   },
 ];
 
-function createData(rank, name, shares, balance) {
-  return { rank, name, shares, balance};
+function createData(rank, name, balance) {
+  return { rank, name, balance};
 }
 
 var rows = [];
@@ -68,8 +68,7 @@ export default function StickyHeadTable() {
   //const postCall = () => {  
   useEffect(() =>  {  
    axios
-      .post('https://group20-stocksimulatorv2.herokuapp.com/api/portfolios/getPortfolio', {
-        "Login": login
+      .post('https://group20-stocksimulatorv2.herokuapp.com/api/portfolios/leaderboard', {
       })
       .then(response => {
         var res = response.data;
@@ -81,14 +80,14 @@ export default function StickyHeadTable() {
         {
          console.log(response);
          rows = [];
-         const data = response.data.StocksOwned;
+         const data = response.data;
          
          //loop through and createData
   
          for(var i = 0; i < data.length; i++)
          {
              console.log(data[i]);
-             rows.push(createData(data[i].Company, data[i].Date, data[i].StockValue, data[i].Amount, data[i].TotalValue));
+             rows.push(createData(i + 1, data[i].Login, data[i].AccountBalance));
          }
          //We already got our data
          setStocks(res);
@@ -116,10 +115,51 @@ export default function StickyHeadTable() {
     setPage(0);
   };
 
+  const doLogout = event => 
+  {
+    event.preventDefault();
+
+      localStorage.removeItem("user_data");
+      window.location.href = '/';
+
+  };  
+
   return (
       <>
+  <Navbar className="color-nav" expand="lg">
+  <Navbar.Brand className="font">StockHub</Navbar.Brand>
+     <Link id="change" className="nav-link" to="/Leaderboard">
+      Leaderboard
+    </Link>
+    <Link id="change" className="nav-link" to="/Landing">Profile</Link>
+    <Link id="change" className="nav-link" to="/Search">
+      Stocks
+    </Link>
+    <Link id="change" className="nav-link" to="/Settings">Settings</Link>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="mr-auto">
 
+    </Nav>
 
+    <Form inline>
+    <Button variant="outline-danger" onClick={doLogout}>Logout</Button>
+    </Form>
+  </Navbar.Collapse>
+</Navbar>
+<br></br>
+    <Row className="justify-content-md-center">
+    <Col xs={4}>
+        <center>
+    <Paper>
+        <h1>Leaderboard</h1>
+    </Paper>
+    </center>
+    </Col>
+    </Row>
+    <br></br>
+    <Row className="justify-content-md-center">
+       <Col sm={10}>
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
@@ -164,6 +204,8 @@ export default function StickyHeadTable() {
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />
     </Paper>
+    </Col>
+    </Row>
     </>
   );
 }

@@ -46,11 +46,12 @@ function Portfolio()
          const data = response.data.StocksOwned;
          
          //loop through and createData
-  
          for(var i = 0; i < data.length; i++)
          {
              console.log(data[i]);
-             rows.push(createData(data[i].Company, data[i].TotalValue));
+             var total = data[i].TotalValue;
+             total = total.toFixed(2);
+             rows.push(createData(data[i].Company, total));
          }
          //We already got our data
          setStocks(res);

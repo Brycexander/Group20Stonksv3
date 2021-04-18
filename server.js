@@ -40,6 +40,7 @@ app.use(
    })
 );
 app.use(bodyParser.json());
+app.use(flash());
 
 // DB Config
 const db = process.env.mongoURI;

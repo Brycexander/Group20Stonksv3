@@ -135,8 +135,14 @@ export default function SignUp() {
         }
       })
       .catch(function (error) {
+      if (typeof(error.response) !== 'undefined')
+      {
+        setMessage(error.response.data);
+      } else
+      {
         // handle error
         setMessage('Not Valid');
+      }
       });
 
     };

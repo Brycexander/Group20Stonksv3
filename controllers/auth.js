@@ -63,27 +63,20 @@ exports.login = async (req, res) => {
 // @desc Verify token
 // @access Public
 exports.verify = async (req, res) => {
-    if(!req.params.token) return res.status(400).json(
-        {message: "We were unable to find a user for this token."})
-        .redirect('http://' + req.headers.host + '/#');
+    if(!req.params.token) return res.status(400).json({message: "We were unable to find a user for this token."});
 
     try {
         // Find a matching token
         const token = await Token.findOne({ token: req.params.token });
 
         if (!token) return res.status(400).json(
-            { message: 'We were unable to find a valid token. Your token may have expired.' })
-            .redirect('http://' + req.headers.host + '/#');
+            { message: 'We were unable to find a valid token. Your token may have expired.' });
 
         // If we found a token, find a matching user
         User.findOne({ Login: token.Login }, (err, user) => {
-            if (!user) return res.status(400).json(
-                { message: 'We were unable to find a user for this token.' })
-                .redirect('http://' + req.headers.host + '/#');
+            if (!user) return res.status(400).json({ message: 'We were unable to find a user for this token.' });
 
-            if (user.IsVerified) return res.status(400).json(
-                { message: 'This user has already been verified.' })
-                .redirect('http://' + req.headers.host + '/#');
+            if (user.IsVerified) return res.status(400).json({ message: 'This user has already been verified.' });
 
             // Verify and save the user
             user.IsVerified = true;

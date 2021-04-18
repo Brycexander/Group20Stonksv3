@@ -69,7 +69,7 @@ function Portfolio()
         <div>
           <center>
         <h1 className="display-4 chart1">Portfolio</h1>
-        <PieChart width={400} height={300}>
+        <PieChart width={500} height={320}>
           <Pie data={rows} dataKey="value" cx="50%" cy="50%" innerRadius={70} outerRadius={90} fill="#A032B6" label />
         </PieChart>
         </center>

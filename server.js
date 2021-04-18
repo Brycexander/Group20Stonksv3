@@ -8,6 +8,7 @@ const finnhub = require('finnhub');
 var flash = require('connect-flash');
 var cron = require('node-cron');
 var session = require('express-session');
+var cookieParser = require('cookie-parser');
 const path = require("path");
 var unixTimestamp = require("unix-timestamp");
 unixTimestamp.round = true;
@@ -42,6 +43,7 @@ app.use(
 );
 app.use(bodyParser.json());
 
+app.use(cookieParser('secret'));
 app.use(session({cookie: { maxAge: 60000 }}));
 app.use(flash());
 

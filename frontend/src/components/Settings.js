@@ -85,7 +85,8 @@ function Settings()
          {
            console.log("API called");
            console.log(login);
-           window.location.href = '#/';
+           localStorage.removeItem("user_data");
+           window.location.href = '/';
          }
        })
        .catch(function (error) {
@@ -288,7 +289,7 @@ return(
             Cancel
           </Button>
           <Button onClick={doDelete} variant="danger" autoFocus>
-            Bankrupt
+            Delete
           </Button>
         </DialogActions>
       </Dialog>

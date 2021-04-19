@@ -71,7 +71,7 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 
 app.use('/api/auth', auth);
-app.use('/api/user', authenticate, user);
+app.use('/api/user', user);
 app.use("/api/Stock", Stocks);
 app.use("/api/Portfolios", Portfolios);
 const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there

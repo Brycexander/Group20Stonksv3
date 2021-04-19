@@ -109,7 +109,7 @@ exports.destroy = async function (req, res) {
 
         await User.findByIdAndDelete(user);
         await Portfolio.findOneAndDelete({Login});
-        
+
         res.status(200).json({message: 'User has been deleted'});
     } catch (error) {
         res.status(500).json({message: error.message});

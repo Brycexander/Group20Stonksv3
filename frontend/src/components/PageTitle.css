@@ -2,7 +2,7 @@
 
 body{
     background-color: rgb(255, 255, 255) !important;
-    color: black;
+    color: black !important;
 }
 
 .color-nav { 
@@ -131,5 +131,22 @@ animation: floating 3s ease-in-out infinite;
 {
     color: rgb(87, 0, 128);
     margin-left: 300px;
+}
+
+.modal
+{
+    color: black;
+}
+
+.move
+{
+    margin-top: 50px !important;
+    background-color: #3B3B3B;
+    border-radius:.50rem!important;
+
+}
+
+.color{
+    color:rgb(255, 255, 255);
 }
 

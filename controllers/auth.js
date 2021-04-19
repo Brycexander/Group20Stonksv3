@@ -124,7 +124,7 @@ async function sendVerificationEmail(user, req, res){
         let from = process.env.FROM_EMAIL;
         let link="http://"+req.headers.host+"/api/auth/verify/"+token.token;
         let html = `<h1>Get Ready To Get Trading.</h1>
-                    <p>Hello, ${user.Login}! You are now verified. Please click on the <a href="${link}">link</a> to go login to your account.</p> 
+                    <p>Hello, ${user.Login}! Congratulations! You are now verified. Please click on the <a href="${link}">link</a> to go login to your account.</p> 
                     <br><p>If you did not request this, please ignore this email.</p>`;
 
         await sendEmail({to, from, subject, html});

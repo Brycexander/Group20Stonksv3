@@ -122,7 +122,6 @@ animation: floating 3s ease-in-out infinite;
 #loginResult
 {
     color: rgb(228, 56, 56);
-    margin: 40%;
     font-family:'Times New Roman', Times, serif;
     font-size: medium;
 }

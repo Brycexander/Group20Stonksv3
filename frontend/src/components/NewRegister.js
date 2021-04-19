@@ -31,7 +31,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        StockHub
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -108,46 +108,83 @@ export default function SignUp() {
     console.log(confirm);
   }
 
-  const doRegister = async event => 
-    {
-      event.preventDefault();
-      setMessage("");
-      const postCall = () => {
-     
-    axios
-      .post('https://group20-stocksimulatorv2.herokuapp.com/api/auth/register', {
-        "FirstName": firstName,
-        "LastName": lastName,
-        "Email": email,
-        "Login": username,
-        "Password": password,
-        "Password2": confirm
-      })
-      .then(function (response) {
-        var res = response.data;
-        if (res.error) 
-        {
-          setMessage(res.error);
-        }
-        else 
-        {
-          setOpen(true);
-        }
-      })
-      .catch(function (error) {
-      if (typeof(error.response) !== 'undefined')
+  const doRegister = async event => 
+  {
+    event.preventDefault();
+    setMessage("");
+    const postCall = () => {
+   
+  axios
+    .post('https://group20-stocksimulatorv2.herokuapp.com/api/auth/register', {
+      "FirstName": firstName,
+      "LastName": lastName,
+      "Email": email,
+      "Login": username,
+      "Password": password,
+      "Password2": confirm
+    })
+    .then(function (response) {
+      var res = response.data;
+      if (res.error) 
       {
-        setMessage(error.response.data);
-      } else
-      {
-        // handle error
-        setMessage('Not Valid');
+        setMessage(res.error);
       }
-      });
-
-    };
-    postCall();
-  };
+      else 
+      {
+        setOpen(true);
+      }
+    })
+    .catch(function (error) {
+    if (typeof(error.response) !== 'undefined')
+    {
+      // setMessage(error.response.data);
+      if (typeof(error.response) !== 'undefined'){
+          var res = error.response.data;
+      /*
+       error.Email
+      error.Password 
+      error.Password2
+      error.FirstName 
+      error.LastName
+      error.Login
+      */
+          if (typeof(res.FirstName) !== 'undefined'){
+              setMessage(res.FirstName);     
+          }
+          else if (typeof(res.LastName) !== 'undefined'){
+              setMessage(res.LastName);     
+          }
+          else if (typeof(res.Email) !== 'undefined'){
+              setMessage(res.Email);     
+          }
+          else if (typeof(res.Login) !== 'undefined'){
+              setMessage(res.Login);     
+          }
+          else if (typeof(res.Password) !== 'undefined'){
+              setMessage(res.Password);     
+          }
+          else if (typeof(res.Password2) !== 'undefined'){
+              setMessage(res.Password2);     
+          }
+          else{
+              setMessage('Not Valid Account');
+          }
+      }
+      else{
+          setMessage('Not Valid Account');
+      }
+    } 
+    else
+    {
+      // handle error
+      setMessage('Not Valid Account');
+    }
+    
+    });
+  
+  };
+  postCall();
+};
 
   return (
     <Container component="main" maxWidth="xs">
@@ -156,7 +193,7 @@ export default function SignUp() {
         <Avatar className={classes.avatar}>
           <MonetizationOnIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" color="textSecondary" variant="h5">
           Sign up
         </Typography>
         <form className={classes.form} noValidate>
@@ -250,7 +287,7 @@ export default function SignUp() {
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
+            color="secondary"
             className={classes.submit}
             onClick={doRegister}
           >

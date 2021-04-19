@@ -22,7 +22,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { palette } from '@material-ui/system';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import red from '@material-ui/core/colors/red';
-import blue from '@material-ui/core/colors/red';
+import blue from '@material-ui/core/colors/blue';
 import { lighten, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import { Button, Nav, Container, Row, Col, Form, Modal, Alert} from 'react-bootstrap';
 function App() 
@@ -43,7 +43,7 @@ function App()
       type: "dark",
       primary: blue,
       secondary: {
-        main: '#b9f6ca',
+        main: '#67EE5E',
       },
     },
   });

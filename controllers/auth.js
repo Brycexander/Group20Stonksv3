@@ -84,7 +84,7 @@ exports.verify = async (req, res) => {
                 if (err) return res.status(500).json({message:err.message});
 
                 req.flash('success', 'The account has been verified. Please log in.');
-                res.redirect('http://' + req.headers.host + '/#/verified');
+                res.redirect('http://' + req.headers.host + '/#/Verified');
             });
         });
     } catch (error) {

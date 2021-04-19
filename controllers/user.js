@@ -1,3 +1,4 @@
+const Portfolio = require('../models/Portfolio');
 const User = require('../models/User');
 const {uploader, sendEmail} = require('../utils/index');
 
@@ -95,18 +96,20 @@ exports.update = async function (req, res) {
     }
 };
 
-// @route DESTROY api/user/{id}
+// @route POST api/user/delete
 // @desc Delete User
 // @access Public
 exports.destroy = async function (req, res) {
     try {
-        const id = req.params.id;
-        const user_id = req.user._id;
+        const {Login} = req.body;
 
-        //Make sure the passed id is that of the logged in user
-        if (user_id.toString() !== id.toString()) return res.status(401).json({message: "Sorry, you don't have the permission to delete this data."});
+        const user = await User.findOne({Login});
 
-        await User.findByIdAndDelete(id);
+        if (!user) return res.status(401).json({message: 'No User Found'});
+
+        await User.findByIdAndDelete(user);
+        await Portfolio.findOneAndDelete({Login});
+
         res.status(200).json({message: 'User has been deleted'});
     } catch (error) {
         res.status(500).json({message: error.message});

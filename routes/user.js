@@ -18,6 +18,6 @@ router.post('/', [
 router.get('/:id',  User.show);
 
 //DELETE
-router.delete('/:id', User.destroy);
+router.post('/delete', User.destroy);
 
 module.exports = router;

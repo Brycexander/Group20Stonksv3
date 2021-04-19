@@ -27,7 +27,7 @@ exports.recover = async (req, res) => {
         let link = "http://" + req.headers.host + "/#/Token";
         let html = `<p>Hi ${user.Login}</p>
                     <p>Please copy and paste this token: <br></br> <br></br> ${token} <br></br> <br></br>into the Password Recovery page that you have open or click this link to be
-                    redirected to reset your password. <br></br><br></br> ${link}" 
+                    redirected to reset your password. <br></br><br></br> ${link} 
                     <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>`;
 
         await sendEmail({to, from, subject, html});

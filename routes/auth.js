@@ -10,7 +10,7 @@ const router = express.Router();
 router.post('/register', [
     check('Email').isEmail().withMessage('Enter a valid email address'),
     check('Password').not().isEmpty().isLength({min: 6}).withMessage('Must be at least 6 chars long'),
-    check('Password2').not().equals('Password').withMessage('Passwords do not match'),
+    check('Password2', 'Passwords do not match').custom((value, {req}) => (value === req.body.Password)),
     check('FirstName').not().isEmpty().withMessage('Your first name is required'),
     check('LastName').not().isEmpty().withMessage('Your last name is required'),
     check('Login').not().isEmpty().withMessage('Login is required')

@@ -25,6 +25,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { palette } from '@material-ui/system';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import red from '@material-ui/core/colors/red';
+import blue from '@material-ui/core/colors/blue';
 import axios from 'axios'
 
 function createData(symbol, description, open, high, low, price, pcurrent, percent) {
@@ -268,12 +269,13 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
+
 const darkTheme = createMuiTheme({
   palette: {
-    type: "light",
-    primary: red,
+    type: "dark",
+    primary: blue,
     secondary: {
-      main: '#b9f6ca',
+      main: '#67EE5E',
     },
   },
 });

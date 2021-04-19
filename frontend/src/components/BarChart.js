@@ -121,8 +121,8 @@ function BarChart() {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="amt" barSize={20} fill="#413ea0" />
-          <Line type="monotone" dataKey="amt" stroke="#ff7300" />
+          <Bar dataKey="amt" barSize={20} fill="#2CD020" />
+          <Line type="monotone" dataKey="amt" stroke="#E8922A" />
         </ComposedChart>
       </div>
     );

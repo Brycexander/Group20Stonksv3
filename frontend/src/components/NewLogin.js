@@ -26,7 +26,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        StockHub
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -154,11 +154,11 @@ export default function SignIn() {
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
+            color="secondary"
             className={classes.submit}
             onClick = {doLogin}
           >
-            Sign In
+            LAUNCH
           </Button>
           <Grid container>
             <Grid item xs>

@@ -43,7 +43,7 @@ const useStyles = makeStyles({
     width: '100%',
   },
   container: {
-    maxHeight: 440,
+    //maxHeight: 440,
   },
 });
 
@@ -149,7 +149,7 @@ export default function StickyHeadTable() {
 </Navbar>
 <br></br>
     <Row className="justify-content-md-center">
-    <Col xs={4}>
+    <Col xs={3}>
         <center>
     <Paper>
         <h1>Leaderboard</h1>

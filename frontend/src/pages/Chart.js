@@ -8,6 +8,7 @@ import { green, purple } from '@material-ui/core/colors';
 import axios from 'axios'
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Container from '@material-ui/core/Container';
+import blue from '@material-ui/core/colors/blue';
 
 
 /*
@@ -321,6 +322,16 @@ const options = {
   }
 };
 
+const darkTheme = createMuiTheme({
+  palette: {
+    type: "dark",
+    primary: blue,
+    secondary: {
+      main: '#67EE5E',
+    },
+  },
+});
+
 const useStyles = withStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -568,7 +579,7 @@ class Chart extends React.Component {
     // const { classes } = this.props;
     const classes = useStyles
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={darkTheme}>
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs ={12} lg = {8}>
@@ -576,7 +587,7 @@ class Chart extends React.Component {
               <div id="chart">
                   <ReactApexChart options={options} series={this.state.series} type="candlestick" height={550} width={"100%"}/>
               </div>
-              <ThemeProvider theme={theme}>
+              <ThemeProvider theme={darkTheme}>
               
               </ThemeProvider>
             </Paper>

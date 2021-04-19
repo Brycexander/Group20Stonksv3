@@ -56,8 +56,8 @@ function Forgot()
       </Link>
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Password Recovery</Modal.Title>
+        <Modal.Header closeButton >
+          <Modal.Title >Password Recovery</Modal.Title>
         </Modal.Header>
         <Modal.Body> <Form.Group controlId="formBasicEmail">
     <Form.Label>Please Enter Your Email Address</Form.Label>

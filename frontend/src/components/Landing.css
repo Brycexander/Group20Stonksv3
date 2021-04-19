@@ -1,16 +1,16 @@
 body{
-    background-color: rgb(230, 224, 224) !important;
+    background-color: #1D211F !important;
     color: rgb(0, 0, 0);
 }
 
 .color-nav { 
-    background-color: #4cc3cc; 
+    background-color: #2CD020; 
     color: white;
 } 
 
 .font
 {
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .logout

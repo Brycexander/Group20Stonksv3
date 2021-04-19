@@ -11,8 +11,8 @@ import Container from '@material-ui/core/Container';
 import blue from '@material-ui/core/colors/blue';
 
 
-/*
-const series = [{
+
+const series1 = [{
   name: 'candle',
   data: [
     {
@@ -257,7 +257,7 @@ const series = [{
     },
   ]
 }];
-*/
+
 
 const MyButton = styled(Button)({
   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -272,8 +272,66 @@ const MyButton = styled(Button)({
 
 
 var comp = '';
-
 const options = {
+  chart: {
+    foreColor: "#ffffff",
+    toolbar: {
+      show: true
+    }
+  },
+  colors: ["white"],
+  stroke: {
+    width: 3
+  },
+  grid: {
+    borderColor: "#ffffff",
+    borderWidth: 1,
+    clipMarkers: false,
+    yaxis: {
+      lines: {
+        show: true
+      }
+    },
+    xaxis: {
+      lines: {
+        show: false,
+      },
+    }
+  },
+  dataLabels: {
+    enabled: false
+  },
+  fill: {
+    gradient: {
+      enabled: true,
+      opacityFrom: 0.4,
+      opacityTo: 0
+    }
+  },
+  markers: {
+    size: 0
+  },
+  tooltip: {
+    enabled: true,
+    style: {
+      fontSize: '20px',
+      fontFamily: 'Roboto'
+    },
+    x: {
+      show: true,
+      format:'HH:mm'
+    },
+    y: {
+      formatter:(value) => `${value}$`
+    },
+    marker: {
+      show: false,
+    },
+    theme:'dark'
+  },
+}
+
+const options1 = {
   chart: {
     height: 350,
     offsetY: 0,
@@ -283,6 +341,7 @@ const options = {
     text: comp,
     align: 'left'
   },
+  
   annotations: {
     xaxis: [
       {
@@ -301,10 +360,10 @@ const options = {
         }
       }
     ],
-    tickPlacement: 'on'
   },
   tooltip: {
     enabled: true,
+    theme: 'dark',
   },
   xaxis: {
     type: 'category',
@@ -585,7 +644,7 @@ class Chart extends React.Component {
           <Grid item xs ={12} lg = {8}>
             <Paper className={classes.paper}> 
               <div id="chart">
-                  <ReactApexChart options={options} series={this.state.series} type="candlestick" height={550} width={"100%"}/>
+                  <ReactApexChart options={options} series={series1} type="candlestick" height={550} width={"100%"}/>
               </div>
               <ThemeProvider theme={darkTheme}>
               

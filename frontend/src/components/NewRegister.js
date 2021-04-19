@@ -140,6 +140,7 @@ export default function SignUp() {
       // setMessage(error.response.data);
       if (typeof(error.response) !== 'undefined'){
           var res = error.response.data;
+          console.log(res.FirstName);
       /*
        error.Email
       error.Password 

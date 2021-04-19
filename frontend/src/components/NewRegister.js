@@ -281,7 +281,9 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12}>
+              <center>
                 <span id="loginResult">{message}</span>
+                </center>
             </Grid>
           </Grid>
           <Button

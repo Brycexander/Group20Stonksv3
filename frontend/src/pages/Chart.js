@@ -644,7 +644,7 @@ class Chart extends React.Component {
           <Grid item xs ={12} lg = {8}>
             <Paper className={classes.paper}> 
               <div id="chart">
-                  <ReactApexChart options={options} series={this.series} type="candlestick" height={550} width={"100%"}/>
+                  <ReactApexChart options={options} series={this.state.series} type="candlestick" height={550} width={"100%"}/>
               </div>
               <ThemeProvider theme={darkTheme}>
               

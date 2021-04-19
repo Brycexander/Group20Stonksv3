@@ -38,6 +38,15 @@ function Settings()
         setOpen(false);
       };
 
+
+    const handleClickOpen2 = () => {
+      setOpen2(true);
+    };
+  
+    const handleClose2 = () => {
+      setOpen2(false);
+    };
+
     //The read in variables
     const storage = require('../tokenStorage.js');  
     const jwt = require("jsonwebtoken");
@@ -56,6 +65,37 @@ function Settings()
 
     //do Reset
     const [message,setMessage] = useState('');
+
+    const doDelete = async event =>
+{
+    event.preventDefault();
+
+    const postCall = () => {
+     axios
+       .post('https://group20-stocksimulatorv2.herokuapp.com/api/user/delete', {
+         "Login": login
+       })
+       .then(function (response) {
+         var res = response.data;
+         if (res.error) 
+         {
+           console.log("Cannot Delete Account");
+         }
+         else 
+         {
+           console.log("API called");
+           console.log(login);
+           window.location.href = '#/';
+         }
+       })
+       .catch(function (error) {
+         // handle error
+         console.log("Cannot execute delete");
+       });
+
+   };
+   postCall();
+};
 
     const doBankrupt = async event =>
     {
@@ -108,6 +148,7 @@ function Settings()
     };
 
     const [open, setOpen] = React.useState(false);
+    const [open2, setOpen2] = React.useState(false);
 
 
 return(
@@ -190,7 +231,14 @@ return(
         />
         </center>
  <br></br>
+ <Row>
+    <Col>
     <Button variant="danger" onClick={handleClickOpen}>Bankrupt</Button>
+    </Col>
+    <Col>
+    <Button variant="danger" xs={3} onClick={handleClickOpen2} >Delete</Button>
+    </Col>
+    </Row>
     </Col>
  </Row>
  </center>
@@ -218,6 +266,28 @@ return(
             Cancel
           </Button>
           <Button onClick={doBankrupt} variant="danger" autoFocus>
+            Bankrupt
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={open2}
+        onClose={handleClose2}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Are you sure you want to delete your account?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            By clicking delete you will lose all of your current data and will not be able to log back in.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose2} variant="secondary">
+            Cancel
+          </Button>
+          <Button onClick={doDelete} variant="danger" autoFocus>
             Bankrupt
           </Button>
         </DialogActions>

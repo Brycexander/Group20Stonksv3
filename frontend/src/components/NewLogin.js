@@ -14,6 +14,7 @@ import Container from '@material-ui/core/Container';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import axios from 'axios'
 import Forgot from './Forgot';
+import './PageTitle.css'
 import {
     BrowserRouter as Router,
     Switch,
@@ -170,6 +171,9 @@ export default function SignIn() {
               </Link>
             </Grid>
           </Grid>
+          <center>
+          <span id="loginResult">{message}</span>
+          </center>
         </form>
       </div>
       <Box mt={8}>

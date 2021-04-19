@@ -1,3 +1,4 @@
+const Portfolio = require('../models/Portfolio');
 const User = require('../models/User');
 const {uploader, sendEmail} = require('../utils/index');
 
@@ -107,6 +108,8 @@ exports.destroy = async function (req, res) {
         if (!user) return res.status(401).json({message: 'No User Found'});
 
         await User.findByIdAndDelete(user);
+        await Portfolio.findOneAndDelete({Login});
+        
         res.status(200).json({message: 'User has been deleted'});
     } catch (error) {
         res.status(500).json({message: error.message});

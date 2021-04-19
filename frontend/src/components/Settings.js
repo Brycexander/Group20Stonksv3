@@ -1,18 +1,25 @@
 import React, { Component, useState } from 'react'; 
-import { Button, Nav, Container, Row, Col, Form, Modal, Alert} from 'react-bootstrap';
+import { Button, Nav, Container, Row, Col, Form, Alert} from 'react-bootstrap';
 import logo from './../vector-creator.png'; //import image
 import {LinkContainer} from 'react-router-bootstrap'
 import './PageTitle.css';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons'
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
+import Modal from '@material-ui/core/Modal';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Paper from '@material-ui/core/Paper';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { palette } from '@material-ui/system';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import red from '@material-ui/core/colors/red';
+import blue from '@material-ui/core/colors/blue';
+import { lighten, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import {
     BrowserRouter as Router,
     Switch,
@@ -22,7 +29,6 @@ import {
 
 function Settings()
 {
-    const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -82,21 +88,48 @@ function Settings()
        postCall();
     };
 
+    const darkTheme = createMuiTheme({
+      palette: {
+        type: "dark",
+        primary: blue,
+        secondary: {
+          main: '#67EE5E',
+        },
+      },
+    });
+
+    const styles = {
+      root: {
+        background: "black"
+      },
+      input: {
+        color: "white"
+      }
+    };
+
+    const [open, setOpen] = React.useState(false);
+
+
 return(
+
     <div>
-<Modal.Dialog>
-  <Modal.Header>
-    <Link to="/Landing">
-    <FontAwesomeIcon icon={faArrowCircleLeft} size="2x"></FontAwesomeIcon>
-    </Link>
-    <Modal.Title>Settings</Modal.Title>
-  </Modal.Header>
-  <Modal.Body>
-       
-  </Modal.Body>
-  <Container className="width">
+      <br></br>
+      <br></br>
       <center>
-      <Col xs={10}>
+      <Col xs={7}>
+      <Container className = "move">
+      <br></br>
+      <center>
+        <Row>
+          <Col xs={7}>
+        <Link to="/Landing">
+         < FontAwesomeIcon icon={faArrowCircleLeft} size="2x"></FontAwesomeIcon>
+        </Link>
+        </Col>
+        </Row>
+        <h1 className="color">Settings</h1>
+        <Row className="justify-content-md-center">
+      <Col xs={5}>
   <center>
   <TextField
           id="standard-read-only-input"
@@ -156,17 +189,16 @@ return(
           }}
         />
         </center>
-
-
  <br></br>
+    <Button variant="danger" onClick={handleClickOpen}>Bankrupt</Button>
+    </Col>
+ </Row>
+ </center>
+     <br></br>
+ </Container>
  </Col>
  </center>
- </Container>
-  <Modal.Footer>
-    <Button variant="danger" onClick={handleClickOpen}>Bankrupt</Button>
-  </Modal.Footer>
-   
-</Modal.Dialog>
+
 
 <Dialog
         open={open}
@@ -191,7 +223,6 @@ return(
         </DialogActions>
       </Dialog>
 </div>
-
 );
 
 }
